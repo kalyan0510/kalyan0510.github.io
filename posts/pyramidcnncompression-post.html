@@ -1,0 +1,96 @@
+<p>This compression aims at reducing the file sizes as much as possible while preserving the details responsible for image subject's recognisability. </p>
+
+<img class="postimg" style="width: 50%; float: none;" src="/images/pyramidcompression/PYR CNN COMP.png">
+
+<p>Looking at both the compressed images, you can still recognise a car in the first one and a plane in the second one but they only hold minimal information of about 0.72 bits/pixel instead of their original counterparts occupying 8 bits/pixel. </p>
+ 
+
+<p>There are tons of image compression algorithms in use, like DCT, JPEG, HEIF and etcetera which can perform lossy image compressions by ignoring the high frequency components of image.  In definition, High-frequency (HF) components correspond to "fine" details in the image while low-frequency(LF) components corresponds to "coarse" details. HF components occupy more disk space (memory)  than LF components does. A simple image decomposition into coarse and fine details can be done as shown.</p>
+
+<img class="postimg" style="width: 65%; float: none;" src="/images/pyramidcompression/id.png">
+
+<p> Above equation of images delineates the basic difference between HF & LF in images. Furthermore, the details of images can be separated into images corresponding to multiple frequency bands. </p>
+
+<p>DCT, JPEG & HEIF algorithms discards some of the HF/fine details in an image to reduce the image file size. Desperately compressing images to very small sizes (like less than 1 kb) with these algorithms may result in losing the recognisability of the  subject in the image. In simpler words if we compress a 1MB cat photo to 1KB photo, we might not recognise a cat in the final image.  </p>
+<p> Here I am explaining a lossy image compression model which reduces the image disk-space/file-size but still preserving the cat details. That means,  a human or a computer who reads the compressed image must be able to recognise the cat.
+</p>
+
+<h1 > <b>Few things to know before we delve into the details: </b></h1>
+
+<h2>Pyramid Decompositions</h2>
+
+<img class="postimg" style="width: 30%; float: none;" src="/images/pyramidcompression/pyramid.png">
+<h3 >Gaussian Pyramids</h3>
+
+<p>Pooling down an image multiple times using Gaussian filter produces multiple smaller images with exponentially decreasing sizes. All such pooled down images if put one on another forms a pyramid kinda shape. 
+</p>
+
+<h3 >Laplacian Pyramids</h3>
+
+<p>In gaussian pyramids,  as we go up the pyramid, finer details (sharp edges or HF noises) are discarded. That means as we go down the pyramid, fined details are added from layer to layer. The concept of Laplacian pyramid is to separate out the finer details which are added to lower levels.</p>
+
+<p>So each N<sup>th</sup>&nbsp;Laplacian layer is the difference of upscaled N+1<sup>th</sup>&nbsp;and
+N<sup>th</sup>&nbsp;Gaussian layers.&nbsp;<o:p></o:p></p>
+
+<p>These two are  linear multi-scale  image decomposition models. There are other pyramids which can capture the edges into a filter based on the orientation of edges. These are called  linear multi-scale, multi-orientation image decomposition models. Example: QMF Wavelet pyramids & Steerable Pyramids. More about pyramids here[https://en.wikipedia.org/wiki/Pyramid_(image_processing) ].</p>
+
+<p>More on Laplacian Pyramid and its use in compression:</p>
+<p>The
+levels of the laplacian pyramid can be compressed since each level in the
+pyramid has<b>&nbsp;low variance</b>&nbsp;and&nbsp;<b>entropy</b>&nbsp;and each
+level image may be represented at very low sample density.<o:p></o:p></p>
+<p> Laplacian levels have low variance because, each level mostly stores only the edges, is filled with near zero values. Only few number of pixels lying on the edges are away from zero. This means we don’t need 255 values (8 bits) to represent a pixel in each colour channel. Thus we can save some bits by decreasing the color levels. This process is called quantisation. </p>
+
+<h2>Convolutional Neural Networks</h2>
+<p>CNNs are the most famous algorithms among biologically inspired AI techniques. Deep CNN are proved to be very similar to Human visual cortex, which means  we can make a computer recognise an image the same way we Humans recognise objects with our eyes. Thus we can evaluate the recognisability of an object on a linear scale. </p>
+
+<p> In this post, I will be using the CNN for the same purpose: To evaluate the recognisability of a subject(cat or dog / car or plane) during compression process. </p>
+
+<h1> Compression Model</h1>
+<img class="postimg" style="width: 100%; float: none; padding-top: 20px; padding-bottom: 20px;" src="/images/pyramidcompression/CompressionModel.png">
+
+<p>Now we know one way of decomposing the image and one way of evaluating the image’s recognisability. Unlike JPEG compression which is loosely based on human psycho-visual system, we will direct the image compression directly with the CNNs feedback on image recognisability. </p>
+
+<p>First we decompose the image into multiple levels of laplacian pyramids. Now we check the proportions of all layers contributing to image recognisability. The layer which is contributing the least will be compressed (lossily) more.
+
+Now again we will check the contributions of each layer to the image’s recognisability and re adjust the proportions. This will be repeated until the CNN shows ambiguity in recognition. 
+
+Finally, we will compress all the pyramid layers(lossily) in the optimal proportions.</p>
+
+<h1> Compression Algorithm </h1>
+<p>To explain in layman terms, we decompose the image into multiple levels of details and evaluate each level on its usefullness in forming a recognisable image. Next we discard some information from the least usefull levels. </p>
+
+<div style="list-style-type: decimal;">
+        <li>
+                <b>Decompose the image</b> into multiple multiple details. Here we will take laplacian pyramid levels to decompose image based on frequency bandwidth. Here, I have decomposed it upto 5 laplacian levels where in each level corresponds to a band of frequencies. All level 0 details corresponds to high frequency changes in the image, that is, mostly sharp edges. All subsequent levels corresponds to lower frequencies. The very upper layer, (level 5 here) simpy contains the average background color. 
+
+                <img class="postimg" style="width: 45%; float: none;" src="/images/pyramidcompression/laplacian.png">
+                Each layer has its own importance in contributing to the scene of the image. As well as they have some unnecessary details. For example, level 0 which picks up high frequencies, is likely to pickup noise which is an unnecessary detail. And, level 5 will have pick up the colors of the subject's background which is one more unnecessary detail.
+
+        </li>
+
+        <li>
+                <img class="postimg" style="width: 60%; float: none;" src="/images/pyramidcompression/qfactor.png">
+                Now we want to know how much unnecessary details each layer contains, so that we can drop details in each layer proportionately. 
+                <br> 
+                For <b>finding the dose of unnecessary detais</b> in each layer, we do this:
+                <ul>
+                        <li style="list-style-type: circle;"> From the laplacian pyramid, drop off some details in the intended layer. We can do this by using a lossy compression where we control the amount of quality drop. JPEG is a good match for this use case. But for this implementation I will be using pooling down method and quantization to compress the image in a controlled manner.  </li>
+                        <li style="list-style-type: circle;"> Next, we reconstruct the image from the compressed layer and other non-compressed layers</li>
+
+                        <li style="list-style-type: circle;"> Feed both the original image and reconstructed image to CNN and compare the confidence values returned by it. If the confidence drop is more, that means the compressed pyramid layer contributes more to the image recognisability. If its less, then it is the other way</li>
+
+                        <li style="list-style-type: circle;"> Less is the drop of confidence, more is the amount of unnecessary details in the layer. So we choose to compress it more than other layers. </li>
+                </ul>
+
+                
+
+        </li>
+
+        <li> 
+                The compressed pyramid will be our new pyramid again. We repeat the process until there is a significant reduction in confidence values. The final pyramid will be returned to store. And yes, there is a further scope of compressing each layers losslessly with available algorithms. 
+        </li>
+
+
+
+</div>

@@ -1,0 +1,265 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #ffffff;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 65%;
+  margin-left: 10%;
+  background-color: white;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: #eee;
+   padding: 20px;
+   margin-top: 20px;
+   
+}
+
+/* load fonts */
+@font-face {
+  font-family: Dosis;
+  src: url(/fonts/blue-lines.ttf);
+}
+@font-face {
+  font-family: exo;
+  src: url(/fonts/exo2.woff2);
+}
+@font-face {
+  font-family: exolit;
+  src: url(https://fonts.gstatic.com/s/exo2/v6/7cHmv4okm5zmbtYoK-4W4nIp.woff2);
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  color: white;
+  padding: 8px;
+  text-align: center;
+  background: #003366;
+  margin-top: 2px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 3%;
+    margin: 0%;
+  }
+}
+
+/* content*/
+.content {
+  /*box-shadow: 2px 2px 10px #000;*/
+  font-family:"exolit";
+  font-weight: normal;
+  line-height: 1.6;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.content p, .content li{
+  font-size: 14pt;
+}
+
+.contenthead h2 {
+  background-color: #003366;
+  text-align: center;
+  color: #ffffff ;
+  font-size: 1.8em;
+  padding: 5px;
+
+  font-family:"exo";
+  
+  /*box-shadow: 2px 2px 10px #000;*/
+}
+
+.readmore {
+  font-size: 0.9em !important; 
+  letter-spacing: 2px;
+  border-bottom: 1px dotted silver;
+  margin-bottom: 0.5em;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("images/hp-paperlong.png");
+  background-position: 0px 0px;
+  background-size: 100%;
+
+  position: relative;
+  /* Set a specific height */
+  
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: relative;
+  background-repeat: repeat;
+}
+
+#parallax  h1{
+  font-size: 5em;
+  font-family:Dosis;
+  padding-top: 10px;
+  text-align: center;
+  margin:0px;
+  color: #000000 ;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  text-shadow: 2px 2px 9px #000;
+  font-weight: 15;
+}
+#parallax  h4{
+  font-size: 2em;
+  font-family:Dosis;
+  padding-top: 10px;
+  text-align: center;
+  margin:0px;
+  color: #333333 ;
+  padding-bottom: 20px;
+  text-shadow: 2px 2px 5px #000;
+  font-weight: lighter;
+}
+
+.pages {
+    background-color:  #003366 ;
+    color: white;
+    padding: 3px;
+}
+
+.pages UL {
+  list-style-type: none;
+  margin: 0px;
+  padding: 10px;
+}
+
+.pages UL LI {
+  display: inline-block;
+  margin: 3px 10px 3px 0px;
+}
+
+.pages UL LI A { color: white; font-weight: 600; text-transform: uppercase;text-decoration:none; }
+
+
+.pages UL LI A:hover {
+  background-color: transparent;
+  border: 0px solid transparent;
+  border-bottom: 1px solid white;
+  
+}
+
+.infocard a {
+  font-size: 12pt;
+}
+
+img.postimg {
+  width: 80%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+img.postimgL {  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  width: 40%;
+  margin-right: 5%;
+  margin-left : 5%;
+
+}
+img.postimgR {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: right;
+    width: 40%;
+  margin-right: 5%;
+  margin-left : 5%;
+}
+
+@media screen and (max-width: 800px) {
+  img.postimgL, img.postimgR {   
+  width: 80%;
+  float: none;
+  }
+
+img.postimg {
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    max-height: 90px;
+    width: auto;
+}
+}
+.card h1, .card h2, .card h3{
+    font-family: "Exo 2",sans-serif;
+    font-weight: 600;
+    color: #777;
+}
+
+.card a h1:hover,.card a h2:hover, .card a h3:hover{
+    font-family: "Exo 2",sans-serif;
+    font-weight: 600;
+    color: #8f2017;
+}
+
+.post h1, .post h2, .post h3{
+    font-family: "Exo 2",sans-serif;
+    font-weight: 600;
+    color: #000000;
+}
+
+.post a h1,.post a h2, .post a h3{
+    font-family: "Exo 2",sans-serif;
+    font-weight: 600;
+    color: #8f2017;
+}
+
+</style>

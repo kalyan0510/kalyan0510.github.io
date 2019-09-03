@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/blog.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+<link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<style>
+  .pages UL LI {
+  font-size: 1em !important;
+}
+  .pages UL LI:nth-child(3) {
+  font-size: 1.4em !important;
+  border-bottom: 1px solid white;
+  }
+
+  .parallax {
+  /* The image used */
+  background-image: url("/images/hp-paperlong.png");
+  background-position: 0px 0px;
+  background-size: 100%;
+
+  position: relative;
+  /* Set a specific height */
+  
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: relative;
+  background-repeat: repeat;
+}
+A {
+    text-decoration: none;
+    color: #666;
+}
+
+#image-block { float: right; }
+
+div.hp-header {
+  display:table;
+  width:100%;
+  height:55%;
+  max-height: 55;
+  position:relative;
+  background:url('/theme/img/lego_background.jpg') no-repeat center center fixed;
+  background-size:cover;
+
+}
+@font-face {
+  font-family: Dosis;
+  src: url(/fonts/blue-lines.ttf);
+}
+@font-face {
+  font-family: exo;
+  src: url(/fonts/exo2.woff2);
+}
+@font-face {
+  font-family: exolit;
+  src: url(https://fonts.gstatic.com/s/exo2/v6/7cHmv4okm5zmbtYoK-4W4nIp.woff2);
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+</style>
+
+
+
+
+</head>
+<body style="background-color:#003366 ;margin: 0px; padding:0px">
+
+<div class="pages" id = "pages">
+
+</div>
+
+<!----------------PARALLAX------------------------------------------------------------------------------------------------->
+<div class="parallax" id="parallax">
+  <h1 id = "title" >Hungry Pixels </h1>
+  <div id = "pacmanspace" > </div>
+  <h4 >Kalyan's blog </h4>
+</div>
+<!----------------PARALLAX ENDS--------------------------------------------------------------------------------------------->
+
+
+<!----------------CONTENT------------------------------------------------------------------------------------------------->
+<div class="content" style="min-height:1000px;background-color:#ffffff;">
+<div class="contenthead"><h2 style="margin:0px;"> Computer Vision Posts </h2></div>
+<div class="row">
+  <div class="leftcolumn">
+
+    <!----------------POST 2----------------------------------------->
+    <div id="ppyramidcnncompression-card"></div>
+    
+
+
+    <!----------------POST 1----------------------------------------->
+    <div id="mosaicing-card"></div>
+
+    <div style="height: 100px"></div>
+    
+
+    
+  </div>
+  <!----------------POSTS END----------------------------------------->
+
+  <!----------------STATIC PAGES----------------------------------------->
+  <div class="rightcolumn">
+    <div class="infocard">
+      <h2>About Me</h2>
+      <div style="width:100%;">
+          <div style="float: left;width: 45%; margin-left: 10%; height: 100%"><br><br>
+            <a href="https://www.linkedin.com/company/amazon/">works<b> @Amazon</b></a><br><br>
+            <a href="http://www.iiti.ac.in/">Studied at <b> IIT Indore</b></a></div>
+          <div style="  float: left;width: 30%; margin-right: 15%;"><img width="100%" src="/images/me.png"></div>
+          
+      </div>
+      
+    </div>
+    <div class="infocard">
+      <h3>Popular Post</h3>
+
+    </div>
+    <div class="infocard">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="copyright-bar">
+          <span class="copyright">© 2019 designed by Kalyan Garigapati</span>
+  </div>
+</div>
+
+</div>
+<!----------------CONTEN ENDS------------------------------------------------------------------------------------------------->
+
+<script>
+
+$("#ppyramidcnncompression-card").load('/posts/ppyramidcnncompression-card.html')
+$("#mosaicing-card").load('/posts/mosaicing-card.html')
+
+$('#pages').load('headerpages.html',function(){updateParralax();},function(){updateParralax();});
+
+function updateParralax() {
+  var parallaxWidth = $("#parallax")[0].getBoundingClientRect().width;
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //mobile
+    $("#parallax").css('background-position-y',$("#title").height()+10- 17*(16/(1024.0/parallaxWidth)))
+    $("#pacmanspace").css('height',3*(16/(1024.0/parallaxWidth)) )
+  } else {
+    //computer
+    $("#parallax").css('background-position-y',$("#pages").height()+$("#title").height()+30- 17*(16/(1024.0/parallaxWidth)))
+    $("#pacmanspace").css('height',3*(16/(1024.0/parallaxWidth)) )
+    //alert($("#pages").height())
+  }
+}
+
+$(document).ready(function(){
+  updateParralax();
+});
+
+$( window ).resize(function() {
+  updateParralax();
+});
+
+</script>
+</body>
+
+</html>
