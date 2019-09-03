@@ -10,6 +10,9 @@ body {
   padding: 20px;
   background: #ffffff;
 }
+p {
+    word-wrap: break-word;
+}
 
 /* Header/Blog Title */
 .header {
@@ -222,21 +225,45 @@ img.postimgR {
 }
 
 @media screen and (max-width: 800px) {
-  img.postimgL, img.postimgR {   
-  width: 80%;
-  float: none;
-  }
+    img.postimgL, img.postimgR {   
+        width: 80%;
+        float: none;
+    }
 
-img.postimg {
-    height: auto;
-    max-width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    float: none;
-    max-height: 90px;
-    width: auto;
-}
+    img.postimg {
+        height: auto;
+        max-width: 100% !important;
+        width: auto !important;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        max-height: 200px !important;
+        width: auto;
+    }
+
+    #parallax  h1{
+      font-size: 3em;
+    }
+    #parallax  h4{
+      font-size: 1.4em;
+    }
+
+    .content p, .content li{
+       font-size: 12pt;
+     }
+
+     .content h1 {
+      font-size: 1.6em;
+     }
+     .content h2 {
+      font-size: 1.4em;
+     }
+
+      .content h3 {
+      font-size: 1.2em;
+     }
+
 }
 .card h1, .card h2, .card h3{
     font-family: "Exo 2",sans-serif;
