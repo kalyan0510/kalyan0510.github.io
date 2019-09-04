@@ -48,7 +48,7 @@ p {
 /* Add a card effect for articles */
 .card {
    background-color: #eee;
-   padding: 20px;
+   padding: 3px;
    margin-top: 20px;
    
 }
@@ -209,6 +209,10 @@ p {
     color: #8f2017;
 }
 
+.hoverred {
+  text-decoration: underline;
+}
+
 img.postimg {
   width: 80%;
     display: block;
@@ -278,10 +282,32 @@ img.postimgR {
      }
 
 }
+
+.card {
+  margin: 0px; padding-left: 10px; margin-top: 15px;padding-right: 10px;
+}
+
+.card.div,{
+  margin: 0px; 
+}
+
+.card.img {
+  padding-left: auto;
+  padding-right: auto;
+  display: block;
+  float: none;
+}
+
 .card h1, .card h2, .card h3{
     font-family: "Exo 2",sans-serif;
     font-weight: 600;
+    font-size: 12pt;
     color: #777;
+    margin: 5pt
+}
+
+.card p {
+  font-size: 12pt; margin: 2pt;
 }
 
 .card a h1:hover,.card a h2:hover, .card a h3:hover{
@@ -306,6 +332,21 @@ img.postimgR {
     font-family: "Exo 2",sans-serif;
     font-weight: 600;
     color: #721515;
+}
+
+#posts a{
+  text-decoration: underline;
+}
+
+#posts a:hover{
+  text-decoration: underline;
+  color: #8f2017;
+  font-weight: bold;
+}
+
+#posts {
+  padding-top: 40px;
+  padding-bottom: 100px;
 }
 
 </style>

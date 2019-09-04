@@ -1,0 +1,78 @@
+<p>Satellites are very sensitive and costly equipment. Any failure in at least a single component of them can completely render the million dollar equipment useless. So, all the failure prone equipment like onboard computers & orientation sensors are used in redundancy. </p>
+
+<p>Even this redundancy does not make them infallible. Such is at the case for Astra-5A, a communication satellite launched in 1997 to a geo-stationary orbit. It suffered a orientation sensor (attitude sensor) failure and failed to keep its solar panels directed towards the sun. Consequently draining out of its battery resources and losing connection with the ground station.   </p>
+
+<img class="postimg" src="/images/satrescue/astra5awiki.gif" style="width: 100%;margin-bottom: 10px;margin-top: 10px  ;float: none;">
+
+<p>In such scenarios there is nothing one can do without the orientation sensor data. This could be fatal for satellites orbiting in the LEO(Lower Earth Orbit), as they can quickly suffer from atmospheric drag and start falling to earth. But what if we can actually save satellites from orientation sensor failures by literally looking at them to find their orientation?</p>
+
+<p>We obviously cannot zoom our cameras at a satellite and see it. Even with a high-end equipment we cannot see them in the sky. If you have ever seen satellites in the night sky, you might think we can capture them in the camera, but the camera needs high exposure time to capture the teeny tiny light reflected from its solar panels. High exposure time will ruin the moving satellites image. So we need a brighter source. </p>
+
+<p>What else is brighter than our sun? So, why not to capture the satellite when it is between us and the sun. But with this we can only see the silhouette of the satellite behind the very bright sun. Because of the intense light from the sun, we can capture satellite images with extremely low exposure times. Also, perceptible images can be captured for large LEO satellites only.</p>
+
+<img class="postimg" src="/images/satrescue/sunisstransit.jpg" style="width: 40%;float: none;">
+
+<p>Now that we can capture its silhouette, we reverse calculate the possible orientations of the satellite and transform them in to relevant frame which the satellite uses for its attitude control (not that attitude😅).</p>
+
+
+<p> Even in case the satellite has some unwanted spin, we can find the angular velocities and fire the thrusters to compensate velocities and bring back to stable state. 
+</p>
+
+<p>Here is the code for finding where and when to capture the satellite’s silhouette behind sun.
+<a href="https://github.com/kalyan0510/Sun-and-Satellite-transit-predict">Github/Kalyan0510: Sun-and-Satellite-transit-predict</a></p>
+
+<p><a href="https://github.com/kalyan0510/Sun-and-Satellite-transit-predict/blob/master/Solar%20Transit%20Predection%20for%20Orientation%20detection.pptx">Github/Kalyan0510: PPT</a></p>
+
+<div id="readme" class="Box Box--condensed instapaper_body md js-code-block-container">
+    <div class="Box-header d-flex flex-items-center flex-justify-between px-2">
+      <h3 class="Box-title pr-3">
+        <svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+        README.md
+      </h3>
+        <div>
+            <a href="/kalyan0510/Sun-and-Satellite-transit-predict/edit/master/README.md" class="Box-btn-octicon btn-octicon float-right" aria-label="Edit this file"><svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg></a>
+        </div>
+    </div>
+        <div class="Popover anim-scale-in js-tagsearch-popover" hidden="" data-tagsearch-url="/kalyan0510/Sun-and-Satellite-transit-predict/find-symbols" data-tagsearch-ref="master" data-tagsearch-path="README.md" data-tagsearch-lang="Markdown" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_symbol&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_symbol&quot;,&quot;repository_id&quot;:201088134,&quot;ref&quot;:&quot;master&quot;,&quot;client_id&quot;:&quot;1170274658.1560521372&quot;,&quot;originating_request_id&quot;:&quot;25D7:53A0:8149:C320:5D70437B&quot;,&quot;originating_url&quot;:&quot;https://github.com/kalyan0510/Sun-and-Satellite-transit-predict&quot;,&quot;referrer&quot;:&quot;http://localhost/posts/satrescue.html&quot;,&quot;user_id&quot;:14043633}}" data-hydro-click-hmac="4a5db30d5d450c3a7ac33ee7ead29148ac1202fc287abdbc63a8ab236f1a01e2">
+  <div class="Popover-message Popover-message--large Popover-message--top-left TagsearchPopover mt-1 mb-4 mx-auto Box box-shadow-large">
+    <div class="TagsearchPopover-content js-tagsearch-popover-content overflow-auto" style="will-change:transform;">
+    </div>
+  </div>
+</div>
+
+      <div class="Box-body">
+        <article class="markdown-body entry-content p-5" itemprop="text"><h1><a id="user-content-sun-and-satellite-transit-predict" class="anchor" aria-hidden="true" href="#sun-and-satellite-transit-predict"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sun-and-Satellite-transit-predict</h1>
+<p>This code accurately predicts the time and location(lat|lon) of finding a satellite exactly between the viewer and the sun.  We can find satellite's attitude(orientation) from its  silhouette formed behind the bright sun.</p>
+<p>Few terms:
+TLE (Two Line Elements): set of parameters which defines projected path/trajectory of a freely orbiting body. TLEs are short lived in case of LEO satellites.<br>
+</p>
+<p>Live updated TLEs of International Space station [Zarya] are maintained here: <a href="https://live.ariss.org/iss.txt" rel="nofollow">https://live.ariss.org/iss.txt</a></p>
+<h2><a id="user-content-usage" class="anchor" aria-hidden="true" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<ol>
+<li>Update the two line element in pathfinder.m</li>
+<li>run SatelliteTransitDataGenerator.m to generate the transit path.</li>
+<li>satellite_shadow_data.csv will contain time, latitude &amp; longitude</li>
+<li>This file can be directly uploaded at <a href="https://www.google.com/maps" rel="nofollow">https://www.google.com/maps</a> to generate path</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer" href="/images/satrescue/transitpath.png"><img src="/images/satrescue/transitpath.png" width="400" style="max-width:100%;"></a></p>
+<p>So if one sits at that spot and looks at the sun at that time, they can see the orbiting satellite's silhouette. And ofcourse  good lens are needed.</p>
+<p>For example:<br>
+<a target="_blank" rel="noopener noreferrer" href="/images/satrescue/suniss.jpg"><img src="/images/satrescue/suniss.jpg" width="400" style="max-width:100%;"></a></p>
+<p>Also sun and satellites direct overhead location and time is calculated and stored in satellite_sun_data.csv &amp; satellite_sat_data.csv resp., if plotted, it looks like,<br>
+<a target="_blank" rel="noopener noreferrer" href="/images/satrescue/satpath.png"><img src="/images/satrescue/satpath.png" width="400" style="max-width:100%;"></a></p>
+</article>
+      </div>
+  </div>
+
+
+
+
+<h2>Useful links:</h2>
+
+<p><b>capturing the silhouette:</b> <a href="https://maximusphotography.net/2014/06/30/iss-transiting-the-sun-june-30th-2014/">https://maximusphotography.net/2014/06/30/iss-transiting-the-sun-june-30th-2014/</a></p>
+
+<p>Is a moving star in the night sky possible a reflective satellite's solar panel?  <a href="https://sciencing.com/do-between-shooting-stars-satellites-6830039.html">https://sciencing.com/do-between-shooting-stars-satellites-6830039.html</a></p>
+
+<p>Astra 5A Demise: <a href="https://en.wikipedia.org/wiki/Astra_5A#Demise_of_satellite">https://en.wikipedia.org/wiki/Astra_5A#Demise_of_satellite</a></p>
+
+<p>Satellite onboard computer redundancy: <a href="https://en.wikipedia.org/wiki/Triple_modular_redundancy#cite_note-3">https://en.wikipedia.org/wiki/Triple_modular_redundancy#cite_note-3</a></p>
