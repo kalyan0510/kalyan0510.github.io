@@ -3,7 +3,16 @@
 <img class="postimg" style="width: 50%; float: none;" src="/images/pyramidcompression/PYR CNN COMP.png">
 
 <p>Looking at both the compressed images, you can still recognise a car in the first one and a plane in the second one but they only hold minimal information of about 0.72 bits/pixel instead of their original counterparts occupying 8 bits/pixel. </p>
+
+<p>Obviously you dont want your vacation photos to be compressed this way. This can be more usefull in image searching. In Google photos, when we type "car" in the search bar it returns all of our personal photos with a car in it. So, when we search for a car, it just runs through its pre-labelled photos and finds all the photos with "car" tag on it. Lets say Google wanted to add a new label "chick - 🐥" to their pre-labelling database. But now they have to search all my large images for prelabelling chick images.</p>
+
+<p> This is when the above type of compression comes handy. If we search on smaller readily available image files with recognisable subjects, pre-labeling can be much faster. So we need a compression algorithm which preserves image subject identifiability while having less compute intensive decompression technique.</p>
+
+<p> We will go through the designing of such algorithm, but before that there are few things we need to have a clear picture of.</p>
  
+<h1 > <b>Things to know:</b></h1>
+
+<h2>Image Decompositions</h2>
 
 <p>There are tons of image compression algorithms in use, like DCT, JPEG, HEIF and etcetera which can perform lossy image compressions by ignoring the high frequency components of image.  In definition, High-frequency (HF) components correspond to "fine" details in the image while low-frequency(LF) components corresponds to "coarse" details. HF components occupy more disk space (memory)  than LF components does. A simple image decomposition into coarse and fine details can be done as shown.</p>
 
@@ -15,7 +24,7 @@
 <p> Here I am explaining a lossy image compression model which reduces the image disk-space/file-size but still preserving the cat details. That means,  a human or a computer who reads the compressed image must be able to recognise the cat.
 </p>
 
-<h1 > <b>Few things to know before we delve into the details: </b></h1>
+
 
 <h2>Pyramid Decompositions</h2>
 
@@ -29,10 +38,14 @@
 
 <p>In gaussian pyramids,  as we go up the pyramid, finer details (sharp edges or HF noises) are discarded. That means as we go down the pyramid, fined details are added from layer to layer. The concept of Laplacian pyramid is to separate out the finer details which are added to lower levels.</p>
 
+<img class="postimg" style="width: 42%; float: none;" src="/images/pyramidcompression/laplacian.png">
+
 <p>So each N<sup>th</sup>&nbsp;Laplacian layer is the difference of upscaled N+1<sup>th</sup>&nbsp;and
 N<sup>th</sup>&nbsp;Gaussian layers.&nbsp;<o:p></o:p></p>
 
-<p>These two are  linear multi-scale  image decomposition models. There are other pyramids which can capture the edges into a filter based on the orientation of edges. These are called  linear multi-scale, multi-orientation image decomposition models. Example: QMF Wavelet pyramids & Steerable Pyramids. More about pyramids <a href="https://en.wikipedia.org/wiki/Pyramid_(image_processing)">here</a>.</p>
+<p>These two are  linear multi-scale  image decomposition models. There are other pyramids which can capture the edges into a filter based on the orientation of edges. These are called multi-scale, multi-orientation image decomposition models. Example: QMF Wavelet pyramids & Steerable Pyramids. More about pyramids <a href="https://en.wikipedia.org/wiki/Pyramid_(image_processing)">here</a>.</p>
+
+
 
 <p>More on Laplacian Pyramid and its use in compression:</p>
 <p>The
@@ -75,7 +88,7 @@ Finally, we will compress all the pyramid layers(lossily) in the optimal proport
                 <br> 
                 For <b>finding the dose of unnecessary detais</b> in each layer, we do this:
                 <ul>
-                        <li style="list-style-type: circle;"> From the laplacian pyramid, drop off some details in the intended layer. We can do this by using a lossy compression where we control the amount of quality drop. JPEG is a good match for this use case. But for this implementation I will be using pooling down method and quantization to compress the image in a controlled manner.  </li>
+                        <li style="list-style-type: circle;"> From the laplacian pyramid, drop off some details in the intended layer. We can do this by using a <b>lossy compression</b> where we control the amount of quality drop. JPEG is a good example fot this usecase. We can do multiple experiments with the change of lossy compression technique here.</li>
                         <li style="list-style-type: circle;"> Next, we reconstruct the image from the compressed layer and other non-compressed layers</li>
 
                         <li style="list-style-type: circle;"> Feed both the original image and reconstructed image to CNN and compare the confidence values returned by it. If the confidence drop is more, that means the compressed pyramid layer contributes more to the image recognisability. If its less, then it is the other way</li>
@@ -88,9 +101,81 @@ Finally, we will compress all the pyramid layers(lossily) in the optimal proport
         </li>
 
         <li> 
-                The compressed pyramid will be our new pyramid again. We repeat the process until there is a significant reduction in confidence values. The final pyramid will be returned to store. And yes, there is a further scope of compressing each layers losslessly with available algorithms. 
+                The compressed pyramid will be the new pyramid again. We repeat the process until there is a significant reduction in confidence values. The final pyramid will be returned for storage. And yes, there is a further scope of compressing each layers losslessly with available fast decompression algorithms. 
         </li>
 
+<p> 
 
+
+<h1>Outcome</h1>
+
+
+<p>The laplacian pyramid is created for the required input image. In the first iteration each layer of the image pyramid contains 100% of its details. In subsequent iterations, we calculate the weightage of non-contributing details in each level and partially drop off some info using lossy compression on each level. </p>
+<p>Here I used naive resizing, quantizing & jpeg compressions to copress the pyramids.</p>
+
+<p>The compression runs untill the CNN's confidence decreases to 60% of its initial.
+
+With different lossy compression techniques these are the end compression ratios of laplacian pyramid levels:</p>
+
+<h2>With naive cv2's resize as the lossy compression technique used in step2:</h2>
+<code style="font-size: 12pt">compressedPyramid[layerNo] = <br>cv2.resize(compressedPyramid[layerNo], newShape, interpolation=cv2.INTER_NEAREST)</code>
+<br>
+
+<p>The final compression ratios of the levels of pyramid ended up this way  </p>
+<br>
+
+<img class="postimg" style="width: 60%; float: none;" src="/images/pyramidcompression/sizeQ.png">
+
+<p> There are couple of interpretations we can draw from this graph:</p>
+<ul>
+        <li>
+                Level 0 was compressed more than other layers. This could be because, the high frequency details in level 0 is contributing less to the overall recognisability of the image. <br>
+                A simple example for this is the texture of the car/plane. You dont need texture info to recognise the subject.
+                <img class="postimg" style="width: 30%; float: none;padding: 10px" src="/images/pyramidcompression/level0removed.gif">
+                <p>Without level 0, the image simply gets blurred.</p>
+        </li>
+
+        <li>
+                Next to the level 0, level 4 was compressed more. Again the interpretation goes like this:<br>
+                Level 4 is a 8x8 pixel image, it mostly contains the average colors of the image. Loosing some color details in the image should not trick us into classifying the image wrong.
+                <img class="postimg" style="width: 30%; float: none;padding: 10px" src="/images/pyramidcompression/level4removed.gif">
+                <p>Without level 4, the reconstructed image looses some of the overall color details.</p>
+        </li>
+
+</ul>
+
+<h2>Using pixel value quantisation as the lossy compression technique used in step2:</h2>
+
+<img class="postimg" style="width: 60%; float: none;" src="/images/pyramidcompression/quantQ.png">
+
+<p>Quantising pixels values will restrict the number of colors visible in the image.</p>
+
+<p> Interpretations:</p>
+<ul>
+        <li>
+                Level 0 is the least compressed of all in the pyramid because quantizing the level 0 will introduce high-frequency noise, which confuses the CNN. This happens due to pixel values of all the sharp edges taking the nearest avaliable colors.</p>
+        </li>
+
+        <li>
+                This decreasing compression rations can be explained with entropy. Entropy(H) is 
+                <img class="postimg" style="width: 30%; float: none;" src="/images/pyramidcompression/entropyeq.png">
+                where K is the number of gray levels and p<sub>k</sub> is the ratio of '#pixels with graylevel k' to '#pixels in image'. 
+                
+                → As we go up the laplacian pyramid, the entropy of the image decreases <a class='hoverred' href='http://persci.mit.edu/pub_pdfs/pyramid83.pdf'>[paper]</a> <br>
+                → Quantisation decreases the number of available gray levels, thus decreasing the entropy <br>
+                → So, quantising the lower layers of pyramids has more effect on image quality than on upper layers.<br>
+
+
+
+        </li>
+
+</ul>
+
+<h1> results </h1>
+
+<p>After the a set of 128x128 sized images using both the above explained techniques, the pyramids were compressed to 393216 Bits. That is an quaivalent of (0.72 Bits/pixel). </p>
+<img class="postimg" style="width: 60%; float: none;" src="/images/pyramidcompression/results.png">
+
+<p>A faster CNN which directly consumes the compressed pyramids can be developed for faster image classifications. This type of CNN consumes the upper layers of pyramid in different stages of its sequential model. This is possible by using hybrid hidden layers which also takes direct input. </p>
 
 </div>

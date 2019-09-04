@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/blog.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/pygments.min.css">
-
 <style>
-A {
-    text-decoration: none;
-    color: #666;
+
+    .pages UL LI {
+  font-size: 1em !important;
 }
+  .pages UL LI:nth-child(0) {
+  font-size: 1.4em !important;
+  border-bottom: 1px solid white;
+  }
 
   .parallax {
   /* The image used */
@@ -31,6 +32,10 @@ A {
   background-attachment: fixed;
   background-position: relative;
   background-repeat: repeat;
+}
+A {
+    text-decoration: none;
+    color: #666;
 }
 
 #image-block { float: right; }
@@ -51,7 +56,6 @@ div.hp-header {
 }
 @font-face {
   font-family: exo;
-  font-weight: bold;
   src: url(/fonts/exo2.woff2);
 }
 @font-face {
@@ -74,20 +78,8 @@ div.hp-header {
 <body style="background-color:#003366 ;margin: 0px; padding:0px">
 
 <div class="pages" id = "pages">
-        <ul>
-            <li class="home"><a href="/index.html">Home</a></li>
-            <li><a href="/about-me.html">About&nbsp;me</a></li>
-            <li><a href="/computervision.html">Computer&nbsp;Vision</a></li>
-            <li><a href="/projects.html">Projects</a></li>
-            
 
-            <li style="float :right;" class=""><a href="https://www.github.com/kalyan0510" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="mailto:gkalyan0510@gmail.com" target="_blank"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;</a></li>
-            
-            
-            <li style="float :right;" class=""><a href="https://in.linkedin.com/in/gkalyan0510" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;</a></li>
-        </ul>
-    </div>
+</div>
 
 <!----------------PARALLAX------------------------------------------------------------------------------------------------->
 <div class="parallax" id="parallax">
@@ -100,63 +92,44 @@ div.hp-header {
 
 <!----------------CONTENT------------------------------------------------------------------------------------------------->
 <div class="content" style="min-height:1000px;background-color:#ffffff;">
-<div class="contenthead"><h2 style="margin:0px;"> Pyramid Level Lossy Image Compression preserving Identifiability
- </h2></div>
+<div class="contenthead"><h2 style="margin:0px;">The science behind real-time mosaic art </h2></div>
 <div class="row">
   <div class="leftcolumn">
 
-    <!----------------POST----------------------------------------->
-    <div  class="post">
-      <!----------------POST DIV STARTED----------------------------------------->
-
+    <div id="posts" >
       <div id="pyramidcnncompression-post"></div>
       <div style="height: 100px"></div>
-
-      
-    <!----------------POST DIV END----------------------------------------->
     </div>
-
+    
     
   </div>
-  
+  <!----------------POSTS END----------------------------------------->
 
   <!----------------STATIC PAGES----------------------------------------->
   <div class="rightcolumn">
-    <div class="infocard">
-      <h2>About Me</h2>
-      <div style="width:100%;">
-          <div style="float: left;width: 45%; margin-left: 10%; height: 100%"><br><br>
-            <a href="https://www.linkedin.com/company/amazon/">works<b> @Amazon</b></a><br><br>
-            <a href="http://www.iiti.ac.in/">Studied at <b> IIT Indore</b></a></div>
-          <div style="  float: left;width: 30%; margin-right: 15%;"><img width="100%" src="/images/me.png"></div>
-          
-      </div>
-      
-    </div>
-    <div class="infocard">
-      <h3>Popular Post</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-    <div class="infocard">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
+    <div class="infocard" id="toparticles"></div>
+    <div style="height: 20px; width: 100%"></div> 
+    <div class="infocard" id="aboutmecard"></div>
+    
   </div>
 </div>
 
-<div class="footer">
-  <div class="copyright-bar">
-          <span class="copyright">© 2019 designed by Kalyan Garigapati</span>
-  </div>
-</div>
+<div class="footer" id="footer">
 
 </div>
 <!----------------CONTEN ENDS------------------------------------------------------------------------------------------------->
 
 <script>
-  $("#pyramidcnncompression-post").load("/posts/pyramidcnncompression-post.html")
+$("#pyramidcnncompression-post").load("/posts/pyramidcnncompression-post.html")
+$("#mosaicing-post").load('/posts/mosaicing-post.html')
+
+
+$("#aboutmecard").load('/aboutme-card.html')
+$("#toparticles").load('/top-articles.html')
+$("#footer").load('/footer.html')
+
+
+$('#pages').load('/headerpages.html',function(){updateParralax();},function(){updateParralax();});
 
 function updateParralax() {
   var parallaxWidth = $("#parallax")[0].getBoundingClientRect().width;
@@ -164,22 +137,11 @@ function updateParralax() {
     //mobile
     $("#parallax").css('background-position-y',$("#title").height()+10- 17*(16/(1024.0/parallaxWidth)))
     $("#pacmanspace").css('height',3*(16/(1024.0/parallaxWidth)) )
-
-    $("head").append('<style type="text/css"></style>');
-    var newStyleElement = $("head").children(':last');
-    newStyleElement.html('img.postimg {    height: auto;    max-width: 100%;    display: block;    margin-left: auto;    margin-right: auto;    float: none;    max-height: '+Math.round(parallaxWidth/2.6)+'px;    width: auto;}');
-     //alert('img.postimg {    height: auto;    max-width: 100%;    display: block;    margin-left: auto;    margin-right: auto;    float: none;    max-height: '+Math.round(parallaxWidth/3)+';    width: auto;}')
-
-    //var images = $('#posts').find('img').map(function() { alert(this.height+","+this.width) });
-    //var images = $('#posts').find('img').map(function() {  this.width('300'); });
-    
-
-
   } else {
     //computer
     $("#parallax").css('background-position-y',$("#pages").height()+$("#title").height()+30- 17*(16/(1024.0/parallaxWidth)))
     $("#pacmanspace").css('height',3*(16/(1024.0/parallaxWidth)) )
-
+    //alert($("#pages").height())
   }
 }
 

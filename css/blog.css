@@ -53,6 +53,11 @@ p {
    
 }
 
+.row {
+  max-width: 100rem;
+  margin: auto;
+}
+
 /* load fonts */
 @font-face {
   font-family: Dosis;
@@ -196,6 +201,14 @@ p {
   font-size: 12pt;
 }
 
+.toparticles LI A:hover {
+    color: #8f2017;
+}
+
+.hoverred:hover {
+    color: #8f2017;
+}
+
 img.postimg {
   width: 80%;
     display: block;
@@ -287,6 +300,12 @@ img.postimgR {
     font-family: "Exo 2",sans-serif;
     font-weight: 600;
     color: #8f2017;
+}
+
+#posts div h1,#posts div h2, #posts div h3{
+    font-family: "Exo 2",sans-serif;
+    font-weight: 600;
+    color: #721515;
 }
 
 </style>

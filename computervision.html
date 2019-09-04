@@ -9,7 +9,8 @@
 <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <style>
-  .pages UL LI {
+
+    .pages UL LI {
   font-size: 1em !important;
 }
   .pages UL LI:nth-child(3) {
@@ -91,7 +92,7 @@ div.hp-header {
 
 <!----------------CONTENT------------------------------------------------------------------------------------------------->
 <div class="content" style="min-height:1000px;background-color:#ffffff;">
-<div class="contenthead"><h2 style="margin:0px;"> Computer Vision Posts </h2></div>
+<div class="contenthead"><h2 style="margin:0px;">Computer Vision Posts </h2></div>
 <div class="row">
   <div class="leftcolumn">
 
@@ -102,43 +103,22 @@ div.hp-header {
 
     <!----------------POST 1----------------------------------------->
     <div id="mosaicing-card"></div>
-
-    <div style="height: 100px"></div>
     
-
+    
     
   </div>
   <!----------------POSTS END----------------------------------------->
 
   <!----------------STATIC PAGES----------------------------------------->
   <div class="rightcolumn">
-    <div class="infocard">
-      <h2>About Me</h2>
-      <div style="width:100%;">
-          <div style="float: left;width: 45%; margin-left: 10%; height: 100%"><br><br>
-            <a href="https://www.linkedin.com/company/amazon/">works<b> @Amazon</b></a><br><br>
-            <a href="http://www.iiti.ac.in/">Studied at <b> IIT Indore</b></a></div>
-          <div style="  float: left;width: 30%; margin-right: 15%;"><img width="100%" src="/images/me.png"></div>
-          
-      </div>
-      
-    </div>
-    <div class="infocard">
-      <h3>Popular Post</h3>
-
-    </div>
-    <div class="infocard">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
+    <div class="infocard" id="toparticles"></div>
+    <div style="height: 20px; width: 100%"></div> 
+    <div class="infocard" id="aboutmecard"></div>
+    
   </div>
 </div>
 
-<div class="footer">
-  <div class="copyright-bar">
-          <span class="copyright">© 2019 designed by Kalyan Garigapati</span>
-  </div>
-</div>
+<div class="footer" id="footer">
 
 </div>
 <!----------------CONTEN ENDS------------------------------------------------------------------------------------------------->
@@ -147,6 +127,11 @@ div.hp-header {
 
 $("#ppyramidcnncompression-card").load('/posts/ppyramidcnncompression-card.html')
 $("#mosaicing-card").load('/posts/mosaicing-card.html')
+
+$("#aboutmecard").load('/aboutme-card.html')
+$("#toparticles").load('/top-articles.html')
+$("#footer").load('/footer.html')
+
 
 $('#pages').load('headerpages.html',function(){updateParralax();},function(){updateParralax();});
 
