@@ -116,8 +116,6 @@ p {
   text-align: center;
   color: #ffffff ;
   font-size: 1.8em;
-  padding: 5px;
-
   font-family:"exo";
   
   /*box-shadow: 2px 2px 10px #000;*/
@@ -147,7 +145,7 @@ p {
 }
 
 #parallax  h1{
-  font-size: 5em;
+  font-size: 3em;
   font-family:Dosis;
   padding-top: 10px;
   text-align: center;
@@ -179,7 +177,8 @@ p {
 .pages UL {
   list-style-type: none;
   margin: 0px;
-  padding: 10px;
+  padding: 5px;
+  padding-left: 10px;
 }
 
 .pages UL LI {
