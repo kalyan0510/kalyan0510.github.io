@@ -53,6 +53,13 @@ p {
    
 }
 
+.card img{
+  background-color: white !important;
+  width: 100%;background-color:white;
+      display: block;
+    margin: auto;
+}
+
 .row {
   max-width: 100rem;
   margin: auto;
@@ -172,6 +179,7 @@ p {
     background-color:  #003366 ;
     color: white;
     padding: 3px;
+    padding-bottom: 4px;
 }
 
 .pages UL {
@@ -183,7 +191,7 @@ p {
 
 .pages UL LI {
   display: inline-block;
-  margin: 3px 10px 3px 0px;
+  padding: 3px 10px 3px 3px;
 }
 
 .pages UL LI A { color: white; font-weight: 600; text-transform: uppercase;text-decoration:none; }
@@ -206,10 +214,11 @@ p {
 
 .hoverred:hover {
     color: #8f2017;
+    text-decoration: underline;
 }
 
 .hoverred {
-  text-decoration: underline;
+  
 }
 
 img.postimg {
@@ -343,9 +352,16 @@ img.postimgR {
   font-weight: bold;
 }
 
+#posts img{
+  background-color: white !important;
+}
+
 #posts {
   padding-top: 40px;
   padding-bottom: 100px;
+}
+.fa-2x {
+    font-size: 1.5em !important; 
 }
 
 </style>
