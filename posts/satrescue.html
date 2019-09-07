@@ -78,9 +78,6 @@ div.hp-header {
 </head>
 <body style="background-color:#003366 ;margin: 0px; padding:0px">
 <!-- fb plugin -->  
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v4.0&appId=442819559689261&autoLogAppEvents=1"></script>
-
 <div class="pages" id = "pages">
 
 </div>
@@ -104,7 +101,29 @@ div.hp-header {
 
     <div id="satrescue-post" ></div>
     
-    <div class="fb-comments" data-href="https://kalyan0510.github.io/posts/satrescue.html" data-width="100%" data-numposts="3"></div>
+<!-- disqus -->
+          <div id="disqus_thread"></div>
+          <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+          
+          var disqus_config = function () {
+          this.page.url = "https://kalyan0510.github.io/posts/satrescue.html";
+          this.page.identifier = "https://kalyan0510.github.io/posts/satrescue.html";
+          };
+          
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://kalyan0510.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                      
+    <!-- disqus end -->
 
     </div>
     
