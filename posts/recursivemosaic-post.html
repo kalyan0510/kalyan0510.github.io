@@ -1,0 +1,65 @@
+<div >
+	<p>To create recursive mosaicing videos of your own, follow this post</p> 
+        <video style="margin-left: auto; margin-right: auto; width: 100%; height: 360px; margin: auto;" poster="/images/recursivemosaic/recursive_mosaic_f1.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/recursivemosaic/recursive_mosaic_f1.m4v" type="video/mp4"></video>
+      </div>
+      <div>
+     
+      </div>
+      
+
+<ol >
+	<li>
+		<p>First of all download all your images from Google Photos. These are used as small tiles (images) to construct the actual mosaic image.</p>
+		<ul>
+			<li>Click <a href="https://takeout.google.com/settings/takeout" target="_blank">here</a> to open Google Archive</li>
+			<img class="postimg" src="/images/recursivemosaic/garchive.png" style="width: 65%; padding: 20px">
+			<li>Deselect all services except Google Photos, further you can specify some of your photo albums</li>
+			<li>Proceed to "Next" and download images as ZIP (this can take lot of time)</li>
+			<li>Download the ZIP and extract the contents into a folder.</li>
+		</ul>
+	</li>
+
+
+	<li>
+		<p>Open <a href="https://github.com/kalyan0510/Mosaicing">this repository</a> and  <b>download the code</b> into your machine.</p>
+		<code>$ cd Mosaicing</code>
+	</li>
+
+	<li>
+		<p>From your downloaded archive, <b>generate tile images</b> each having 100x100 resolution. These are the images used to create Mosaics.</p>
+		<code>$ mkdir mytiles; python images2tiles.py extracted_folder_path mytiles 100</code>
+	</li>
+
+	<li>
+		<p><b>Generate indexes</b> for the created tiles. This will generate a "mytilesindexes" file, which contains precomputed information needed for the subsequent operations.</p>
+		<code>$  python indexImages.py mytiles</code>
+
+		<p>Now we are good to create mosaics images.</p>
+	</li>
+
+	<li>
+		Check out the <b>real time mosaic</b> image generation by running 
+		<code>$ python generateMosaicFromCamFeed.py mytiles</code>
+		<p>This uses your laptop camera to display a real-time mosaic video on a window.</p>
+		        <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/recursivemosaic/camfeed.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/recursivemosaic/camfeed.m4v" type="video/mp4"></video>
+	</li>
+
+	<li>
+		To create the recursive videos:
+		<ul>
+			<li>
+				<p>Gather a bunch of images (wide ones preferred) and save them in a new folder (./myImgs/) in the working directory.</p>
+			</li>
+			<li>
+				<p>run </p>
+				<code>$ tilesz=20</code><br>
+				<code>$  python mosaicvideo.py myTiles myImgs $tilesz</code>
+				<p>tilesz is the size of each tile in mosaic. Bigger it is, the more pixelated the mosaic looks and the smaller it is, the more time it takes </p>
+			</li>
+
+		</ul>
+	</li>
+</ol>
+
+
+
