@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Hungry Pixels : Kalyan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -96,13 +97,11 @@ div.hp-header {
 <div class="row">
   <div class="leftcolumn">
 
-    <!----------------POST 2----------------------------------------->
     <div id="ppyramidcnncompression-card"></div>
     
-
-
-    <!----------------POST 1----------------------------------------->
     <div id="mosaicing-card"></div>
+
+    <div id="recursivemosaic-card"></div>
 
     <div id="satrescue-card"></div>
     <div style="height: 160px; width: 100%"></div> 
@@ -127,13 +126,36 @@ div.hp-header {
 
 <script>
 
-$("#ppyramidcnncompression-card").load('/posts/ppyramidcnncompression-card.html')
-$("#mosaicing-card").load('/posts/mosaicing-card.html')
-$("#satrescue-card").load('/posts/satrescue-card.html')
+var cardsMap = new Object();
+cardsMap['ppyramidcnncompression-card'] = '/posts/ppyramidcnncompression-card.html'
+cardsMap['mosaicing-card'] = '/posts/mosaicing-card.html'
+cardsMap['satrescue-card'] = '/posts/satrescue-card.html'
+cardsMap['recursivemosaic-card'] = '/posts/recursivemosaic-card.html'
+
+Object.keys(cardsMap).forEach(function(key) {
+    //value = cardsMap[key];
+    $("#"+key).load(cardsMap[key])
+});
+
+// $("#ppyramidcnncompression-card").load('/posts/ppyramidcnncompression-card.html')
+// $("#mosaicing-card").load('/posts/mosaicing-card.html')
+// $("#satrescue-card").load('/posts/satrescue-card.html')
 
 $("#aboutmecard").load('/aboutme-card.html')
 $("#toparticles").load('/top-articles.html')
 $("#footer").load('/footer.html')
+
+Object.keys(cardsMap).forEach(function(key) {
+  var something = document.getElementById(key);
+  something.style.cursor = 'pointer';
+  something.onclick = function() {
+      // do something...
+      //alert('Click event is fired');
+      window.open(cardsMap[key].replace("-card", ""),"_self")
+  };
+});
+//var something = document.getElementById('satrescue-card');
+
 
 
 $('#pages').load('headerpages.html',function(){updateParralax();},function(){updateParralax();});
