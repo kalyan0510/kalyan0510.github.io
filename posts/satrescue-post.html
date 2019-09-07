@@ -1,22 +1,24 @@
-<p>Satellites are very sensitive and costly equipment. Any failure in at least a single component of them can completely render the million dollar equipment useless. So, all the failure prone equipment like onboard computers & orientation sensors are used in redundancy. </p>
+<p>Satellites are very sensitive and costly equipment. Any failure in at least a single component of them can completely render the million dollar equipment useless. So all the failure prone equipment like onboard computers & orientation sensors are used in redundancy. </p>
 
-<p>Even this redundancy does not make them infallible. Such is at the case for Astra-5A, a communication satellite launched in 1997 to a geo-stationary orbit. It suffered a orientation sensor (attitude sensor) failure and failed to keep its solar panels directed towards the sun. Consequently draining out of its battery resources and losing connection with the ground station.   </p>
+<p>Even the redundancy does not make them infallible. Such is at the case for Astra-5A, a communication satellite launched in 1997 to a geo-stationary orbit. It suffered a orientation sensor (attitude sensor) failure and failed to keep its solar panels directed towards the sun. Consequently draining out of its battery resources and losing connection with the ground station.   </p>
 
 <img class="postimg" src="/images/satrescue/astra5awiki.gif" style="width: 100%;margin-bottom: 10px;margin-top: 10px  ;float: none;">
 
-<p>In such scenarios there is nothing one can do without the orientation sensor data. This could be fatal for satellites orbiting in the LEO(Lower Earth Orbit), as they can quickly suffer from atmospheric drag and start falling to earth. But what if we can actually save satellites from orientation sensor failures by literally looking at them to find their orientation?</p>
+<p>In such scenarios there is nothing one can do without the orientation sensor data. This could be fatal for satellites orbiting in the LEO(Lower Earth Orbit), as they can quickly suffer from atmospheric drag and start falling to earth. But what if we can actually save these satellites from orientation sensor failures by literally looking at them to find their orientation?</p>
 
-<p>We obviously cannot zoom our cameras at a satellite and see it. Even with a high-end equipment we cannot see them in the sky. If you have ever seen satellites in the night sky, you might think we can capture them in the camera, but the camera needs high exposure time to capture the teeny tiny light reflected from its solar panels. High exposure time will ruin the moving satellites image. So we need a brighter source. </p>
+<p>We obviously cannot zoom our cameras at a satellite and see it. Even with a high-end telescopic equipment we cannot see them in the sky. If you have ever seen satellites in the night sky with your naked eyes, you might think about the possibility of capturing the satellite in a telescopic camera, but the problem here is that what you have seen is only the sun light reflected by shiny parts of satellite. Even if we capture, we might not have any usefull information to decode the satellite's orientation. Also, cameras at night needs high exposure time to capture the teeny tiny light reflected by the satellite. High exposure time will ruin the moving satellite's image. So we need a brighter source. </p>
 
-<p>What else is brighter than our sun? So, why not to capture the satellite when it is between us and the sun. But with this we can only see the silhouette of the satellite behind the very bright sun. Because of the intense light from the sun, we can capture satellite images with extremely low exposure times. Also, perceptible images can be captured for large LEO satellites only.</p>
+<p>What else is brighter than our sun? So, can we capture the satellite when it is infront of the sun, that is, when the satellite is in between the camera and the sun. But with this we can only see the silhouette of the satellite behind the very bright sun. Because of the intense light from the sun, we can capture satellite images with extremely low exposure times. Also, perceptible images can be captured for large LEO satellites.</p>
 
 <img class="postimg" src="/images/satrescue/sunisstransit.jpg" style="width: 40%;float: none;">
 
-<p>Now that we can capture its silhouette, we reverse calculate the possible orientations of the satellite and transform them in to relevant frame which the satellite uses for its attitude control (not that attitude😅).</p>
+<p>We can capture its dark silhouette and reverse calculate the possible orientations of the satellite and transform them in to relevant frame which the satellite uses for its attitude control (not that attitude😅).</p>
 
 
-<p> Even in case the satellite has some unwanted spin, we can find the angular velocities and fire the thrusters to compensate velocities and bring back to stable state. 
+<p> Even in case the satellite has some unwanted spin, we can find the angular velocities using multiple photos. And fire the thrusters to compensate the spin and bring back to stable state. 
 </p>
+
+<p>Yaay! We saved a satellite.</p>
 
 <p>Here is the code for finding where and when to capture the satellite’s silhouette behind sun.
 <a href="https://github.com/kalyan0510/Sun-and-Satellite-transit-predict">Github/Kalyan0510: Sun-and-Satellite-transit-predict</a></p>
