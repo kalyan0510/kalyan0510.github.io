@@ -1,0 +1,145 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<p> We’ll see how satellites use their communication antennas for line of sight communication, and also some math behind finding line of sight for communications. </p>
+
+<img class="postimg" src="/images/sattrack/satcovgraphics.png" style="width: 30%">
+
+<p>Earth observing satellites are mostly Sun Synchronous, Lower Earth Orbit satellites. Meaning, they have highly inclined, smaller orbits. They carry out their observations, collect date and send it back to ground stations when the connection can be established. LEO satellites are very near to earth and most of their field of view is covered by small section of Earth surface. They can contact Ground stations(GS), only if the it is in the visible section of Earth’s surface. In fact, a satellite orbiting at around 500km above earths surface can be in Contact with a ground station for only about 10% of its orbital time. Satellites collect the data during their orbit and send to the GS during this "In Contact” period. They have to actively adjust their antennas and point towards the Ground station.</p>
+
+
+<p>To point their antenna towards a ground target, satellites have to know the positions and orientations of  themselves and the target. For doing the calculations, spacecraft engineers make use of the comfort provided by reference frames. </p>
+
+
+<p>To make the math simpler, we convert the position of the satellite(V<sub>sat</sub>) & GS(V<sub>gs</sub>) into a same  reference frame. These conversions are as simple as Matrix multiplications. In terms of same reference frame, line of sight vector (V<sub>los</sub>) can be simply obtained by subtracting the two position vectors V<sub>sat</sub> & V<sub>gs</sub>. </p>
+
+<img class="postimg" src="/images/sattrack/vectorsub.png" style="width: 40%">
+
+<p>And next, the question is, which reference frame should we pick? Perhaps the frame of satellite? Or the Earth ? Or may be the Sun’s? 
+The downside of all of them is, they Rotate. Rotation unnecessarily add a magical and invisible outward force on all the bodies. And it can be confusing to make force related calculations in these frames. So, for this problem, we will have to choose an inertial reference frame, and one such popular frame with its center coinciding with Earth’s centre is  ECI Frame (Earth Centred Inertial Frame). </p>
+
+
+<p>Now let's convert both vectors in to ECI frame:</p>
+
+<h3>Satellites Position vector (V<sub>sat</sub>)</h3>
+
+<ul>
+  <li>
+    <p> In the frame of satellite's orbit, </p>
+
+        <table>
+          <tr>
+            <td>
+                      $$ V_{sat, orbit} =  
+        \begin{bmatrix}
+        r_{sat}*cos(\Omega*t) \\
+        r_{sat}*sin(\Omega*t)\\
+        0
+        \end{bmatrix} $$
+            </td>
+          </tr>
+        </table>
+        <p> As <i>t</i> in the above equation varies, the vector traces the following path: </p>
+                      <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/sattrack/orbitsat.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/orbitsat.m4v" type="video/mp4"></video>
+        <p>Here we approximated the satellites orbit with a circle. 
+          <br>r<sub>s</sub> is the radius of satellite orbit and θ is the satellite's initial orbital angular position.</p>
+      
+
+
+  </li>
+  <li>
+      <p>Since the satellites orbit is inclined about the equatorial plane of earth, we need to convert V<sub>sat</sub> into inclined plane reference frame.
+
+      The euqivalent rotation matrix for inclination(i) about X-axis is:</p>
+        <table><tr> <td>
+                      $$ E_{inclined, orbit} =  
+        \begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & cos(i) & -sin(i)\\
+        0 & sin(i) & cos(i)
+        \end{bmatrix} $$
+        </td></tr></table>
+        <p>So,</p>
+        <table>
+          <tr>
+            <td>
+                      $$ V_{sat, inclined} =  E_{inclined,orbit} * V_{sat, orbit} $$
+            </td>
+          </tr>
+        </table>
+
+        <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/sattrack/incsat.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/incsat.m4v" type="video/mp4"></video>
+
+    </li>
+
+
+    <li>
+      <p>Finally convert V<sub>sat, inclined</sub> from reference frame of inclined orbit to Earth Centered Inertial Frame.</p>
+      <p>If the initial offset between X axis of Incliend ref. frame & X axis of ECI frame is Ω, then the rotation matrix is:</p>
+        <table><tr> <td>
+                      $$ E_{ECI, inclined} =  
+        \begin{bmatrix}
+        cos(\Omega) & -sin(\Omega) & 0 \\
+        sin(\Omega) & cos(\Omega) & 0\\
+        0 & 0 & 1
+        \end{bmatrix} $$
+        </td></tr></table>
+        <p>Then again,</p>
+        <table>
+          <tr>
+            <td>
+                      $$ V_{sat, ECI} =  E_{ECI,inclined} * V_{sat, inclined} $$
+            </td>
+          </tr>
+        </table>
+
+        <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/sattrack/ecisat.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/ecisat.m4v" type="video/mp4"></video>
+
+
+    </li>
+
+
+</ul>
+<h3>Ground Station Position vector (V<sub>gs</sub>)</h3>
+<ul>
+  <li>
+    <p> We take lat & lon of the ground stations as input to calculate the vector V<sub>gs, ECI</sub></p>
+
+    <p>After all the rotations, </p>
+
+
+                          $$ V_{gs, ECI} =  
+            \begin{bmatrix}
+            r_{earth}*cos(\theta{lon}+\omega_{earth}*t)*cos(\theta{lat})\\
+            r_{earth}*sin(\theta{lon}+\omega_{earth}*t)*cos(\theta{lat})\\
+            r_{earth}*sin(\theta{lat})
+            \end{bmatrix} $$
+  </li>
+  <p>As the time varies, the vector in ECI frame rotates this way: </p>
+          <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/sattrack/tareci.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/tareci.m4v" type="video/mp4"></video>
+</ul>
+
+<h2>Calculating Line of Sight vector</h2>
+
+<ul style="list-style-type:none">
+  <li>
+    <table><tr> <td>
+      $$ V_{los, ECI} = V_{sat, ECI} - V_{gs, ECI}  $$
+    </td></tr></table>
+  </li>
+    <p>Line of sight only makes sense if the line is free from any obstacles. So, when the satellite is below the horizon  of the Ground station, there is no direct lien of sight and the satellites using LOS communication systems cannot establish a connection</p>
+
+   <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/sattrack/losboth.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/losboth.m4v" type="video/mp4"></video>
+</ul>
+
+
+<p>All the above simulations looks more mathematical, unless until the Earth comes into picture.
+  <video style="margin-left: auto; margin-right: auto; width: 100%; height: 300px; margin: auto;" poster="/images/sattrack/earthboth.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/earthboth.m4v" type="video/mp4"></video>
+
+
+
+<h3>Also checkout how a satellite scans the entire Earth</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CvUuyRG-398" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<div style="height: 50px"></div>
+
