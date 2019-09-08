@@ -1,5 +1,6 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <p> We’ll see how satellites use their communication antennas for line of sight communication, and also some math behind finding line of sight for communications. </p>
 
 <img class="postimg" src="/images/sattrack/satcovgraphics.png" style="width: 30%">
@@ -100,19 +101,20 @@ The downside of all of them is, they Rotate. Rotation unnecessarily add a magica
 
 </ul>
 <h3>Ground Station Position vector (V<sub>gs</sub>)</h3>
-<ul>
+<ul style="padding-left: 10px">
   <li>
     <p> We take lat & lon of the ground stations as input to calculate the vector V<sub>gs, ECI</sub></p>
 
     <p>After all the rotations, </p>
 
-
+        <div class="postimg" style="width: 40%;">
                           $$ V_{gs, ECI} =  
             \begin{bmatrix}
-            r_{earth}*cos(\theta{lon}+\omega_{earth}*t)*cos(\theta{lat})\\
-            r_{earth}*sin(\theta{lon}+\omega_{earth}*t)*cos(\theta{lat})\\
-            r_{earth}*sin(\theta{lat})
+            r_{e}*cos(\theta_{lon}+\omega_{e}*t)*cos(\theta_{lat})\\
+            r_{e}*sin(\theta_{lon}+\omega_{e}*t)*cos(\theta_{lat})\\
+            r_{e}*sin(\theta_{lat})
             \end{bmatrix} $$
+          </div>
   </li>
   <p>As the time varies, the vector in ECI frame rotates this way: </p>
           <video style="margin-left: auto; margin-right: auto; width: 100%; height: 200px; margin: auto;" poster="/images/sattrack/tareci.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/sattrack/tareci.m4v" type="video/mp4"></video>
@@ -138,8 +140,9 @@ The downside of all of them is, they Rotate. Rotation unnecessarily add a magica
 
 
 <h3>Also checkout how a satellite scans the entire Earth</h3>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CvUuyRG-398" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<center>
+<iframe width="50%" src="https://www.youtube.com/embed/CvUuyRG-398" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
 
 <div style="height: 50px"></div>
 
