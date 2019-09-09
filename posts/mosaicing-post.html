@@ -8,84 +8,99 @@
 
                <p>Mosaic theory has found its way in multitude of areas like, informational security, finance, law, intelligence gathering and etcetera. In Information Security, the notion of mosaic effect is derived from the <strong>theory of intelligence gathering</strong>, where unrelated pieces of information although individually of limited utility, become meaningful when combined. This, sure is a fascinating theory, but for this post we will be going into mosaic theory in Creative Arts.</p>
                <p>
-                  <video style="margin-left: auto; margin-right: auto; width: 100%; height: 300px; margin: auto;" poster="//i.imgur.com/N9TayIWh.jpg" preload="auto" autoplay="autoplay" loop="loop" muted="muted" width="300" height="150">
-                     <source src="//i.imgur.com/N9TayIW.mp4" type="video/mp4">
+                  <video style="margin-left: auto; margin-right: auto; width: 100%; height: 300px; margin: auto;" poster="/images/recursivemosaic/recursive_mosaic_f1.m4v" preload="auto" autoplay="autoplay" loop="loop" muted="muted" width="300" height="150">
+                     <source src="/images/recursivemosaic/recursive_mosaic_f1.m4v" type="video/mp4">
                   </video>
                </p>
                <p>If an unrelated set of images are combined to make a single meaningful image then its called a mosaic.</p>
                <p>In this post we will see,</p>
                <ul>
-                  <li>How to accurately create an image, just by gathering hundreds of small images</li>
-                  <li>Create Apple Mac style mosaic screensaver from your own photos</li>
-                  <li>Real time mosaics image video from your laptop's camera feed</li>
+                  <li>How to create an mosaic art, from thousands of images</li>
+                  <li>Optimize mosaicing art creation for real time use</li>
                </ul>
                <p><img class="postimg" title="source: imgur.com" src="/images/mosaicing/tumblr_inline_pomcb6ZiPx1wwcwn4_540.jpg" alt="image" data-orig-src="https://i.imgur.com/ahZlib3.jpg"></p>
-               <p>Here is how I had created the algorithm.</p>
-               <p>First &amp; the most important one is a large set of small images (I will be calling them <strong>tile images</strong> here), preferably around 10k. We need them to compose our target image.</p>
-               <p>Secondly, the target image, like the smiley I had used in the above example </p><p> and  of course the algorithm.</p>
+               <h3> To create the mosaic art, we need :</h3>
+               <ul>
+                  <li>
+                     <p>First &amp; the most important one is a large set of small images (I will be calling them <strong>tile images</strong> here), preferably around 10k. We need them to compose our target image.</p>
+                  </li>
+                  <li>
+                     <p>And, a target image, like the smiley I had used in the above example </p>
+                  </li>
+               </ul>
+               
+               
                <h3><strong>Collecting the tiles</strong></h3>
-               <p>To indulge myself in the task, I chose the tiles to be from my personal albums. So I have downloaded all my 15k photos from <a href="https://t.umblr.com/redirect?z=http%3A%2F%2Fphotos.google.com&amp;t=YmJhOGYzYjM3YTc1ZmU3MzM2ZDRkZDAxYzVkZTYxYmM4NjJmNWYwMCxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener">photos.google.com</a>. You can click here <a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fgoo.gl%2FQ4Vw1c&amp;t=NDBkMTc1MjM0MmMyN2UzMTU0ZjJjMzQ2OTYwZTI5Zjc5OWMxNjQ1YSxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank">google archive</a> to download your own photos archive.</p>
+               <p>To make it more fun you can start with downloading your own images from Google Photos, like I did here. I have downloaded all my photos from <a href="https://takeout.google.com/settings/takeout">Google Archive</a> </p>
                <p>Since the photos will have various aspect ratios, I have simply cropped and resized all of them to have standard 100by100 resolution.</p>
-               <p><img class="postimg" style="width: 50%" title="source: imgur.com" src="/images/mosaicing/tumblr_inline_pomies2MPn1wwcwn4_540.jpg" alt="image" data-orig-src="https://i.imgur.com/62Tffua.jpg"></p>
-               <p>But for the rest of this post here, I will be using thousands of cute animal as tiles.</p>
-               <p>Mosaicing algorithm is a simple algorithm, all you need to do is divide the target image into smaller square shaped images like,</p>
-               <p><img class="postimg" style="width: 20%" title="source: imgur.com" src="/images/mosaicing/tumblr_inline_pomiesFd461wwcwn4_540.jpg" alt="image" data-orig-src="https://i.imgur.com/TbMYlyi.jpg"></p>
-               <p>For each square image find the best matching tile and replace it.</p>
-               <h3><strong>Finding the Best match</strong></h3>
-               <p style="display: inline-block;">Taking the below square image (2,3from the above smiley) as example, I will walk through the algorithms each trying its best to find the closest match.</p>
+               <p><img class="postimg" style="width: 50%" title="source: imgur.com" src="/images/mosaicing/allmypics.jpg" alt="image" data-orig-src="https://i.imgur.com/62Tffua.jpg"></p>
+               <p>But for the rest of this post here, I will be using thousands of animal images as tiles.</p>
+               <h2>Algorithm</h2>
+               <p>Mosaicing is a simple algorithm, all you need to do is divide the target image into smaller square shaped images like this</p>
+               <p><img class="postimg" style="width: 20%" title="source: imgur.com" src="/images/mosaicing/smiley-squared.gif" alt="image" data-orig-src="https://i.imgur.com/TbMYlyi.jpg"></p>
+               <p>And for each square, crop the image out and replace it with the best matching tile.</p>
+               <h2><strong>Finding the Best match</strong></h2>
+               <p style="display: inline-block;">Picking up the blinking square section, I will walk through the techniques, each one trying its best to find the closest match.</p>
                <p><img class="postimg" style="width: 90%" title="source: imgur.com" src="/images/mosaicing/tumblr_inline_pomietVtXX1wwcwn4_540.png" alt="image" data-orig-src="https://i.imgur.com/Y9lUCz6.png"></p>
                <p>Each result to the right is a further improvised search result of the first square image</p>
                <h3><strong>A Simple Approach</strong></h3>
                <p>In most of the mosaicing algorithms found in the internet, average RBG is used to find the best match.</p>
                <p>That is, for each square in the target image, an average value of RGB is computed and replaced with a tile having closest average RGB value.</p>
-               <p>For example, for the square image below:</p>
+               <p>For example, this cropped image </p>
                <p><img class="postimg" style="width: 15%" title="source: imgur.com" src="/images/mosaicing/tumblr_inline_pomiesnpF41wwcwn4_540.png" alt="image" data-orig-src="https://i.imgur.com/9eLThDW.png"></p>
-               <p style="display: inline;vertical-align: middle;">avg rgb value is (147R, 146G, 146B) which corresponds to #939292</p>
+               <p style="display: inline;vertical-align: middle;">have an average RGB value of (147R, 146G, 146B), which corresponds to #939292</p>
                <div class="dot" style="display: inline-block; color: #939292; vertical-align: middle; height: 25px;   width: 25px;   background-color: #939292;   border-radius: 50%;   display: inline-block;"></div>
-               <p>There are 256 possible values for each primary colour channel. To have an exact match for each possible colour, we need 256<em>256</em>256 = 16.7 million distinct images.</p>
-               <p>Remember we only have around 15k, that is 0.1% (1/1000th = (1/10)^3 ) of the total possible colours. So don’t be surprised when you find the closest tile having an avg RGB with each colour channel value varying by more than 10.</p>
-               <p>Here in the above case I have found this Artic fox’s tile image to be the closest match. 😧.&nbsp;I thought all the animals in these tiles are cute.</p>
-               <p><img class="postimg" style="width: 15%" title="source: imgur.com" src="/images/mosaicing/WEUAbhE.png" alt="image" data-orig-src="https://i.imgur.com/9eLThDW.png"></p>
+               <p>There are 256 possible values for each primary colour channel. To have an exact match for each possible colour, we need 256x256x256 = 16.7 million distinct images.</p>
+               <p>Even if we have 16 thousand unique colored tile images, yet we can only produce 0.1% (1/1000th = (1/10)<sup>3</sup> ) of the total possible colours. So don’t be surprised when you find the closest tile having an avg RGB with each colour channel value varying by more than 10units.</p>
+               <p>Here, in the above case, I have found this Artic fox’s tile image to be the closest match. 😧</p>
+               <p><img class="postimg" style="width: 30%" title="source: imgur.com" src="/images/mosaicing/comp.png" alt="image" ></p>
                <p style="display: inline;vertical-align: middle;"> This has an avg color of (157R, 153G, 153B) </p>
                <div class="dot" style="display: inline-block; color: #939292; vertical-align: middle; height: 25px;   width: 25px;   background-color: #939292;   border-radius: 50%;   display: inline-block;"></div>
                <p style="display: inline;vertical-align: middle;">, with difference from original image’s avg RGB (10, 7, 7), which is pretty much as we’ve expected.</p>
-               <p>For searching the best match, we can have the pre-computed avg RGB values of all the tile images in memory, and search over them. This essentially becomes a 3D <a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNearest_neighbor_search&amp;t=ODY2MjIxMmRkYWNiMDExOTQ4MzEyNzk5NjJjYTEzYmQ2N2RhZmVkYixzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank"> nearest neighbour search</a> problem, because RGB is a 3 dimensional vector. Soon we will look in to optimising this search (Of course, it is involves indexing)</p>
-               <p>This method gave a decent approximate of target image but not the best :( . Decreasing the square size will give a better resolution, but thats not what we want to produce.</p>
+               <p>For searching the best match, we can store the pre-computed avg RGB values of all the tile images in memory, and search over them. This essentially becomes a 3D <a href="https://en.wikipedia.org/wiki/Nearest_neighbor_search" target="_blank"> nearest neighbour search</a> problem, because RGB is a 3 dimensional vector. </p>
+               <p>This method gave a decent approximate of target image but not the best :( . Decreasing the cropping size will give a better resolution, but thats not what we want to do, as it floods the mosaic with many but tiny tiles.</p>
                <p><img class="postimg" style="width: 30%"title="source: imgur.com" src="/images/mosaicing/hcGYH3C.jpg" alt="image" data-orig-src="https://i.imgur.com/9eLThDW.png"></p>
-               <p>the mosaic image seems to be too much pixelated. One reason is, the number of squares we used to compose are too small 10x10</p>
-               <p>This pixelation can also be attributed to average colour in the tile-image being spread more evenly than in the square or vice versa. In the sample square Image, we have black colour concentrated on north-west region and white on south east region while grey is spread almost evenly in the Artic fox's tile image.</p>
+               <p>This mosaic image seems to be too much pixelated. One reason is, the number of squares we cut the image are less.</p>
+               <p>This pixelation can also be attributed to average colour in the tile-image being spread more evenly than in the square or vice versa. In the cropped square Image, we have black colour concentrated on top-left region and white on bottom-right region. While grey is spread almost evenly in the Artic fox's tile image.</p>
                <p>This method works for colour images as well, thanks to the three-colour vision our eye evolved to possess.</p>
                <p><img class="postimg" style="width: 50%" title="source: imgur.com" src="/images/mosaicing/bS4dQL0.jpg" alt="image" data-orig-src="https://i.imgur.com/ahZlib3.jpg" data-width="40%"></p>
-               <p>If you are little intrigued about why the three-colour vision helps here, click on “</p>
-               <p><a href="https://t.umblr.com/redirect?z=http%3A%2F%2Fwhy%2520there%2520exists%2520a%2520colour%2520for%2520every%2520wavelength%2520of%2520light%2520in%2520visible%2520spectrum%2C%2520but%2520not%2520the%2520other%2520way%2520around&amp;t=YTYyNmNkNWNhM2MxYTZiNjY5ZThiMDI5OGFlNzc3ZGJjNTQyMTE4MyxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener">why there exists a colour for every wavelength of light in visible spectrum, but not the other way around</a>”</p>
-               <h3><strong>A Better Approach</strong></h3>
+               <p>If you are little intrigued about why the three-colour vision helps here, you are reading this post keen enough. </p>
+               <p> Well, the answer lies in the fact of human eye containing 3 types of color photo receptors, Red, Green & Blue. <br>
+               In color addition, if we add white and black, we simply get an intermediate color, gray. This can be explained by light intensities.</p>
+               <div class="dot" style="display: inline-block; color: #fff; vertical-align: middle; height: 25px;   width: 25px;   background-color: #fff;   border-radius: 50%;  border:1px solid black;  display: inline-block;"></div> + <div class="dot" style="display: inline-block; color: #000; vertical-align: middle; height: 25px;   width: 25px;   background-color: #000;   border-radius: 50%;   display: inline-block;"></div> = <div class="dot" style="display: inline-block; color: #888; vertical-align: middle; height: 25px;border:1px solid black;     width: 25px;   background-color: #888;   border-radius: 50%;   display: inline-block;"></div><p>But if we add red and green, we get yellow. Even though Red, Green & Yellow have distinct wavelengths for their light. </p>
+               <div class="dot" style="display: inline-block; color: #f00; vertical-align: middle; height: 25px;   width: 25px;   background-color: #f00;   border-radius: 50%;  border:1px solid black;  display: inline-block;"></div> + <div class="dot" style="display: inline-block; color: #0f0; vertical-align: middle; height: 25px;   width: 25px;   background-color: #0f0;   border-radius: 50%;   display: inline-block;"></div> = <div class="dot" style="display: inline-block; color: #ff0; vertical-align: middle; height: 25px;border:1px solid black;     width: 25px;   background-color: #ff0;   border-radius: 50%;   display: inline-block;"></div>
+               <p> This is possible because our eye have only 3 types of color sensing photo receptors each for Red, Green & Blue. Yellow wavelength light stimulates both of our red and green photo receptors, so our brain is fooled to think that a combination of red and green photo stimulus corresponds to yellow.  <br>
+               This is what makes the color addition possible.</p> 
+               <p>For creating colored modsic art, we use color addition, which is the reason why three color vision is helpful here.
+
+               <h3><strong>A Better Approach for matching</strong></h3>
                <p>The problem with the simple approach is pixelation. If we want more sharper and meaningful mosaic, we should not only match the average values, but we consider even more details.</p>
-               <p>In previous example, although both the square and the tile image has almost the same average RBG, they look completely unrelated because the colours in the square and in the tile image are differently distributed.</p>
-               <p>To ensure the distribution, we can further divide each square and tile image into even more sub-squares, and match the average RGB values of these set of sub-squares.</p>
-               <p>Lets divide the above square image into 3x3 sub-squares.</p>
+               <p>In previous example, although both the cropped image section and the tile images have almost the same average RBG, they look completely unrelated because the colored pixels in the cropped section and in the tile image are differently distributed.</p>
+               <p>To ensure the distribution, we can further divide each cropped section and tile image into even more sub-images, and then match the average RGB values with in these areas.</p>
+               <p>Lets divide the above cropped square image into 3x3 sub-squares.</p>
                <p><img class="postimg" style="width: 15%" title="source: imgur.com" src="/images/mosaicing/BkB5n16.jpg" alt="image" data-orig-src="https://i.imgur.com/TbMYlyi.jpg"></p>
-               <p>Avg values of sub-squares:</p>
+               <p>Average values of these sub-squares are:</p>
                <table>
                   <tbody>
                      <tr>
                         <td>[</td>
-                        <td>(75,75,75)</td>
-                        <td>(0,0,0)</td>
-                        <td>(83,83,83)</td>
+                        <td style="background-color: #494949; color: white;border:1px solid black;  ">(75,75,75)</td>
+                        <td style="background-color: #000; color: black;border:1px solid black" >(0,0,0)</td>
+                        <td style="background-color: #535353; color: white;border:1px solid black" >(83,83,83)</td>
                         <td>]</td>
                      </tr>
                      <tr>
                         <td>[</td>
-                        <td>(11,11,11)</td>
-                        <td>(255,255,255)</td>
-                        <td>(8255,255,255)]</td>
+                        <td style="background-color: #0a0a0a; color: black;border:1px solid black">(11,11,11)</td>
+                        <td style="background-color: #fff; color: black;border:1px solid black" >(255,255,255)</td>
+                        <td style="background-color: #fff; color: black;border:1px solid black" >(255,255,255)]</td>
                         <td>]</td>
                      </tr>
                      <tr>
                         <td>[</td>
-                        <td>(169,169,169)</td>
-                        <td>(255,255,255)</td>
-                        <td>(255,255,255)]</td>
+                        <td style="background-color: #999999; color: black;border:1px solid black" >(169,169,169)</td>
+                        <td style="background-color: #fff; color: black;border:1px solid black" >(255,255,255)</td>
+                        <td style="background-color: #fff; color: black;border:1px solid black" >(255,255,255)]</td>
                         <td>]</td>
                      </tr>
                   </tbody>
@@ -97,39 +112,47 @@
                <p>Did you see that stripe on cats face? Its an exact match 😲, Damn!</p>
                <p>We can further more increase the number of sub-squares, to have more detailed matches. Mostly 5x5 will do the job.</p>
                <p>With this approach, the mosaic can be perceived sharper.</p>
-               <p><img class="postimg" style="width: 45%" title="source: imgur.com" src="/images/mosaicing/uJcso6Z.jpg" alt="image" data-orig-src="https://i.imgur.com/Y9lUCz6.png"></p>
+               <p><img class="postimg" style="width: 85%" title="source: imgur.com" src="/images/mosaicing/uJcso6Z.jpg" alt="image" data-orig-src="https://i.imgur.com/Y9lUCz6.png"></p>
                <p>The only downside of using sub-squares to match is, it will not maintain the overall average colour of a square. You can already see that the mosaic generated with the Simpler approach is more accurate colour-wise. The reason that, higher dimensional searches tends to pick the tile with similar colour distribution rather than the overall colour, can be attributed to the above behaviour.</p>
                <p>So far so good, but still there is a lot of space for optimisations and improvisations in the data &amp; algorithm.</p>
                <h3><strong>Lets find how we can optimize these searches for real time execution</strong></h3>
-               <p>I had assumed a bold assumption that all the average colours of 15k tiles were distributed evenly through out the colour bandwidth. Well, the world is not perfect :( , there can be a case where there is no tile, with a given average RGB colour. To check how outspread the tile images are, there is only one way to find out: 3D PLOT. Yaay! Graphs are always interesting.</p>
-               <p>I had simply plotted a 3D graph with each axes representing the strength of a primary colour (red, blue, green)</p>
+               <p>We had assumed a bold assumption that all the average colours of 15k tiles were distributed evenly through out the colour bandwidth. Well, the world is not perfect :( , there can be a case where there is no tile, with a given average RGB colour. To check how outspread the tile images are, we can have a 3D PLOT one each tile image's average color. Yaay! Graphs are always interesting.</p>
+               <p>I had plotted this graph from all the thousands of my personal photos archived in Google  </p>
+
                <p><img class="postimg" style="width: 40%" title="source: imgur.com" src="/images/mosaicing/06sL19S.gif" alt="image" data-orig-src="https://i.imgur.com/ahZlib3.jpg" data-width="40%"></p>
-               <p>:( , I expected a plot with all the points are spread out. No worries, atlas we found something interesting. Majority of the points are crowded in the middle ( near the 3D line x=y=z / r=g=b, all the B&amp;W points) of the graph. To inspect this data closely (and to collect points in crowded area ), I had clustered the data in to 2 components, using Gaussian mixture model.</p>
+               <p>:( , I expected a plot with all the points to be a bit spread out. But, No worries, at last we found something interesting. Majority of the points are crowded in the middle ( near the 3D line x=y=z / r=g=b, all the B&amp;W points) of the graph. To inspect this data closely (and to collect points in crowded area ), I had clustered the data in to 2 clusters, using Gaussian mixture model.</p>
                <p>Why Gaussian?</p>
                <p>Because all the points seemed random and there is not much I had observed from the above plot, except that there is a crowded region. Moreover the Gaussian distributions are often used to represent <strong>real-valued <strong><a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRandom_variable&amp;t=NTkwZmVlZGE2MmY5OGY1N2QyMmFhNGUzMDExOGI1ZGE5ZTJhZmZkMCxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener"><strong>random variables</strong></a></strong> whose distributions are not known.</strong></p>
-               <blockquote>
+               <div style="border: darkblue;border-left: 2px solid;padding-left: 5px;">
                   <p>Gaussian distributions are important in <a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FStatistics&amp;t=ODg4NWFjMGI3YjdkYjY1NDQzMmM3YTA4YzE3NWFkMGUwNjRiZDRhNCxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener">statistics</a> and are often used in the <a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNatural_science&amp;t=YjVhMDVlZDQzNzMyZmRmMmY2NWIzZTg2MDIwOTBiNzA4ZjFmM2IxOSxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener">natural</a> and <a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FSocial_science&amp;t=YzRmM2I3ZTk1ODhjMjY1NjMzZTE4YWFkNWQ1MDI5MDRkMTE0ZjA0MixzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener">social sciences</a> to represent <strong>real-valued <strong><a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRandom_variable&amp;t=NTkwZmVlZGE2MmY5OGY1N2QyMmFhNGUzMDExOGI1ZGE5ZTJhZmZkMCxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank" rel="noopener"><strong>random variables</strong></a></strong> whose distributions are not known</strong></p>
-               </blockquote>
+               </div>
 
 <img class="postimgL"  title="source: imgur.com" src="/images/mosaicing/c0QXtze.gif" alt="image" data-orig-src="https://i.imgur.com/ahZlib3.jpg" >
 <img class="postimgR"  title="source: imgur.com" src="/images/mosaicing/3E9NkX0.gif" alt="image" data-orig-src="https://i.imgur.com/ahZlib3.jpg" >
 
                <p>Tiles in the cluster-I has their average RGB colour in black, white &amp; grey regions.</p>
                <p><img class="postimg" style="width: 60%" title="source: imgur.com" src="/images/mosaicing/fffkXk3.jpg" alt="image" data-orig-src="https://i.imgur.com/ahZlib3.jpg" data-width="40%"></p>
-               <p>There are around 8058 tiles in this cluster. This cluster has occupied 733030 unit^3 of vector space volume, this I have estimated by calculating the volume of a convex hull covering these points. While the total volume occupied by both the clusters is 10886922 unit^3.</p>
-               <p>That means 61% of all the points in the plot lies in the 6.7 % of the volume. While the other cluster has 5143 points in 10153892 unit^3 of space, i.e.s, 39% of points in 93.3 % of space.</p>
-               <p>Simple calculations says cluster-I is 22 times more denser than cluster-II. So, to commensurate the density on both clusters, we need to randomly remove 945% of the tiles from cluster-I. This will decrease the total #tiles by 58%, improving the performance proportionally.</p>
+               <p>There are around 8058 tiles in this cluster. This cluster has occupied 733030 unit<sup>3</sup> of vector space volume, this I have estimated by calculating the volume of a convex hull covering these points. While the total volume occupied by both the clusters is 10886922 unit<sup>3</sup>.</p>
+               <p>That means 61% of all the points in the plot lies in the 6.7 % of the volume. While the other cluster has 39% of total points in 93.3 % of space.</p>
+               <p>Simple calculations says cluster-I is 22 times more denser than cluster-II. So, to commensurate the density on both clusters, we need to randomly remove 95.4% of the points from cluster-I. This will decrease the total #tiles by 58%, improving the performance proportionally.</p>
                <h3><strong>Improving the search strategy</strong></h3>
-               <p>One obvious improvement is that, <strong>we will precompute the average RGB of each tile &amp; map it with the image.</strong> We will search this precomputed mapping instead of calculating avg RGB on the run.</p>
-               <p>Jumping in to the heart of this algorithm, the search strategy, we can explore couple of methods to drastically improve the performance. Till now we have not discussed more than the linear search, which will painstakingly iterate through all the 15k avg RGB values. Lets re-build the problem statement for lucidity, before diving into the solution.</p>
+               <p>One obvious improvement is that, <strong>we will precompute the average RGB of each tile &amp; map it with the image.</strong> We will search this precomputed mapping instead of calculating avg RGB on every run.</p>
+               <p>Jumping in to the heart of this algorithm, the search strategy, we can explore couple of methods to drastically improve the performance. Till now we have not discussed more than the linear search, which will painstakingly iterate through all the 15k avg RGB values. Lets re-build the problem statement for our clarity, before diving into the solution.</p>
                <p>PS: "Given an array of n-dimensional vectors and a target vector, we need to find a vector from the array which is nearest to the target in n-D space "</p>
                <p>This is a clear case of N-dimensional space search. A solution for such searching is the KD tree, explained <a href="https://t.umblr.com/redirect?z=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FK-d_tree&amp;t=ZDZhOWFkYjAyM2YxY2YzNTMyMGE3N2FjYzQyMDhhOWVkMTZlNzNjNSxzZkVJc09JaQ%3D%3D&amp;b=t%3A1iNJviQiI8NvA1fVKYEihA&amp;p=https%3A%2F%2Fmindexing.tumblr.com%2Fpost%2F181711807719%2Fmosaic&amp;m=1" target="_blank">here</a>. Moreover, with this approach the average time complexity is reduced to O(log n). That means, instead of searching through 15k points, it can simply verify a couple of dozens of inequalities to reach the answer.</p>
+
+               <p>To make the searching even faster, I found a cool research paper on constant-time, dimensional space searching problem in springer: <a href="https://link.springer.com/article/10.1007/s00138-017-0889-4"> "Almost constant-time 3D nearest-neighbor lookup using implicit octrees"</a>. But after syncing up with its author, Bertram Drost, I learned that this algorithm has a curse from <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">voronoi cell calculations</a>, which makes it worse for searching in space higher than 3 dimensions.
+
+               <p>Any how, the implementation of this algorithm gave me a realtime mosaic creation, with around 10 frames per second</p>
 
                 <p>
                   <video style="margin-left: auto; margin-right: auto; width: 100%; height: 300px; margin: auto;" poster="//i.imgur.com/n1ljDm2.jpg" preload="auto" autoplay="autoplay" loop="loop" muted="muted" width="300" height="150">
                      <source src="//i.imgur.com/n1ljDm2.mp4" type="video/mp4">
                   </video>
                </p>
+
+               <p><a href="/posts/recursivemosaic.html">Click here</a> to check out how to create rescusive mosaic videos of your own from your own images.</p>
+
             </li>
          </ul>
       </li>
