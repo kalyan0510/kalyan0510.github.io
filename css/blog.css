@@ -293,6 +293,7 @@ img.postimgR {
 
 .card {
   margin: 0px; padding-left: 10px; margin-top: 15px;padding-right: 10px;
+  border-bottom: 2px solid black;
 }
 
 .card.div,{
