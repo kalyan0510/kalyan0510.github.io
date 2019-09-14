@@ -122,7 +122,6 @@ p {
   background-color: #003366;
   text-align: center;
   color: #ffffff ;
-  font-size: 1.8em;
   font-family:"exo";
   
   /*box-shadow: 2px 2px 10px #000;*/
@@ -185,7 +184,7 @@ p {
 .pages UL {
   list-style-type: none;
   margin: 0px;
-  padding: 5px;
+  padding: 0px;
   padding-left: 10px;
 }
 
