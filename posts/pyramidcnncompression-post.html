@@ -181,6 +181,13 @@ We can carry-out the same compression algorithm with different lossy compression
 <p>After compressing a set of 128x128 sized images using combination of the above explained techniques, the pyramids were compressed to 393216 Bits. That is an quaivalent of (0.72 Bits/pixel). </p>
 <img class="postimg" style="width: 60%; float: none;" src="/images/pyramidcompression/results.png">
 
-<p>A faster CNN which directly consumes the compressed pyramids can be developed for faster image classifications. This type of CNN consumes the upper layers of pyramid in different stages of its sequential model. This is possible by using hybrid hidden layers which also takes direct input. Thus we can reduce the overall classification time and power needed.</p>
+<p>A faster CNN which directly consumes the compressed pyramids can be developed for faster image classifications. This type of CNN consumes the upper layers of pyramid in different stages of its sequential model. This is possible by using hybrid hidden layers which also takes direct input. Thus we can reduce the overall classification time and power needed. (This will be my future work)</p>
+
+<p> <b>The total purpose of this spare-time work is to learn & analyze the decompositions and the role of each decomposed image in recognisability.</b> The compression model discussed here is a very rudimentary one, as it only decomposes the image based on frequencies. We can employ other types of image decomposition techniques to make this work better.
+</p>
+
+<p>If we really want to throw away unnecessary details, we can completely eliminate the background of the image. This can be achieved by using Image segmentation rather than image decomposition. But here, the challenge is to create a classifier which ignores the thrown details, so as to run faster.</p>
+
+
 
 </div>
