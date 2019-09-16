@@ -5,7 +5,7 @@
 
 <p>Looking at both the compressed images, you can still recognise a car in the first one and a plane in the second one but they only hold minimal information of about 0.72 bits/pixel instead of their original counterparts occupying 8 bits/pixel. </p>
 
-<p>Obviously you dont want your vacation photos to be compressed this way. This can be more usefull in image searching. For example, in Google photos, when we type "car" in the search bar it returns all of our personal photos with a car in it. So, when we search for a car, it just runs through its pre-labelled photos and finds all the photos with "car" tag on it. Lets say Google wanted to add a new label "pet" 🐶 to let every one search their pets pictures. They will probably search all large images in every google account and apply "pet" tag to the images with pets .</p>
+<p>Obviously you dont want your vacation photos to be compressed this way. This can be more useful in image searching. For example, in Google photos, when we type "car" in the search bar it returns all of our personal photos with a car in it. So, when we search for a car, it just runs through its pre-labelled photos and finds all the photos with "car" tag on it. Lets say Google wanted to add a new label "pet" 🐶 to let every one search their pets pictures. They will probably search all large images in every google account and apply "pet" tag to the images with pets .</p>
 
 <p> This is when the above type of compression comes handy. If we search on smaller readily available image files with recognisable subjects, tagging can be much faster. So we need a compression algorithm which preserves image subject identifiability while having less compute intensive decompression technique.</p>
 
@@ -70,7 +70,7 @@ Now again we will check the contributions of each layer to the image’s recogni
 Finally, we will compress all the pyramid layers(lossily) in the optimal proportions.</p>
 
 <h1> Compression Algorithm </h1>
-<p>To explain in layman terms, we decompose the image into multiple levels of details and evaluate each detail on its usefullness in forming a recognisable image. Next we discard some part of the less usefull details from the image. </p>
+<p>To explain in layman terms, we decompose the image into multiple levels of details and evaluate each detail on its usefulness in forming a recognisable image. Next we discard some part of the less useful details from the image. </p>
 
 <h3>Step wise:</h3>
 <div style="list-style-type: decimal;">
