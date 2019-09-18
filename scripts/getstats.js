@@ -7,7 +7,7 @@ function putStatData (response) {
                    });
 }
 function ipLookUp () {
-  fetch('http://ip-api.com/json')
+  fetch('https://ipapi.co/json')
    .then( response => response.json() )
    .then( data => putStatData(data) )
   $.get('https://ipinfo.io')
