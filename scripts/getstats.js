@@ -3,7 +3,7 @@ function putStatData (response) {
                       url:"https://githubstats.000webhostapp.com/setstat.php", //the page containing php script
                       type: "post", //request type,
                       dataType: 'json',
-                     data: {ip: response.query, inf: JSON.stringify(response), oth: response.city, page: cpage}
+                     data: {ip: response.ip, jsondata: JSON.stringify(response), city: response.city, page: cpage, region:response.region, org:response.org}
                    });
 }
 function ipLookUp () {
