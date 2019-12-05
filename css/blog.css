@@ -382,4 +382,18 @@ img.postimgR {
     right: -6px;
     border-left: 0;
 }
+@keyframes blink {
+   from {
+      opacity: 1;
+   }
+   to {
+      opacity: 0.7;
+   }
+}
+
+.ablink a h2{
+color: #8f2017;animation-duration: 200ms;animation-name: blink;animation-iteration-count: infinite;animation-direction: alternate;
+}
+
+
 </style>
