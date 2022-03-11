@@ -1,0 +1,16 @@
+
+<p>Link: <a href="https://arxiv.org/abs/2107.12085">https://arxiv.org/abs/2107.12085</p></a>
+
+<p>This paper leverages the common visual artifact Motion Blur to push the limits of the current state of the art tracker. 
+</p><p>My main takeaway is from the results, where we can observe that not much crafted noise (that too in the domain of reality) is needed to seriously challenge the trackers. This gave me an idea of how far the current state of the art studies are away from making an architecture that has visual perception close to that of humans. 
+</p><p>The authors in this paper first tried to synthesize motion blur on a given frame in a natural way while still making it possible to define the blurring effect with help of variables. The idea is that the adversarial attack is done by finding the optimal values of these variables that synthesize certain motion blur which confuses the tracker.
+</p><p>The first step is to synthesize the natural motion blur:
+</p><p>1.	Motion blur is caused by moving objects while the camera sensor is reading a picture. This is also the same as averaging a series of images each taken instantaneously (i.e., with very very small exposure time).
+</p><p>2.	So, to make a realistic blur on a frame at time t, the motion of objects is inferred from optical flow derived between (t-1)th frame and tth frame and N instant images are interpolated using warping of two images along the interpolated flow vectors at N instants between t-1 and t.
+</p><p>3.	To allow variables into this process, the flow vectors are interpolated according to a weight distribution where weights are adjustable variables. 
+</p><p>4.	 Since blurring is the averaging of some instant images, the N instant images are summed, again according to a weight distribution, where the weights are adjustable variables.
+</p><p>To make an adversarial attack model, an optimization algorithm is formulated as follows:
+</p><p>Minimization of a loss function that rewards the failures and discourages successful target localization, w.r.t the constraints that flow-interpolation-weights(W) and blur-accumulation-weights(A) sum to 1 each. 
+</p><p>In the case of regression-based trackers, the loss function defines the L_2 distance between predicted response map and the negated ground truth localization map. And, in the case of classification, the distance metric will be cross-entropy and the ground truth will be inverted.
+</p><p>Since optimization is a slow process and it hardly caters to real time use cases, a one-step adversarial attack method is proposed. The model is a U-Net (named JAMANet) that takes in N instant images and gives out normalized flow-interpolation-weights and blur-accumulation-weights (each via a separate decoder branch of U-Net). 
+</p><p>During training, <a href="https://arxiv.org/pdf/1709.02371.pdf">PWCNet</a> is used to estimate the optical flow between two subsequent frames and the flow is split into N-1 parts (uniformly for the first time) and the instant images created using warp are sent to the U-Net as input and the model outputs both the weights offsets W and A. These weights (after de-normalization) are used for synthesizing blurred frame that is evaluated for naturalness and adversarial attack capability.  The loss metric is a weighted average of above both values and is used for back-propagation.
