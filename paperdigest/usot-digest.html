@@ -3,6 +3,37 @@
 
 <p>Link: <a href="https://arxiv.org/pdf/2108.12711.pdf">https://arxiv.org/pdf/2108.12711.pdf</p></a>
 
+<center>
+  <style type="text/css">
+    .video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  </style>
+  <div class="video-container">
+  
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS9Px9GEuHBWMSXXru_nNFHdEJ0rn6Wxcq2366szqNTd51RxYZzr1vpvD7fCgtvjGbaTopAX15IzBJQ/embed?start=false&loop=false&delayms=10000" frameborder="0"  allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+</div>
+</center>
+
+
+
 <p>
 	This is an incremental contribution to the line of research on Un-supervised object tracking. Previous unsupervised trackers relied on randomly sampling bounding boxes for ground truths and worked by imposing rationales like Self Consistency (overlapping regions share same object patterns – used by <a href="https://dl.acm.org/doi/pdf/10.1145/3394171.3413611">S2SiamFC</a>) and Cycle Consistency (tracking an object forward and backward in time should land the bounding box in the starting position- used by <a href="https://arxiv.org/abs/1904.01828">UDT</a>). The authors of this paper thought that this approach does not successfully supervise the training of the tracker mostly because the randomly picked bounding box(BB)s does not necessarily land on an object that has clear edges. So, this publication proposes more automated ways to supervise the training
 </p>

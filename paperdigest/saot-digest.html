@@ -1,6 +1,36 @@
 
 <p>Link: <a href="https://arxiv.org/pdf/2108.03637.pdf">https://arxiv.org/pdf/2108.03637.pdf</p></a>
 
+
+
+<center>
+  <style type="text/css">
+    .video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  </style>
+  <div class="video-container">
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS3xBccVpt2qFhOWPJGlEtFrdGjyfRSrSBai1L4vkjPv4a9JIlU0UefpK2QfJPlrhHtjfSJogVp20gC/embed?start=false&loop=false&delayms=15000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</div>
+</center>
+
+
 <p>The main proposal of this paper is to use the saliencies (the distinctive local patterns) of an object to track the object, instead of directly looking at the object as a whole.
 </p><p>This publication can be thought of as an incremental work on lines of Siamese-based tracking and part-based tracking (where the target is usually split into patches and the patches are tracked). The contribution of this work is a proposal of using saliencies instead of template patches. Reasoning that all patches might not be informative about the target, the saliency-based tracking is proposed. 
 </p><p>One advantage of tracking individual local parts of a target can be robustness towards shape/appearance changes. A drift in the position of a salient feature might deform the target but if it is tracked individually it should be robust. But in order to just track individual salient features and yet solve for target localization, we need better understanding about association between each saliency on a particular target.    
