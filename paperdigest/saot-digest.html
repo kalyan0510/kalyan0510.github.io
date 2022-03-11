@@ -1,0 +1,37 @@
+
+<p>Link: <a href="https://arxiv.org/pdf/2108.03637.pdf">https://arxiv.org/pdf/2108.03637.pdf</p></a>
+
+<p>The main proposal of this paper is to use the saliencies (the distinctive local patterns) of an object to track the object, instead of directly looking at the object as a whole.
+</p><p>This publication can be thought of as an incremental work on lines of Siamese-based tracking and part-based tracking (where the target is usually split into patches and the patches are tracked). The contribution of this work is a proposal of using saliencies instead of template patches. Reasoning that all patches might not be informative about the target, the saliency-based tracking is proposed. 
+</p><p>One advantage of tracking individual local parts of a target can be robustness towards shape/appearance changes. A drift in the position of a salient feature might deform the target but if it is tracked individually it should be robust. But in order to just track individual salient features and yet solve for target localization, we need better understanding about association between each saliency on a particular target.    
+</p><p>So, the authors not only propose to find the distinctive saliencies but also find an association between each of them to arrive at a global correlation representation (this is a heat map of important saliencies connected to their strongly associated saliency on the search image).
+</p><p>So the contribution is two parts, 1) a module that extracts the saliencies 2) a module that learns the association between each saliency.
+</p><p><u>To extract the saliency:</u>
+</p>
+<img class="postimg" src="/images/paperdigest/saot-saliency-extraction.png" style="width: 40%">
+
+
+<p>Here the concept is to use SiamFC’s architecture to arrive at the feature maps of both target and search images, F_x (h_x×w_(x )×c) and F_s (h_s×w_s×c) respectively.
+</p><p>Hypothetically, each pixel (a c-dim vector) in the target(exemplar)’s feature can be thought of as a saliency but not all of them are distinctive. To pull out the distinctive pixels (saliency), a similarity map is created for each of them.
+</p><p>The similarity map for a saliency s_((u,v) ) (a pixel at (u,v) in F_x) is computed by calculating the cosine similarity between each pixel in F_s and the c-dim vector corresponding to the saliency. 
+</p><p>Each similarity map of a saliency (sized h_s×w_s) is a heat map of the corresponding saliency feature on the search image. So, it tells the strength of the presence of a saliency on the search image. 
+</p><p>The authors use a rationale that the less the diffusion around a peak in similarity map, the more is the distinctiveness of the saliency. 
+</p>
+
+<img class="postimg" src="/images/paperdigest/saot-finding-peak.png" style="width: 40%">
+
+<p>So, if the above are the surface plots of similarity maps the left (peaky) one corresponds to a distinctive saliency. 
+</p><p>The above property is calculated by a score function that uses the distribution of pixel intensities both inside and outside the main-lobe (area inside the contour formed by the intersection of a plane at y = avg(all pixel intensities))
+</p><p>This score function also rewards more to the saliencies that correspond to the center pixels of the target image (this is a way to add center-bias to the model).
+</p><p>Using this score, K most salient pixels are picked up (from h_x×w_(x )number of saliencies).
+</p><p> <u>To learn the associations between saliencies:</u>
+</p><p>Here, the associations are formed between the pixels of the search image’s feature map F_s (h_s×w_s×c). 
+</p><p>For this task, a Graph Convolutional Networks (GCN) is used to pull out the best possible connections (and their weights) between the pixels of F_s.
+</p><p>The above calculated Similarity maps are normalized (more weights for the selected K saliencies) and fused to  F_s to create F_g (h_s×w_s×h_x w_x+c), so that saliency location information from search image is utilized for learning associations.
+</p><p>Since the associations are between each pixel of  F_s, the input of the GCN is a graph that has h_s×w_s nodes (each pixel of F_s). The edges of this graph include 8-neighbor-pixel connections and K^2 saliency-to-saliency peak location pixel connections. 
+</p><p>Now the weights of each of these edges are learned by a 2 fully connected layer perception network that takes as inputs the difference vectors between the h_x w_x+c dimensional vectors of each pixel in F_s.  
+</p><p>These edge weights are utilized by the GCN to arrive at the appropriately associated output graph. This graph is then used to compute the Global Correlational Representation (shown below).
+<img class="postimg" src="/images/paperdigest/saot-global-correlations.png" style="width: 15%">
+</p><p>I am not able to find out how the Global Correlational Representation is computed from the GCN’s graph output as it is not talked about in the paper. I believe the pixels across the neighborhood of connected edges are given more weight and a heat map is computed from it.
+</p>
+

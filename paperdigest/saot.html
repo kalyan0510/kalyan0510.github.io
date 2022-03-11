@@ -93,37 +93,13 @@ div.hp-header {
 
 <!----------------CONTENT------------------------------------------------------------------------------------------------->
 <div class="content" style="min-height:1000px;background-color:#ffffff;">
-<div class="contenthead"><h2 style="margin:0px;"> Plot the Sundial </h2></div>
+<div class="contenthead"><h2 style="margin:0px;"> Paper Digest : Saliency-Associated Object Tracking</h2></div>
 <div class="row">
   <div class="leftcolumn">
 
     <div id="posts" >
 
-    <div id="sundial-post" ></div>
-    
-<!-- disqus -->
-          <div id="disqus_thread"></div>
-          <script>
-
-          /**
-          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-          
-          var disqus_config = function () {
-          this.page.url = "https://kalyan0510.github.io/posts/sundial.html";
-          this.page.identifier = "https://kalyan0510.github.io/posts/sundial.html";
-          };
-          
-          (function() { // DON'T EDIT BELOW THIS LINE
-          var d = document, s = d.createElement('script');
-          s.src = 'https://kalyan0510.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-          })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                      
-    <!-- disqus end -->
+    <div id="paperdigest-saot" ></div>
 
     </div>
     
@@ -147,7 +123,7 @@ div.hp-header {
 
 <script>
 
-$("#sundial-post").load('/posts/sundial-post.html')
+$("#paperdigest-saot").load('/paperdigest/saot-digest.html')
 
 
 $("#aboutmecard").load('/aboutme-card.html')
@@ -180,7 +156,7 @@ $( window ).resize(function() {
   updateParralax();
 });
 
-var cpage = "sundial";
+var cpage = "paperdigest#SAOT";
 </script>
 <script src="/scripts/getstats.js"></script>
 </body>

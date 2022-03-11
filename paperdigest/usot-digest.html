@@ -1,0 +1,47 @@
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+
+<p>Link: <a href="https://arxiv.org/pdf/2108.12711.pdf">https://arxiv.org/pdf/2108.12711.pdf</p></a>
+
+<p>
+	This is an incremental contribution to the line of research on Un-supervised object tracking. Previous unsupervised trackers relied on randomly sampling bounding boxes for ground truths and worked by imposing rationales like Self Consistency (overlapping regions share same object patterns – used by <a href="https://dl.acm.org/doi/pdf/10.1145/3394171.3413611">S2SiamFC</a>) and Cycle Consistency (tracking an object forward and backward in time should land the bounding box in the starting position- used by <a href="https://arxiv.org/abs/1904.01828">UDT</a>). The authors of this paper thought that this approach does not successfully supervise the training of the tracker mostly because the randomly picked bounding box(BB)s does not necessarily land on an object that has clear edges. So, this publication proposes more automated ways to supervise the training
+</p>
+
+<p>
+	Here, one proposal is to use the optical flow of all pixels to detect and annotate the moving objects. The authors came to these conclusions from the following observations: 1) Moving object’s optical flow is different from the optical flow of background. 2) Objects move smoothly in the temporal domain
+</p>
+
+<p><b>The First observation</b> is imposed by </p>
+
+<img class="postimg" src="/images/paperdigest/usot-motion-mask.png" style="width: 40%">
+
+<p>
+	
+</p>
+<p>
+
+Here a mask is generated from the calculated dense optical flow (F) by setting up 1 for the pixels that have their optical flow distinct from the background optical flow by a given threshold (α)
+</p>
+<p>The adjacent pixels with marked values on the mask are connected to form patches that corresponding to foreground object movement. From these patches, the BBs are extracted and scored. The BBs near the center of the frames are scored more, to introduce a center bias (because the cameras usually track the moving objects and so the foreground objects tend to be in the middle).
+</p>
+<p>And then, the Second observation on motion smoothness is imposed by the following dynamic programming algorithm,
+</p>
+<p>Selecting a subset of proposed BBs from a complete video, such that the auto-annotated BBs in the selected sequence has strong similarity with neighboring frames’ BBs. 
+</p>
+<p>This is made sure by a DP algorithm that pulls up a BBs sequence from the raw auto-annotated dataset, in such a way that two adjacently selected frames have BBs with the highest reward score (which is defined as below):
+</p>
+<img class="postimg" src="/images/paperdigest/usot-dp-reward.png" style="width: 40%">
+
+<p>Here R_dp is the reward function that evaluates the score for every two adjacent items in the dynamic programming algorithm. 
+</p>
+<p>The first term in the above equation rewards the Intersection over Union ratio and the second term is a distance metric between two bounding boxes (first introduced in <a href="https://arxiv.org/pdf/1911.08287.pdf">Distance-IoU Loss</a> for better convergence in regression models). This distance metric considers overlap area, central point distance and aspect ratios for evaluation.
+</p>
+<p>Furthermore, the following constraint is added to make sure only quality video sequences are selected. Each video is scored according to the ratio of the number of frames picked by DP w.r.t to total frames. The videos with high scores are used for training.
+</p>
+<p>This work uses <a href="https://www.robots.ox.ac.uk/~luca/siamese-fc.html">SiamFC's</a> model as baseline model and uses <a href="https://dl.acm.org/doi/pdf/10.1145/3394171.3413611">S2SiamFC’s</a> self similarity constraint to self supervise the training of this Siamese model. Here one more constraint is added over the selection of frames, where the frames that have discarded neighbors are less preferred.
+</p>
+<p>To make the model more robust to appearance changes, it makes sense to train the Siamese model with the target and search spaces pulled from different frames. The time cycle constraint described in the first paragraph enables self-supervising the Siamese model to train on different appearances. 
+</p>
+<p>So, the model is trained offline using both the above self-supervising methods. 
+</p>
+<p>To further make the tracker robust, another online branch is introduced which mainly trains over the test data with cycle-constraint as a self-supervising method. The response maps of both the branches are averaged (weighted 0.7 on online) and used for classification and regression purposes.
