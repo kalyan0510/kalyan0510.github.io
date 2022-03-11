@@ -1,0 +1,75 @@
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+
+<p>In my 8th-grade physics class, I learned that sundials are time-telling instruments that use shadows cast by the sun. It seemed like a great concept. It doesn't need a battery to tell time and will not go out of sync if it's low in power.</p>
+
+<p>Back then, I remember planting a stick in the ground and marking its shadow at a particular time with a stone to find out where the shadow falls the next day at that time. And the next day, I was stoked to see the shadow on the marble.
+</p>
+
+<p>
+Ten years later, I am leading a happy life not thinking about sundials anymore. But then, my colleague Zara (as a "secret" Santa ) gifted me this antique Sundial piece for Xmas.</p>
+
+<img class="postimg" src="/images/sundial/antique.jpg" style="width: 30%">
+
+<p>This got me thinking about sundials again, Uuh! But this time, I figured out I could modify the Matlab code that I have written to find the <a href="/posts/satrescue.html"> Sun-satellite transits </a> to predict the shadow paths. Yay! 
+</p><p>
+So, this is how my sister and I computed the shadow paths to make a sundial.</p>
+
+<h3>Where does the stick's shadow fall?</h3>
+
+<p>
+To compute the shadow of a stick poked on the floor, we need to start from our Sun and switch over a few frames-of-references to land on the ground.  
+ </p>
+
+<p>
+Earth revolves around the Sun in an elliptical orbit. So, by knowing its orbit we can compute a vector pointing from Earth's center to the Sun (approximating to a point object). But the Earth rotates around itself in a tilted axis. So first, we need to tilt the vector to compensate for our later calculations that use frames-of-references that align with Earth's equatorial plane and rotational axis. This tilt puts the vector in an inertial frame of reference called the ECI(Earth-Centered Inertial) frame.  
+</p>
+
+<p>
+To give you a perspective, the path traced by a Sun pointing unit-vector in the tilt less ECI frame will give us a circle, whereas, with the tilt, the traced path will be sinusoidal.
+</p>
+<img class="postimg" src="/images/satrescue/satpath.png" style="width: 55%">
+<center>
+this plot is actually for a satellite, but it clearly depicts the wave plotted by the sun over a revolution (a year)
+</center>
+<p>
+And now, if we add a clock-wise rotation across the equatorial plane to the sun vector, we will be compensating for the Earth's rotation. This frame of reference is called ECEF (Earth-centered, Earth-fixed). The path traced by the sun in this frame of reference is spiral. The spiral oscillates between Tropic-of-Cancer and Tropic-of-Capricorn. This causes seasons. When the spiraling is far from our location, it is winter for us, and when it is near, it's summer. In the month of June, this spiraling happens near Tropic-of-Cancer making places like India, the Sahara & USA hotter while places like Australia, Argentina & South Africa colder. BTW, by spiraling I meant the day-night cycle.
+</p>
+
+<p>
+We are still one step away from stepping on the ground. Now we need to bring the center of the coordinates system to the Surface of the Earth and align the axis towards East, North, and Up. This transformation to ENU reference frame can be done in three steps: one translation and two rotations. First, we translate the origin to the surface and then rotate the x-axis in ECEF to match the east axis. The amount of rotation is decided by the longitude of the place we poked the stick on. Finally, we rotate the z-axis along the east-axis to point to Up-axis. This angle is 90 minus the latitude degrees. 
+</p>
+
+<p>
+Finally, we'd know the sun vector the way we humans can relate to. The path traced by the Sun is still spiral, but now it spirals from east to west. 
+</p>
+
+<p>
+From all the above transformations, we have a unit vector that points towards the Sun. Now, we calculate the shadow as below:
+</p>
+<img class="postimg" src="/images/sundial/shadow-cal.png" style="width: 35%">
+
+
+<p>
+To make a sundial, we just plot the shadows over the entire day span for all the months of the year. Since we have computed this for a particular lat-lon, the sundial will be different for different locations.
+</p>
+
+
+<h3>The Code</h3>
+The code and the instructions to generate these sundial plots for any location is at my sister's GitHub repo: <a href="https://github.com/LalithaPriya/Sundail">https://github.com/LalithaPriya/Sundial</a>
+
+
+<h3>The Plot</h3>
+
+<img class="postimg" src="/images/sundial/top-view.jpg" style="width: 70%">
+Couln't poke the stick into the hard floor. So, I got creative with a clip, a straw and a pointy pin. 
+
+<div style="height: 20px"></div>
+
+<center>
+  <iframe src="https://www.youtube.com/embed/q6i8of-jydM" width="560" height="315" frameborder="0"></iframe>
+<!-- <iframe  src="https://www.youtube-nocookie.com/embed/q6i8of-jydM?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+</center>
+
+<div style="height: 50px"></div>
+
