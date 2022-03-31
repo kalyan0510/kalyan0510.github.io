@@ -1,0 +1,194 @@
+
+<p>Link: <a href="https://arxiv.org/pdf/2108.03637.pdf">https://arxiv.org/pdf/2108.03637.pdf</p></a>
+
+
+
+<center>
+  <style type="text/css">
+    .video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  </style>
+  <div class="video-container">
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ67npU0HPngqOeGnuvPFGXey4_x0tzt15bDUL9bxid5kvJUqZfrhcxE5BGnJ3jthkfR58CuotaTtek/embed?start=false&loop=false&delayms=15000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</div>
+</center>
+
+
+<p>
+This paper is about Single Object Tracking. 
+</p>
+<p>
+The input is:
+</p>
+<p>1) First frame of a video sequence
+</p>
+<p>2) bounding box around an object of interest
+
+</p>
+<p>The tracker should track the object in the subsequent video sequence. Also, the tracker should be generic, meaning that, it should track any class of object during inference time.
+
+</p>
+<p>Two fundamental requirements in such tracking are Robustness and Discrimination power. 
+</p>
+<p>Trackers should be robust against appearance changes and should alos be discriminative about distractors (another target like object in the scene). These two properties of tracker are tightly bound because if the tracker is lenient towards searching target, it might compromise discrimination power. Similarly if its other way around, it will loose robustness.This is termed “target-distractor dilemma” 
+
+</p>
+<p>Not many other trackers tried to achieve this issue. 
+</p>
+<p>In this paper, we can see how the authors tried to address this dilemma. 
+
+
+</p>
+<p>Most of the recent SOTA trackers have a structure like this.
+</p>
+
+<img class="postimg" src="/images/paperdigest/CADT/Slide3.JPG" style="width: 80%">
+
+
+
+<p>They have a backbone that extracts features from the target and the search image. And there is a separate correlation step performed between the search and target features, to generate a response map. And usually that response map will be used by a classification and a regression head to produce target bounding box or segmentation mask.
+
+</p>
+<p>Many of the recent publications focus on either of these parts. Few of them focussed on developing a network backbone that produces rich feature embeddings and some of them focussed on better correlation operations. 
+
+</p>
+<p>Notably, most of the discriminative trackers (like ATOM, Dimp, and other DCF based trackers) resort to better correlation operations hoping to filter out distractors.
+
+</p>
+<p>But in this paper, the authors think that such an  architecture lacks the ability to perform discriminations well. Mostly because the feature extraction module is not aware of the target operating on search image and the backbones are not modelled enough to allow such integration of target info in the extraction model.
+
+</p>
+<p>So, the authors decided to propose such model, which can leverage the target knowledge while feature extraction. 
+They propose a network that fuses the target and search image. 
+
+
+
+</p>
+<p>Now that we have the knowledge on target appearance, we can produce contrasting features between target and distractors. 
+</p>
+
+<img class="postimg" src="/images/paperdigest/CADT/Slide7.JPG" style="width: 80%">
+
+<p>
+ 
+Just like siamese we operate on both target and search images for feature extraction but here they fuse the features with cross-attention blocks throughout the framework. This cross attention should intuitively filter out target irrelevant features layer by layer and should aid discriminate distractors and background. 
+</p>
+<p>
+
+We also have self-attention blocks to enrich the features in the extraction process. 
+
+
+</p>
+<p>Since the fusion happens throughout, this does not require a separate correlation step unlike siamese models. We can directly attach classification and regression heads on the search feature to find the target.
+
+
+
+</p>
+<p>Looking at the architecture in detail, we have mainly three types of modules.
+  </p>
+
+<img class="postimg" src="/images/paperdigest/CADT/Slide8.JPG" style="width: 80%">
+
+
+<p>We have patch embedding modules in the initial stages. And Self attention modules throughout the network, and then we have Cross attention modules in an interleaved pattern in the last stage.
+
+
+</p>
+<p>Here the patch embeddings are computed with convolution layers followed by Layer Norm. The size of the kernel starts from 7x7 and decreases down the network and the stride starts with 4 and reduces to 2 or 1. 
+
+
+</p>
+<p>In the early stages of the network we have PaE and SA to extract features and then we have interleaved CA and SA modules to fuse both the search and target image features. These attention bloacks are called extract or correlate (EoC) blocks. 
+
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide11.JPG" style="width: 80%">
+
+
+<p>Each of these SA and CA modules have very similar structures except the way the attention is performed. Both have a Linear Norm followed by the corresponding attention layer, then a residual connection, followed by a one more Linear norm and then an MLP to output the features. 
+
+</p>
+<p>Attention module follows the usual formula for computing the attention. (The attention model they used is Spatial-Reduction Global Attention) 
+In SA, the attention is within each image, where as in CA features from one image are attended with the features from the other image.
+
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide12.JPG" style="width: 80%">
+
+<p>At the end, we have background-foreground classification head and a bounding box regression head to find the target. 
+Unlike other siamese based approaches which deal with single channel (correlated) response maps, here we directly work on search image feature map. So, we need a module that can understand the features and discriminate distractors. So, we employ a Mix MLP module which consists of two MLP blocks each operation on spatial and channel dimensions. 
+Each cls and reg head has two Mix MLP blocks to produce accurate bounding boxes. 
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide13.JPG" style="width: 80%">
+<p>
+
+
+The authors claim that the Cross Attention blocks are responsible for hierarchical correlation between target and search features. They reason this for good discrimination ability of the network. 
+also, they showed that even in theory the CA blocks are more powerful than the correlation operations. 
+So, this is what they did.
+They took the cross-attention equation and simplified into three steps. Also they simplified the key, query, value tokens with actual inputs for better understanding. 
+</p>
+<p>
+In this version, two of the operations were equivalent to dynamic convolutions as the reshaped attentions are equivalent to dynamic kernels.  And given that 1  D-con is operationally equivalent to 1 DW correlation or 1 PW correlation, we have that CA is twice as powerful as correlation. 
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide14.JPG" style="width: 80%">
+
+<p>
+
+Overall the authors experimented with 4 variants of the SBT, each in a different size. They changes the conv layer channel dimensions and the number of EoC blocks in each stage. And the performance results, are as follows.
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide15.JPG" style="width: 80%">
+
+<p>
+
+Here we can see that despite being a light weight model, SBT-light fairly outperformed other trackers like SiamFC++ and Ocean. All the 4 variants performed reasonably better than other trackers. 
+</p>
+<p>
+Also, since the proposed SBT model produces search and template image features like any other backbone networks, this can be plugged into other trackers easily. Here, trackers like SiamFC++, Dimp and Stark are modified with SBT backbone and the results are outperforming original models.
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide16.JPG" style="width: 80%">
+
+<img class="postimg" src="/images/paperdigest/CADT/Slide17.JPG" style="width: 80%">
+<img class="postimg" src="/images/paperdigest/CADT/Slide18.JPG" style="width: 80%">
+<img class="postimg" src="/images/paperdigest/CADT/Slide19.JPG" style="width: 80%">
+
+
+<p>
+The key selling point of this paper is the ability of the network to discriminate distractors from the target. This can be visualized in these TSNE plots. Here each point corresponds to extracted feature of a spatial position in the search image. 
+</p>
+<img class="postimg" src="/images/paperdigest/CADT/Slide20.JPG" style="width: 80%">
+<p>
+
+
+There will be a dilemma between the target and the distractors if the features of their corresponding spatial positions look alike (in other words, those pixels fall into nearby location on the TSNe plots). If the model is discriminative enough, the features of target and distractors can be separated.
+</p>
+<p>
+In these images, blue dots correspond to distractor pixels, green dots belong to the target and red dots correspond to the rest of the background..  
+</p>
+<p>
+In the SBT network, we can see that the Features belonging to the target become more and more separated from the background and the distractors.In case of other siamese backbones, this is not the case.
+</p>
+<!-- <img class="postimg" src="/images/paperdigest/saot-global-correlations.png" style="width: 15%"> -->
+<img class="postimg" src="/images/paperdigest/CADT/Slide21.JPG" style="width: 80%">
+
+<p>
+
+Again, we see a similar pattern. Here we can see how the features are shaped as they pass through each stage of SBT. So, SBT has good discriminative power. 
+
+</p>
+
