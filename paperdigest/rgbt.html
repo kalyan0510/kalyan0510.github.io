@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hungry Pixels : Kalyan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/blog.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+<link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<style>
+
+    .pages UL LI {
+  font-size: 1em !important;
+}
+  .pages UL LI:nth-child(0) {
+  font-size: 1.4em !important;
+  border-bottom: 1px solid white;
+  }
+
+  .parallax {
+  /* The image used */
+  background-image: url("/images/hp-paperlong.png");
+  background-position: 0px 0px;
+  background-size: 100%;
+
+  position: relative;
+  /* Set a specific height */
+  
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: relative;
+  background-repeat: repeat;
+}
+A {
+    text-decoration: none;
+    color: #666;
+}
+
+#image-block { float: right; }
+
+div.hp-header {
+  display:table;
+  width:100%;
+  height:55%;
+  max-height: 55;
+  position:relative;
+  background:url('/theme/img/lego_background.jpg') no-repeat center center fixed;
+  background-size:cover;
+
+}
+@font-face {
+  font-family: Dosis;
+  src: url(/fonts/blue-lines.ttf);
+}
+@font-face {
+  font-family: exo;
+  src: url(/fonts/exo2.woff2);
+}
+@font-face {
+  font-family: exolit;
+  src: url(https://fonts.gstatic.com/s/exo2/v6/7cHmv4okm5zmbtYoK-4W4nIp.woff2);
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+</style>
+
+
+
+
+</head>
+<body style="background-color:#003366 ;margin: 0px; padding:0px">
+<!-- fb plugin -->  
+<div class="pages" id = "pages">
+
+</div>
+
+<!----------------PARALLAX------------------------------------------------------------------------------------------------->
+<div class="parallax" id="parallax">
+  <h1 id = "title" >HUNGRY PIXELS </h1>
+  <div id = "pacmanspace" > </div>
+  <h4 >kalyan's pages </h4
+></div>
+<!----------------PARALLAX ENDS--------------------------------------------------------------------------------------------->
+
+
+<!----------------CONTENT------------------------------------------------------------------------------------------------->
+<div class="content" style="min-height:1000px;background-color:#ffffff;">
+<div class="contenthead"><h2 style="margin:0px;"> Paper Digest : Learning to Adversarially Blur Visual Object Tracking</h2></div>
+<div class="row">
+  <div class="leftcolumn">
+
+    <div id="posts" >
+
+    <div id="paperdigest-maba" ></div>
+
+    </div>
+    
+    
+  </div>
+  <!----------------POSTS END----------------------------------------->
+
+  <!----------------STATIC PAGES----------------------------------------->
+  <div class="rightcolumn">
+    <div class="infocard" id="toparticles"></div>
+    <div style="height: 20px; width: 100%"></div> 
+    <div class="infocard" id="aboutmecard"></div>
+    
+  </div>
+</div>
+
+<div class="footer" id="footer">
+
+</div>
+<!----------------CONTEN ENDS------------------------------------------------------------------------------------------------->
+
+<script>
+
+$("#paperdigest-maba").load('/paperdigest/maba-digest.html')
+
+
+$("#aboutmecard").load('/aboutme-card.html')
+$("#toparticles").load('/top-articles.html')
+$("#footer").load('/footer.html')
+
+
+$('#pages').load('/headerpages.html',function(){updateParralax();},function(){updateParralax();});
+
+function updateParralax() {
+  var parallaxWidth = $("#parallax")[0].getBoundingClientRect().width;
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //mobile
+    $("#parallax").css('background-position-y',$("#title").height()+10- 17*(16/(1024.0/parallaxWidth)))
+    $("#pacmanspace").css('height',3*(16/(1024.0/parallaxWidth)) )
+    $("#dynamicmath").css('font-size','70% !important;' )
+  } else {
+    //computer
+    $("#parallax").css('background-position-y',$("#pages").height()+$("#title").height()+30- 17.7*(16/(1024.0/parallaxWidth)))
+    $("#pacmanspace").css('height',2*(16/(1024.0/parallaxWidth)) )
+    //alert($("#pages").height())
+  }
+}
+
+$(document).ready(function(){
+  updateParralax();
+});
+
+$( window ).resize(function() {
+  updateParralax();
+});
+
+var cpage = "paperdigest#MABA";
+</script>
+<script src="/scripts/getstats.js"></script>
+</body>
+
+</html>
