@@ -7,50 +7,19 @@
 <meta name="google-site-verification" content="gWBTPLgMiXEbU-AkRGFfUEsu7qWulL2c0QVJgRq7epY" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/blog.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <style>
 
-  .pages UL LI .headerbutton {
-    font-size: 1em !important;
+    .pages UL LI .headerbutton{
+  font-size: 1em !important;
   }
-  .pages UL LI:nth-child(3) .headerbutton {
+  .pages UL LI:nth-child(2) .headerbutton{
 /*  font-size: 1.4em !important;*/
   border-bottom: 1px solid white;
   }
 
-  .intlink-page p {
-    font-size: 11pt;
-    margin: 0px;
-  }
-
-  .intlink-page a {
-    font-size: 12pt;
-  }
-
-  .card {
-      padding-left: 0px;
-  }
-
-  .intlink {
-    border-left: 2px solid #555;
-    padding-left: 10px;
-    margin-bottom: 10px;
-  }
-
-  .intlink a{
-      font-family: "Exo 2",sans-serif;
-      color: #8f2017;
-  }
-  .intlink a:hover{
-      font-family: "Exo 2",sans-serif;
-      font-weight: 600;
-      color: #8f2017;
-  }
-  .intlink-page div:hover {
-    border-left: 4px solid #8f2017;
-  }
   .parallax {
   /* The image used */
   background-image: url("/images/hp-paperlong.png");
@@ -116,7 +85,7 @@ div.hp-header {
 
 <!----------------PARALLAX------------------------------------------------------------------------------------------------->
 <div class="parallax" id="parallax">
-  <h1 id = "title" >HUNGRY PIXELS </h1>
+	<h1 id = "title" >HUNGRY PIXELS </h1>
   <div id = "pacmanspace" > </div>
   <h4 >kalyan's pages </h4>
 </div>
@@ -125,11 +94,23 @@ div.hp-header {
 
 <!----------------CONTENT------------------------------------------------------------------------------------------------->
 <div class="content" style="min-height:800px;background-color:#ffffff;">
-<div class="contenthead"><h2 style="margin:0px;"> Paper Digest </h2></div>
+<div class="contenthead"><h2 style="margin:0px;"> Pages </h2></div>
 <div class="row">
   <div class="leftcolumn">
 
-    <div id="paperdigest"></div>
+    <div id="sundial-card"></div>
+
+    <div id="ppyramidcnncompression-card"></div>
+    
+    <div id="mosaicing-card"></div>
+
+    <div id="recursivemosaic-card"></div>
+
+    <div id="satrescue-card"></div>
+    
+    <div id="sattrack-card"></div>
+
+<!--     <div class="card ablink" style=" border-bottom: 0px;"><a href="/links.html"> <h2> ➔ Click here to open my collection of interesting links and publications on computer vision</h2></a></div> -->
 
     <div style="height: 160px; width: 100%"></div> 
     
@@ -153,50 +134,34 @@ div.hp-header {
 
 <script>
 
+var cardsMap = new Object();
+cardsMap['sundial-card'] = '/posts/sundial-card.html'
+cardsMap['ppyramidcnncompression-card'] = '/posts/ppyramidcnncompression-card.html'
+cardsMap['mosaicing-card'] = '/posts/mosaicing-card.html'
+cardsMap['recursivemosaic-card'] = '/posts/recursivemosaic-card.html'
+cardsMap['satrescue-card'] = '/posts/satrescue-card.html'
+cardsMap['sattrack-card'] = '/posts/sattrack-card.html'
+
+Object.keys(cardsMap).forEach(function(key) {
+    //value = cardsMap[key];
+    $("#"+key).load(cardsMap[key])
+});
+
 $("#aboutmecard").load('/aboutme-card.html')
-$("#toparticles").load('/top-articles.html', function(r,s,x){removeIntli();})
+$("#toparticles").load('/top-articles.html')
 $("#footer").load('/footer.html')
 
-// Object.keys(cardsMap).forEach(function(key) {
-//   var something = document.getElementById(key);
-//   something.style.cursor = 'pointer';
-//   something.onclick = function() {
-//       // window.open(cardsMap[key].replace("-card", ""),"_self")
-//   };
-// });
-
-function popop(argument) {
-  x = document.getElementById("paperdigest").getElementsByClassName("intlink");
-  // console.log(document.getElementById("links-card").textContent)
-  var i;
-  console.log(x.length);
-  for (i = 0; i < x.length; i++) {
-    x[i].style.cursor = 'pointer';
-    
-    var linkurl = x[i].querySelectorAll("a")[0].href;
-    console.log(linkurl);
-
-    function openwindowforme(obj,url) {
-      obj.onclick = function() {
-        window.open(url,"_self");
-      }
-    }
-
-    x[i].addEventListener("click", openwindowforme(x[i],linkurl), false);
-
-
-
-  } 
-
-}
-$("#paperdigest").load('/paperdigest/papers-list.html',    // data 
-                  function(responseTxt, statusTxt, xhr) {  // callback function 
-                            popop()
+Object.keys(cardsMap).forEach(function(key) {
+  var something = document.getElementById(key);
+  something.style.cursor = 'pointer';
+  something.onclick = function() {
+      window.open(cardsMap[key].replace("-card", ""),"_self")
+  };
 });
 
 
 
-$('#pages').load('/headerpages.html',function(){updateParralax();},function(){updateParralax();});
+$('#pages').load('headerpages.html',function(){updateParralax();},function(){updateParralax();});
 
 function updateParralax() {
   var parallaxWidth = $("#parallax")[0].getBoundingClientRect().width;
@@ -212,20 +177,14 @@ function updateParralax() {
   }
 }
 
-function removeIntli() {
-  $('#paperdigestsidenotes').remove();
-}
-
 $(document).ready(function(){
   updateParralax();
 });
 
-
-
 $( window ).resize(function() {
   updateParralax();
 });
-var cpage = "paperdigest";
+var cpage = "index";
 </script>
 <script src="/scripts/getstats.js"></script>
 </body>
