@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hungry Pixels : Kalyan</title>
+<title>Kalyan Garigapati</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
+<meta name="google-site-verification" content="gWBTPLgMiXEbU-AkRGFfUEsu7qWulL2c0QVJgRq7epY" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/blog.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+<div style="visibility:hidden; overflow:hidden; height:0; width:0;" class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="gkalyan0510" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/gkalyan0510?trk=profile-badge"></a></div>
 <style>
 
-    .pages UL LI {
+.pages UL LI .headerbutton{
   font-size: 1em !important;
 }
-  .pages UL LI:nth-child(2) {
-  font-size: 1.4em !important;
+  .pages UL LI:nth-child(1) .headerbutton{
+/*  font-size: 1.4em !important;*/
   border-bottom: 1px solid white;
   }
 
@@ -64,11 +67,31 @@ div.hp-header {
   src: url(https://fonts.gstatic.com/s/exo2/v6/7cHmv4okm5zmbtYoK-4W4nIp.woff2);
 }
 
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure that the body takes at least the full height of the viewport */
+    margin: 0;
+  }
 
+  .content {
+    flex: 1; /* Allow the content to grow to fill the available space */
+    min-height: calc(100vh - 200px); /* Set a minimum height for the content area */
+  }
+
+  .footer {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+  }
 
 * {
   box-sizing: border-box;
 }
+
 
 </style>
 
@@ -77,55 +100,35 @@ div.hp-header {
 
 </head>
 <body style="background-color:#003366 ;margin: 0px; padding:0px">
-
+<!-- fb plugin -->  
 <div class="pages" id = "pages">
 
 </div>
 
-<!----------------PARALLAX------------------------------------------------------------------------------------------------->
-<div class="parallax" id="parallax">
-  <h1 id = "title" >HUNGRY PIXELS </h1>
-  <div id = "pacmanspace" > </div>
-  <h4 >kalyan's pages </h4>
-</div>
-<!----------------PARALLAX ENDS--------------------------------------------------------------------------------------------->
-
-
 <!----------------CONTENT------------------------------------------------------------------------------------------------->
-<div id="content" class="content" style="background-color:#ffffff;">
-<div class="contenthead"><h2 style="margin:0px;">About Me</h2></div>
-<div class="row">
-  <div class="leftcolumn">
-    <div style="height: 20px; width: 100%"></div> 
-    <p>Hey, I am kalyan. I'm currently a student at Stony Brook University. I am working on Visual Tracking, as a part of my Thesis under supervision of <a class="hoverred" href="https://www3.cs.stonybrook.edu/~hling/">Dr. Haibin Ling</a>. I completed my undergraduate studies in Computer Sciences from IIT Indore and worked as a Software Engineer at Amazon. My interests are related to Computer Vision. I am excited about Astronomy, Physics and Formula 1 sports. </p>
+<div class="content" style="background-color:#ffffff;">
 
-    <!-- <p>Me:</p> -->
-    <!-- <img class="postimg" src="/images/mywordie.png" style="padding-top: 0px; margin-top: 0px"> -->
-    <!-- <img class="postimg" src="images/me.jpg" style="padding-top: 0px; margin-top: 0px;width:20%;margin-left:0px">
-     -->
-    <p>my resume <a class="hoverred" href="https://drive.google.com/file/d/19WAYRruti-cRPLNs7DsNjqSpn6MVe4vb/view?usp=sharing">here</a></p>
-    <p> <b>Contact :</b> gkalyan0510@gmail.com</p>
-    
-  </div>
-  <!----------------POSTS END----------------------------------------->
 
-  <!----------------STATIC PAGES----------------------------------------->
-  <div class="rightcolumn">
-    <div class="infocard" id="toparticles"></div>
-    <div style="height: 20px; width: 100%"></div> 
-    <div class="infocard" id="aboutmecard"></div>
+    <div style="padding:30px" >
+
+    <div id="kalyan-page" ></div>
     
-  </div>
+    </div>
+
+
 </div>
+
+
+    <!-- <div style='visibility:hidden; overflow:hidden; height:0; width:0; position: fixed;'  id="aboutmecard"></div> -->
+    
 
 <div class="footer" id="footer">
 
-</div>
 <!----------------CONTEN ENDS------------------------------------------------------------------------------------------------->
 
 <script>
 
-
+$("#kalyan-page").load('/kalyan.html')
 
 
 $("#aboutmecard").load('/aboutme-card.html')
@@ -141,13 +144,13 @@ function updateParralax() {
     //mobile
     $("#parallax").css('background-position-y',$("#title").height()+10- 17*(16/(1024.0/parallaxWidth)))
     $("#pacmanspace").css('height',3*(16/(1024.0/parallaxWidth)) )
+    $("#dynamicmath").css('font-size','70% !important;' )
   } else {
     //computer
     $("#parallax").css('background-position-y',$("#pages").height()+$("#title").height()+30- 17.7*(16/(1024.0/parallaxWidth)))
     $("#pacmanspace").css('height',2*(16/(1024.0/parallaxWidth)) )
     //alert($("#pages").height())
   }
-  $(".leftcolumn").css('min-height',$(window).height() - $("#parallax")[0].getBoundingClientRect().height)
 }
 
 $(document).ready(function(){
@@ -158,7 +161,7 @@ $( window ).resize(function() {
   updateParralax();
 });
 
-var cpage = "about-me";
+var cpage = "kalyan-page";
 </script>
 <script src="/scripts/getstats.js"></script>
 </body>
