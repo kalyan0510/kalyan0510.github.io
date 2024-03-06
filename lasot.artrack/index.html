@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<!-- saved from url=(0101)http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/video_selector.html -->
+<html data-darkreader-scheme="dark" data-darkreader-mode="dynamic"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, #bit-notification-bar-iframe, ::-webkit-calendar-picker-indicator, img.Wirisformula {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}
+[data-darkreader-inline-bg] {
+  background: var(--darkreader-inline-bg) !important;
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: #131516;
+   --darkreader-neutral-text: #d8d4cf;
+   --darkreader-selection-background: #004daa;
+   --darkreader-selection-text: #e8e6e3;
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">html {
+    background-color: #181a1b !important;
+}
+html {
+    color-scheme: dark !important;
+}
+html, body {
+    background-color: #000000;
+}
+html, body {
+    border-color: #736b5e;
+    color: #e8e6e3;
+}
+a {
+    color: #3391ff;
+}
+table {
+    border-color: #545b5e;
+}
+::placeholder {
+    color: #b2aba1;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #404400 !important;
+    color: #e8e6e3 !important;
+}
+::-webkit-scrollbar {
+    background-color: #202324;
+    color: #aba499;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #575e62;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #484e51;
+}
+::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+}
+::selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+::-moz-selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}</style>
+    <title>Video Selector</title>
+    <style>
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+        .selection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(0,0,255,0.3);
+            pointer-events: none;
+        }
+        #videoFrame {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 800px;
+		    height: -webkit-fill-available;
+            display: none;
+            z-index:999;
+        }
+        #openInNewTabBtn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: none;
+            padding: 0.5em;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style><style class="darkreader darkreader--sync" media="screen"></style>
+<meta name="darkreader" content="7bd6e6e64943475aa53aeeed8c2a1378"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: #7b5300 !important;
+    border-color: #d8b013 !important;
+    color: #f3e8c8 !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: #0f3a48 !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: #032029 !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: #0a0a0a !important;
+}
+.tou-uknfeu {
+    background-color: #231603 !important;
+}
+.tou-6i3zyv {
+    background-color: #19576c !important;
+}
+div.mermaid-viewer-control-panel .btn {
+  fill: var(--darkreader-neutral-text);
+  background-color: var(--darkreader-neutral-background);
+}
+svg g rect.er {
+  fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+  fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+  fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+  fill-opacity: 0.8 !important;
+  fill: var(--darkreader-selection-background);
+}
+svg rect.er.relationshipLabelBox {
+  fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect, svg g g.nodes polygon {
+  fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+  fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0, svg line.messageLine1 {
+  stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+  fill: var(--darkreader-neutral-background) !important;
+}
+.google-material-icons {
+    font-family: 'Google Material Icons' !important;
+}
+.google-symbols {
+    font-family: 'Google Symbols' !important;
+}
+.material-icons-extended {
+    font-family: 'Material Icons Extended' !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    padding-top: 1rem;
+    background-color: white !important;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+.oui-icon {
+    font-family: 'Oui Icons' !important;
+}
+embed[type="application/pdf"][src="about:blank"] { filter: invert(100%) contrast(90%); }</style></head>
+<body>
+<!-- Video Player Iframe -->
+<iframe id="videoFrame" src="./Video Selector_files/saved_resource.html" frameborder="0"></iframe>
+<button id="openInNewTabBtn">Open in New Tab</button> <!-- Button for opening iframe content in a new tab -->
+
+<table border="1" style="
+    background: dimgray;
+">
+<tbody><tr>
+<td style="text-align: left;overflow: auto"><h5>airplane-1 (2788 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/airplane-1.png" alt="airplane-1" style="height: 100px; width: 2788px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>airplane-13 (2971 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/airplane-13.png" alt="airplane-13" style="height: 100px; width: 2971px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>airplane-15 (4500 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/airplane-15.png" alt="airplane-15" style="height: 100px; width: 4500px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>airplane-9 (7971 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/airplane-9.png" alt="airplane-9" style="height: 100px; width: 7971px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>basketball-1 (1088 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/basketball-1.png" alt="basketball-1" style="height: 100px; width: 1088px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>basketball-11 (1851 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/basketball-11.png" alt="basketball-11" style="height: 100px; width: 1851px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>basketball-6 (1794 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/basketball-6.png" alt="basketball-6" style="height: 100px; width: 1794px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>basketball-7 (2101 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/basketball-7.png" alt="basketball-7" style="height: 100px; width: 2101px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bear-17 (2413 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bear-17.png" alt="bear-17" style="height: 100px; width: 2413px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bear-2 (6800 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bear-2.png" alt="bear-2" style="height: 100px; width: 6800px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bear-4 (1974 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bear-4.png" alt="bear-4" style="height: 100px; width: 1974px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bear-6 (1671 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bear-6.png" alt="bear-6" style="height: 100px; width: 1671px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bicycle-18 (1355 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bicycle-18.png" alt="bicycle-18" style="height: 100px; width: 1355px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bicycle-2 (2181 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bicycle-2.png" alt="bicycle-2" style="height: 100px; width: 2181px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bicycle-7 (2461 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bicycle-7.png" alt="bicycle-7" style="height: 100px; width: 2461px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bicycle-9 (3001 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bicycle-9.png" alt="bicycle-9" style="height: 100px; width: 3001px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bird-15 (1575 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bird-15.png" alt="bird-15" style="height: 100px; width: 1575px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bird-17 (5000 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bird-17.png" alt="bird-17" style="height: 100px; width: 5000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bird-2 (4101 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bird-2.png" alt="bird-2" style="height: 100px; width: 4101px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bird-3 (2311 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bird-3.png" alt="bird-3" style="height: 100px; width: 2311px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>boat-12 (1860 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/boat-12.png" alt="boat-12" style="height: 100px; width: 1860px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>boat-17 (1761 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/boat-17.png" alt="boat-17" style="height: 100px; width: 1761px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>boat-3 (5400 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/boat-3.png" alt="boat-3" style="height: 100px; width: 5400px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>boat-4 (2251 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/boat-4.png" alt="boat-4" style="height: 100px; width: 2251px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>book-10 (1621 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/book-10.png" alt="book-10" style="height: 100px; width: 1621px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>book-11 (2071 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/book-11.png" alt="book-11" style="height: 100px; width: 2071px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>book-19 (2881 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/book-19.png" alt="book-19" style="height: 100px; width: 2881px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>book-3 (1800 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/book-3.png" alt="book-3" style="height: 100px; width: 1800px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bottle-1 (3089 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bottle-1.png" alt="bottle-1" style="height: 100px; width: 3089px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bottle-12 (2400 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bottle-12.png" alt="bottle-12" style="height: 100px; width: 2400px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bottle-14 (7201 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bottle-14.png" alt="bottle-14" style="height: 100px; width: 7201px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bottle-18 (1800 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bottle-18.png" alt="bottle-18" style="height: 100px; width: 1800px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bus-17 (1971 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bus-17.png" alt="bus-17" style="height: 100px; width: 1971px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bus-19 (1930 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bus-19.png" alt="bus-19" style="height: 100px; width: 1930px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bus-2 (1100 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bus-2.png" alt="bus-2" style="height: 100px; width: 1100px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>bus-5 (1680 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/bus-5.png" alt="bus-5" style="height: 100px; width: 1680px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>car-17 (2251 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/car-17.png" alt="car-17" style="height: 100px; width: 2251px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>car-2 (2046 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/car-2.png" alt="car-2" style="height: 100px; width: 2046px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>car-6 (2802 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/car-6.png" alt="car-6" style="height: 100px; width: 2802px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>car-9 (3461 px)</h5> <div class="image-container"> <img src="http://localhost:9089/desk/ARTrack/output/test/tracking_results/artrack_seq/lasot/ious/car-9.png" alt="car-9" style="height: 100px; width: 3461px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cat-1 (2051 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cat-1.png" alt="cat-1" style="height: 100px; width: 2051px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cat-18 (1596 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cat-18.png" alt="cat-18" style="height: 100px; width: 1596px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cat-20 (1261 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cat-20.png" alt="cat-20" style="height: 100px; width: 1261px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cat-3 (3571 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cat-3.png" alt="cat-3" style="height: 100px; width: 3571px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cattle-12 (1556 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cattle-12.png" alt="cattle-12" style="height: 100px; width: 1556px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cattle-13 (2321 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cattle-13.png" alt="cattle-13" style="height: 100px; width: 2321px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cattle-2 (2461 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cattle-2.png" alt="cattle-2" style="height: 100px; width: 2461px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cattle-7 (1780 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cattle-7.png" alt="cattle-7" style="height: 100px; width: 1780px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>chameleon-11 (2921 px)</h5> <div class="image-container"> <img src="./Video Selector_files/chameleon-11.png" alt="chameleon-11" style="height: 100px; width: 2921px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>chameleon-20 (1650 px)</h5> <div class="image-container"> <img src="./Video Selector_files/chameleon-20.png" alt="chameleon-20" style="height: 100px; width: 1650px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>chameleon-3 (1080 px)</h5> <div class="image-container"> <img src="./Video Selector_files/chameleon-3.png" alt="chameleon-3" style="height: 100px; width: 1080px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>chameleon-6 (1800 px)</h5> <div class="image-container"> <img src="./Video Selector_files/chameleon-6.png" alt="chameleon-6" style="height: 100px; width: 1800px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>coin-18 (1100 px)</h5> <div class="image-container"> <img src="./Video Selector_files/coin-18.png" alt="coin-18" style="height: 100px; width: 1100px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>coin-3 (1020 px)</h5> <div class="image-container"> <img src="./Video Selector_files/coin-3.png" alt="coin-3" style="height: 100px; width: 1020px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>coin-6 (3120 px)</h5> <div class="image-container"> <img src="./Video Selector_files/coin-6.png" alt="coin-6" style="height: 100px; width: 3120px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>coin-7 (1681 px)</h5> <div class="image-container"> <img src="./Video Selector_files/coin-7.png" alt="coin-7" style="height: 100px; width: 1681px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crab-12 (1721 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crab-12.png" alt="crab-12" style="height: 100px; width: 1721px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crab-18 (1832 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crab-18.png" alt="crab-18" style="height: 100px; width: 1832px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crab-3 (1501 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crab-3.png" alt="crab-3" style="height: 100px; width: 1501px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crab-6 (1959 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crab-6.png" alt="crab-6" style="height: 100px; width: 1959px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crocodile-10 (1631 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crocodile-10.png" alt="crocodile-10" style="height: 100px; width: 1631px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crocodile-14 (1500 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crocodile-14.png" alt="crocodile-14" style="height: 100px; width: 1500px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crocodile-3 (4500 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crocodile-3.png" alt="crocodile-3" style="height: 100px; width: 4500px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>crocodile-4 (1277 px)</h5> <div class="image-container"> <img src="./Video Selector_files/crocodile-4.png" alt="crocodile-4" style="height: 100px; width: 1277px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cup-1 (1433 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cup-1.png" alt="cup-1" style="height: 100px; width: 1433px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cup-17 (1950 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cup-17.png" alt="cup-17" style="height: 100px; width: 1950px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cup-4 (2191 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cup-4.png" alt="cup-4" style="height: 100px; width: 2191px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>cup-7 (1370 px)</h5> <div class="image-container"> <img src="./Video Selector_files/cup-7.png" alt="cup-7" style="height: 100px; width: 1370px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>deer-10 (1411 px)</h5> <div class="image-container"> <img src="./Video Selector_files/deer-10.png" alt="deer-10" style="height: 100px; width: 1411px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>deer-14 (2221 px)</h5> <div class="image-container"> <img src="./Video Selector_files/deer-14.png" alt="deer-14" style="height: 100px; width: 2221px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>deer-4 (4501 px)</h5> <div class="image-container"> <img src="./Video Selector_files/deer-4.png" alt="deer-4" style="height: 100px; width: 4501px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>deer-8 (2911 px)</h5> <div class="image-container"> <img src="./Video Selector_files/deer-8.png" alt="deer-8" style="height: 100px; width: 2911px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>dog-1 (1168 px)</h5> <div class="image-container"> <img src="./Video Selector_files/dog-1.png" alt="dog-1" style="height: 100px; width: 1168px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>dog-15 (5009 px)</h5> <div class="image-container"> <img src="./Video Selector_files/dog-15.png" alt="dog-15" style="height: 100px; width: 5009px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>dog-19 (1514 px)</h5> <div class="image-container"> <img src="./Video Selector_files/dog-19.png" alt="dog-19" style="height: 100px; width: 1514px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>dog-7 (1918 px)</h5> <div class="image-container"> <img src="./Video Selector_files/dog-7.png" alt="dog-7" style="height: 100px; width: 1918px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>drone-13 (3715 px)</h5> <div class="image-container"> <img src="./Video Selector_files/drone-13.png" alt="drone-13" style="height: 100px; width: 3715px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>drone-15 (1362 px)</h5> <div class="image-container"> <img src="./Video Selector_files/drone-15.png" alt="drone-15" style="height: 100px; width: 1362px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>drone-2 (3133 px)</h5> <div class="image-container"> <img src="./Video Selector_files/drone-2.png" alt="drone-2" style="height: 100px; width: 3133px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>drone-7 (2817 px)</h5> <div class="image-container"> <img src="./Video Selector_files/drone-7.png" alt="drone-7" style="height: 100px; width: 2817px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>electricfan-1 (1646 px)</h5> <div class="image-container"> <img src="./Video Selector_files/electricfan-1.png" alt="electricfan-1" style="height: 100px; width: 1646px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>electricfan-10 (1601 px)</h5> <div class="image-container"> <img src="./Video Selector_files/electricfan-10.png" alt="electricfan-10" style="height: 100px; width: 1601px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>electricfan-18 (1863 px)</h5> <div class="image-container"> <img src="./Video Selector_files/electricfan-18.png" alt="electricfan-18" style="height: 100px; width: 1863px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>electricfan-20 (2305 px)</h5> <div class="image-container"> <img src="./Video Selector_files/electricfan-20.png" alt="electricfan-20" style="height: 100px; width: 2305px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>elephant-1 (1889 px)</h5> <div class="image-container"> <img src="./Video Selector_files/elephant-1.png" alt="elephant-1" style="height: 100px; width: 1889px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>elephant-12 (1053 px)</h5> <div class="image-container"> <img src="./Video Selector_files/elephant-12.png" alt="elephant-12" style="height: 100px; width: 1053px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>elephant-16 (2661 px)</h5> <div class="image-container"> <img src="./Video Selector_files/elephant-16.png" alt="elephant-16" style="height: 100px; width: 2661px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>elephant-18 (1494 px)</h5> <div class="image-container"> <img src="./Video Selector_files/elephant-18.png" alt="elephant-18" style="height: 100px; width: 1494px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>flag-2 (3209 px)</h5> <div class="image-container"> <img src="./Video Selector_files/flag-2.png" alt="flag-2" style="height: 100px; width: 3209px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>flag-3 (1904 px)</h5> <div class="image-container"> <img src="./Video Selector_files/flag-3.png" alt="flag-3" style="height: 100px; width: 1904px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>flag-5 (2230 px)</h5> <div class="image-container"> <img src="./Video Selector_files/flag-5.png" alt="flag-5" style="height: 100px; width: 2230px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>flag-9 (4267 px)</h5> <div class="image-container"> <img src="./Video Selector_files/flag-9.png" alt="flag-9" style="height: 100px; width: 4267px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>fox-2 (2365 px)</h5> <div class="image-container"> <img src="./Video Selector_files/fox-2.png" alt="fox-2" style="height: 100px; width: 2365px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>fox-20 (4183 px)</h5> <div class="image-container"> <img src="./Video Selector_files/fox-20.png" alt="fox-20" style="height: 100px; width: 4183px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>fox-3 (2495 px)</h5> <div class="image-container"> <img src="./Video Selector_files/fox-3.png" alt="fox-3" style="height: 100px; width: 2495px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>fox-5 (1728 px)</h5> <div class="image-container"> <img src="./Video Selector_files/fox-5.png" alt="fox-5" style="height: 100px; width: 1728px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>frog-20 (2257 px)</h5> <div class="image-container"> <img src="./Video Selector_files/frog-20.png" alt="frog-20" style="height: 100px; width: 2257px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>frog-3 (2134 px)</h5> <div class="image-container"> <img src="./Video Selector_files/frog-3.png" alt="frog-3" style="height: 100px; width: 2134px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>frog-4 (1241 px)</h5> <div class="image-container"> <img src="./Video Selector_files/frog-4.png" alt="frog-4" style="height: 100px; width: 1241px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>frog-9 (1211 px)</h5> <div class="image-container"> <img src="./Video Selector_files/frog-9.png" alt="frog-9" style="height: 100px; width: 1211px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gametarget-1 (2251 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gametarget-1.png" alt="gametarget-1" style="height: 100px; width: 2251px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gametarget-13 (2930 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gametarget-13.png" alt="gametarget-13" style="height: 100px; width: 2930px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gametarget-2 (1834 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gametarget-2.png" alt="gametarget-2" style="height: 100px; width: 1834px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gametarget-7 (1616 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gametarget-7.png" alt="gametarget-7" style="height: 100px; width: 1616px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gecko-1 (2406 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gecko-1.png" alt="gecko-1" style="height: 100px; width: 2406px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gecko-16 (1471 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gecko-16.png" alt="gecko-16" style="height: 100px; width: 1471px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gecko-19 (2186 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gecko-19.png" alt="gecko-19" style="height: 100px; width: 2186px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gecko-5 (1251 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gecko-5.png" alt="gecko-5" style="height: 100px; width: 1251px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>giraffe-10 (1571 px)</h5> <div class="image-container"> <img src="./Video Selector_files/giraffe-10.png" alt="giraffe-10" style="height: 100px; width: 1571px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>giraffe-13 (2087 px)</h5> <div class="image-container"> <img src="./Video Selector_files/giraffe-13.png" alt="giraffe-13" style="height: 100px; width: 2087px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>giraffe-15 (1480 px)</h5> <div class="image-container"> <img src="./Video Selector_files/giraffe-15.png" alt="giraffe-15" style="height: 100px; width: 1480px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>giraffe-2 (2103 px)</h5> <div class="image-container"> <img src="./Video Selector_files/giraffe-2.png" alt="giraffe-2" style="height: 100px; width: 2103px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>goldfish-10 (5602 px)</h5> <div class="image-container"> <img src="./Video Selector_files/goldfish-10.png" alt="goldfish-10" style="height: 100px; width: 5602px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>goldfish-3 (2375 px)</h5> <div class="image-container"> <img src="./Video Selector_files/goldfish-3.png" alt="goldfish-3" style="height: 100px; width: 2375px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>goldfish-7 (8000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/goldfish-7.png" alt="goldfish-7" style="height: 100px; width: 8000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>goldfish-8 (2250 px)</h5> <div class="image-container"> <img src="./Video Selector_files/goldfish-8.png" alt="goldfish-8" style="height: 100px; width: 2250px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gorilla-13 (1605 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gorilla-13.png" alt="gorilla-13" style="height: 100px; width: 1605px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gorilla-4 (2053 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gorilla-4.png" alt="gorilla-4" style="height: 100px; width: 2053px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gorilla-6 (2873 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gorilla-6.png" alt="gorilla-6" style="height: 100px; width: 2873px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>gorilla-9 (1839 px)</h5> <div class="image-container"> <img src="./Video Selector_files/gorilla-9.png" alt="gorilla-9" style="height: 100px; width: 1839px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>guitar-10 (1890 px)</h5> <div class="image-container"> <img src="./Video Selector_files/guitar-10.png" alt="guitar-10" style="height: 100px; width: 1890px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>guitar-16 (1000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/guitar-16.png" alt="guitar-16" style="height: 100px; width: 1000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>guitar-3 (2521 px)</h5> <div class="image-container"> <img src="./Video Selector_files/guitar-3.png" alt="guitar-3" style="height: 100px; width: 2521px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>guitar-8 (2190 px)</h5> <div class="image-container"> <img src="./Video Selector_files/guitar-8.png" alt="guitar-8" style="height: 100px; width: 2190px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hand-16 (4340 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hand-16.png" alt="hand-16" style="height: 100px; width: 4340px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hand-2 (1641 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hand-2.png" alt="hand-2" style="height: 100px; width: 1641px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hand-3 (3210 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hand-3.png" alt="hand-3" style="height: 100px; width: 3210px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hand-9 (1733 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hand-9.png" alt="hand-9" style="height: 100px; width: 1733px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hat-1 (3486 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hat-1.png" alt="hat-1" style="height: 100px; width: 3486px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hat-18 (2816 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hat-18.png" alt="hat-18" style="height: 100px; width: 2816px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hat-2 (1465 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hat-2.png" alt="hat-2" style="height: 100px; width: 1465px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hat-5 (8000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hat-5.png" alt="hat-5" style="height: 100px; width: 8000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>helmet-11 (2990 px)</h5> <div class="image-container"> <img src="./Video Selector_files/helmet-11.png" alt="helmet-11" style="height: 100px; width: 2990px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>helmet-13 (3121 px)</h5> <div class="image-container"> <img src="./Video Selector_files/helmet-13.png" alt="helmet-13" style="height: 100px; width: 3121px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>helmet-19 (1408 px)</h5> <div class="image-container"> <img src="./Video Selector_files/helmet-19.png" alt="helmet-19" style="height: 100px; width: 1408px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>helmet-5 (1537 px)</h5> <div class="image-container"> <img src="./Video Selector_files/helmet-5.png" alt="helmet-5" style="height: 100px; width: 1537px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hippo-1 (2340 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hippo-1.png" alt="hippo-1" style="height: 100px; width: 2340px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hippo-20 (1659 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hippo-20.png" alt="hippo-20" style="height: 100px; width: 1659px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hippo-7 (2472 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hippo-7.png" alt="hippo-7" style="height: 100px; width: 2472px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>hippo-9 (1898 px)</h5> <div class="image-container"> <img src="./Video Selector_files/hippo-9.png" alt="hippo-9" style="height: 100px; width: 1898px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>horse-1 (1313 px)</h5> <div class="image-container"> <img src="./Video Selector_files/horse-1.png" alt="horse-1" style="height: 100px; width: 1313px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>horse-12 (2194 px)</h5> <div class="image-container"> <img src="./Video Selector_files/horse-12.png" alt="horse-12" style="height: 100px; width: 2194px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>horse-15 (2377 px)</h5> <div class="image-container"> <img src="./Video Selector_files/horse-15.png" alt="horse-15" style="height: 100px; width: 2377px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>horse-4 (1451 px)</h5> <div class="image-container"> <img src="./Video Selector_files/horse-4.png" alt="horse-4" style="height: 100px; width: 1451px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kangaroo-11 (2553 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kangaroo-11.png" alt="kangaroo-11" style="height: 100px; width: 2553px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kangaroo-14 (1363 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kangaroo-14.png" alt="kangaroo-14" style="height: 100px; width: 1363px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kangaroo-2 (2348 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kangaroo-2.png" alt="kangaroo-2" style="height: 100px; width: 2348px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kangaroo-5 (3119 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kangaroo-5.png" alt="kangaroo-5" style="height: 100px; width: 3119px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kite-10 (3309 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kite-10.png" alt="kite-10" style="height: 100px; width: 3309px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kite-15 (2103 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kite-15.png" alt="kite-15" style="height: 100px; width: 2103px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kite-4 (3223 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kite-4.png" alt="kite-4" style="height: 100px; width: 3223px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>kite-6 (3774 px)</h5> <div class="image-container"> <img src="./Video Selector_files/kite-6.png" alt="kite-6" style="height: 100px; width: 3774px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>leopard-1 (1119 px)</h5> <div class="image-container"> <img src="./Video Selector_files/leopard-1.png" alt="leopard-1" style="height: 100px; width: 1119px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>leopard-16 (2233 px)</h5> <div class="image-container"> <img src="./Video Selector_files/leopard-16.png" alt="leopard-16" style="height: 100px; width: 2233px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>leopard-20 (2764 px)</h5> <div class="image-container"> <img src="./Video Selector_files/leopard-20.png" alt="leopard-20" style="height: 100px; width: 2764px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>leopard-7 (1432 px)</h5> <div class="image-container"> <img src="./Video Selector_files/leopard-7.png" alt="leopard-7" style="height: 100px; width: 1432px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>licenseplate-12 (2685 px)</h5> <div class="image-container"> <img src="./Video Selector_files/licenseplate-12.png" alt="licenseplate-12" style="height: 100px; width: 2685px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>licenseplate-13 (3083 px)</h5> <div class="image-container"> <img src="./Video Selector_files/licenseplate-13.png" alt="licenseplate-13" style="height: 100px; width: 3083px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>licenseplate-15 (1478 px)</h5> <div class="image-container"> <img src="./Video Selector_files/licenseplate-15.png" alt="licenseplate-15" style="height: 100px; width: 1478px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>licenseplate-6 (1470 px)</h5> <div class="image-container"> <img src="./Video Selector_files/licenseplate-6.png" alt="licenseplate-6" style="height: 100px; width: 1470px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lion-1 (1476 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lion-1.png" alt="lion-1" style="height: 100px; width: 1476px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lion-12 (3479 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lion-12.png" alt="lion-12" style="height: 100px; width: 3479px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lion-20 (1576 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lion-20.png" alt="lion-20" style="height: 100px; width: 1576px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lion-5 (2451 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lion-5.png" alt="lion-5" style="height: 100px; width: 2451px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lizard-1 (2674 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lizard-1.png" alt="lizard-1" style="height: 100px; width: 2674px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lizard-13 (2803 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lizard-13.png" alt="lizard-13" style="height: 100px; width: 2803px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lizard-3 (4456 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lizard-3.png" alt="lizard-3" style="height: 100px; width: 4456px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>lizard-6 (2027 px)</h5> <div class="image-container"> <img src="./Video Selector_files/lizard-6.png" alt="lizard-6" style="height: 100px; width: 2027px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>microphone-14 (2242 px)</h5> <div class="image-container"> <img src="./Video Selector_files/microphone-14.png" alt="microphone-14" style="height: 100px; width: 2242px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>microphone-16 (2178 px)</h5> <div class="image-container"> <img src="./Video Selector_files/microphone-16.png" alt="microphone-16" style="height: 100px; width: 2178px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>microphone-2 (4017 px)</h5> <div class="image-container"> <img src="./Video Selector_files/microphone-2.png" alt="microphone-2" style="height: 100px; width: 4017px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>microphone-6 (1767 px)</h5> <div class="image-container"> <img src="./Video Selector_files/microphone-6.png" alt="microphone-6" style="height: 100px; width: 1767px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>monkey-17 (2260 px)</h5> <div class="image-container"> <img src="./Video Selector_files/monkey-17.png" alt="monkey-17" style="height: 100px; width: 2260px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>monkey-3 (1261 px)</h5> <div class="image-container"> <img src="./Video Selector_files/monkey-3.png" alt="monkey-3" style="height: 100px; width: 1261px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>monkey-4 (1435 px)</h5> <div class="image-container"> <img src="./Video Selector_files/monkey-4.png" alt="monkey-4" style="height: 100px; width: 1435px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>monkey-9 (4079 px)</h5> <div class="image-container"> <img src="./Video Selector_files/monkey-9.png" alt="monkey-9" style="height: 100px; width: 4079px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>motorcycle-1 (2241 px)</h5> <div class="image-container"> <img src="./Video Selector_files/motorcycle-1.png" alt="motorcycle-1" style="height: 100px; width: 2241px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>motorcycle-18 (2557 px)</h5> <div class="image-container"> <img src="./Video Selector_files/motorcycle-18.png" alt="motorcycle-18" style="height: 100px; width: 2557px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>motorcycle-3 (2487 px)</h5> <div class="image-container"> <img src="./Video Selector_files/motorcycle-3.png" alt="motorcycle-3" style="height: 100px; width: 2487px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>motorcycle-9 (1660 px)</h5> <div class="image-container"> <img src="./Video Selector_files/motorcycle-9.png" alt="motorcycle-9" style="height: 100px; width: 1660px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>mouse-1 (1547 px)</h5> <div class="image-container"> <img src="./Video Selector_files/mouse-1.png" alt="mouse-1" style="height: 100px; width: 1547px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>mouse-17 (1608 px)</h5> <div class="image-container"> <img src="./Video Selector_files/mouse-17.png" alt="mouse-17" style="height: 100px; width: 1608px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>mouse-8 (1275 px)</h5> <div class="image-container"> <img src="./Video Selector_files/mouse-8.png" alt="mouse-8" style="height: 100px; width: 1275px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>mouse-9 (2818 px)</h5> <div class="image-container"> <img src="./Video Selector_files/mouse-9.png" alt="mouse-9" style="height: 100px; width: 2818px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>person-1 (5550 px)</h5> <div class="image-container"> <img src="./Video Selector_files/person-1.png" alt="person-1" style="height: 100px; width: 5550px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>person-10 (3901 px)</h5> <div class="image-container"> <img src="./Video Selector_files/person-10.png" alt="person-10" style="height: 100px; width: 3901px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>person-12 (1990 px)</h5> <div class="image-container"> <img src="./Video Selector_files/person-12.png" alt="person-12" style="height: 100px; width: 1990px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>person-5 (2967 px)</h5> <div class="image-container"> <img src="./Video Selector_files/person-5.png" alt="person-5" style="height: 100px; width: 2967px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pig-10 (2691 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pig-10.png" alt="pig-10" style="height: 100px; width: 2691px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pig-13 (1838 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pig-13.png" alt="pig-13" style="height: 100px; width: 1838px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pig-18 (2401 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pig-18.png" alt="pig-18" style="height: 100px; width: 2401px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pig-2 (2671 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pig-2.png" alt="pig-2" style="height: 100px; width: 2671px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pool-12 (1801 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pool-12.png" alt="pool-12" style="height: 100px; width: 1801px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pool-15 (1338 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pool-15.png" alt="pool-15" style="height: 100px; width: 1338px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pool-3 (2256 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pool-3.png" alt="pool-3" style="height: 100px; width: 2256px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>pool-7 (1634 px)</h5> <div class="image-container"> <img src="./Video Selector_files/pool-7.png" alt="pool-7" style="height: 100px; width: 1634px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rabbit-10 (2098 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rabbit-10.png" alt="rabbit-10" style="height: 100px; width: 2098px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rabbit-13 (2109 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rabbit-13.png" alt="rabbit-13" style="height: 100px; width: 2109px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rabbit-17 (1478 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rabbit-17.png" alt="rabbit-17" style="height: 100px; width: 1478px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rabbit-19 (2222 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rabbit-19.png" alt="rabbit-19" style="height: 100px; width: 2222px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>racing-10 (1508 px)</h5> <div class="image-container"> <img src="./Video Selector_files/racing-10.png" alt="racing-10" style="height: 100px; width: 1508px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>racing-15 (1070 px)</h5> <div class="image-container"> <img src="./Video Selector_files/racing-15.png" alt="racing-15" style="height: 100px; width: 1070px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>racing-16 (2186 px)</h5> <div class="image-container"> <img src="./Video Selector_files/racing-16.png" alt="racing-16" style="height: 100px; width: 2186px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>racing-20 (2941 px)</h5> <div class="image-container"> <img src="./Video Selector_files/racing-20.png" alt="racing-20" style="height: 100px; width: 2941px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>robot-1 (5609 px)</h5> <div class="image-container"> <img src="./Video Selector_files/robot-1.png" alt="robot-1" style="height: 100px; width: 5609px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>robot-19 (5797 px)</h5> <div class="image-container"> <img src="./Video Selector_files/robot-19.png" alt="robot-19" style="height: 100px; width: 5797px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>robot-5 (2325 px)</h5> <div class="image-container"> <img src="./Video Selector_files/robot-5.png" alt="robot-5" style="height: 100px; width: 2325px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>robot-8 (2371 px)</h5> <div class="image-container"> <img src="./Video Selector_files/robot-8.png" alt="robot-8" style="height: 100px; width: 2371px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rubicCube-1 (1800 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rubicCube-1.png" alt="rubicCube-1" style="height: 100px; width: 1800px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rubicCube-14 (1827 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rubicCube-14.png" alt="rubicCube-14" style="height: 100px; width: 1827px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rubicCube-19 (2101 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rubicCube-19.png" alt="rubicCube-19" style="height: 100px; width: 2101px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>rubicCube-6 (4291 px)</h5> <div class="image-container"> <img src="./Video Selector_files/rubicCube-6.png" alt="rubicCube-6" style="height: 100px; width: 4291px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sepia-13 (2756 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sepia-13.png" alt="sepia-13" style="height: 100px; width: 2756px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sepia-16 (1548 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sepia-16.png" alt="sepia-16" style="height: 100px; width: 1548px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sepia-6 (1100 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sepia-6.png" alt="sepia-6" style="height: 100px; width: 1100px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sepia-8 (3694 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sepia-8.png" alt="sepia-8" style="height: 100px; width: 3694px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>shark-2 (3455 px)</h5> <div class="image-container"> <img src="./Video Selector_files/shark-2.png" alt="shark-2" style="height: 100px; width: 3455px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>shark-3 (1000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/shark-3.png" alt="shark-3" style="height: 100px; width: 1000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>shark-5 (1510 px)</h5> <div class="image-container"> <img src="./Video Selector_files/shark-5.png" alt="shark-5" style="height: 100px; width: 1510px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>shark-6 (1238 px)</h5> <div class="image-container"> <img src="./Video Selector_files/shark-6.png" alt="shark-6" style="height: 100px; width: 1238px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sheep-3 (2097 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sheep-3.png" alt="sheep-3" style="height: 100px; width: 2097px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sheep-5 (1000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sheep-5.png" alt="sheep-5" style="height: 100px; width: 1000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sheep-7 (1256 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sheep-7.png" alt="sheep-7" style="height: 100px; width: 1256px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>sheep-9 (1840 px)</h5> <div class="image-container"> <img src="./Video Selector_files/sheep-9.png" alt="sheep-9" style="height: 100px; width: 1840px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>skateboard-16 (3208 px)</h5> <div class="image-container"> <img src="./Video Selector_files/skateboard-16.png" alt="skateboard-16" style="height: 100px; width: 3208px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>skateboard-19 (2262 px)</h5> <div class="image-container"> <img src="./Video Selector_files/skateboard-19.png" alt="skateboard-19" style="height: 100px; width: 2262px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>skateboard-3 (1629 px)</h5> <div class="image-container"> <img src="./Video Selector_files/skateboard-3.png" alt="skateboard-3" style="height: 100px; width: 1629px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>skateboard-8 (4112 px)</h5> <div class="image-container"> <img src="./Video Selector_files/skateboard-8.png" alt="skateboard-8" style="height: 100px; width: 4112px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>spider-14 (2761 px)</h5> <div class="image-container"> <img src="./Video Selector_files/spider-14.png" alt="spider-14" style="height: 100px; width: 2761px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>spider-16 (1910 px)</h5> <div class="image-container"> <img src="./Video Selector_files/spider-16.png" alt="spider-16" style="height: 100px; width: 1910px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>spider-18 (2120 px)</h5> <div class="image-container"> <img src="./Video Selector_files/spider-18.png" alt="spider-18" style="height: 100px; width: 2120px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>spider-20 (9999 px)</h5> <div class="image-container"> <img src="./Video Selector_files/spider-20.png" alt="spider-20" style="height: 100px; width: 9999px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>squirrel-11 (1449 px)</h5> <div class="image-container"> <img src="./Video Selector_files/squirrel-11.png" alt="squirrel-11" style="height: 100px; width: 1449px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>squirrel-13 (2000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/squirrel-13.png" alt="squirrel-13" style="height: 100px; width: 2000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>squirrel-19 (1205 px)</h5> <div class="image-container"> <img src="./Video Selector_files/squirrel-19.png" alt="squirrel-19" style="height: 100px; width: 1205px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>squirrel-8 (1041 px)</h5> <div class="image-container"> <img src="./Video Selector_files/squirrel-8.png" alt="squirrel-8" style="height: 100px; width: 1041px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>surfboard-12 (3259 px)</h5> <div class="image-container"> <img src="./Video Selector_files/surfboard-12.png" alt="surfboard-12" style="height: 100px; width: 3259px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>surfboard-4 (1787 px)</h5> <div class="image-container"> <img src="./Video Selector_files/surfboard-4.png" alt="surfboard-4" style="height: 100px; width: 1787px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>surfboard-5 (4383 px)</h5> <div class="image-container"> <img src="./Video Selector_files/surfboard-5.png" alt="surfboard-5" style="height: 100px; width: 4383px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>surfboard-8 (2215 px)</h5> <div class="image-container"> <img src="./Video Selector_files/surfboard-8.png" alt="surfboard-8" style="height: 100px; width: 2215px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>swing-10 (2189 px)</h5> <div class="image-container"> <img src="./Video Selector_files/swing-10.png" alt="swing-10" style="height: 100px; width: 2189px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>swing-14 (2564 px)</h5> <div class="image-container"> <img src="./Video Selector_files/swing-14.png" alt="swing-14" style="height: 100px; width: 2564px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>swing-17 (2699 px)</h5> <div class="image-container"> <img src="./Video Selector_files/swing-17.png" alt="swing-17" style="height: 100px; width: 2699px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>swing-20 (1282 px)</h5> <div class="image-container"> <img src="./Video Selector_files/swing-20.png" alt="swing-20" style="height: 100px; width: 1282px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tank-14 (3336 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tank-14.png" alt="tank-14" style="height: 100px; width: 3336px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tank-16 (3635 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tank-16.png" alt="tank-16" style="height: 100px; width: 3635px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tank-6 (1612 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tank-6.png" alt="tank-6" style="height: 100px; width: 1612px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tank-9 (1312 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tank-9.png" alt="tank-9" style="height: 100px; width: 1312px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tiger-12 (1040 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tiger-12.png" alt="tiger-12" style="height: 100px; width: 1040px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tiger-18 (3107 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tiger-18.png" alt="tiger-18" style="height: 100px; width: 3107px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tiger-4 (2877 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tiger-4.png" alt="tiger-4" style="height: 100px; width: 2877px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>tiger-6 (2295 px)</h5> <div class="image-container"> <img src="./Video Selector_files/tiger-6.png" alt="tiger-6" style="height: 100px; width: 2295px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>train-1 (1150 px)</h5> <div class="image-container"> <img src="./Video Selector_files/train-1.png" alt="train-1" style="height: 100px; width: 1150px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>train-11 (1080 px)</h5> <div class="image-container"> <img src="./Video Selector_files/train-11.png" alt="train-11" style="height: 100px; width: 1080px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>train-20 (1389 px)</h5> <div class="image-container"> <img src="./Video Selector_files/train-20.png" alt="train-20" style="height: 100px; width: 1389px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>train-7 (1425 px)</h5> <div class="image-container"> <img src="./Video Selector_files/train-7.png" alt="train-7" style="height: 100px; width: 1425px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>truck-16 (7225 px)</h5> <div class="image-container"> <img src="./Video Selector_files/truck-16.png" alt="truck-16" style="height: 100px; width: 7225px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>truck-3 (1270 px)</h5> <div class="image-container"> <img src="./Video Selector_files/truck-3.png" alt="truck-3" style="height: 100px; width: 1270px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>truck-6 (5245 px)</h5> <div class="image-container"> <img src="./Video Selector_files/truck-6.png" alt="truck-6" style="height: 100px; width: 5245px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>truck-7 (6515 px)</h5> <div class="image-container"> <img src="./Video Selector_files/truck-7.png" alt="truck-7" style="height: 100px; width: 6515px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>turtle-16 (3307 px)</h5> <div class="image-container"> <img src="./Video Selector_files/turtle-16.png" alt="turtle-16" style="height: 100px; width: 3307px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>turtle-5 (1096 px)</h5> <div class="image-container"> <img src="./Video Selector_files/turtle-5.png" alt="turtle-5" style="height: 100px; width: 1096px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>turtle-8 (1497 px)</h5> <div class="image-container"> <img src="./Video Selector_files/turtle-8.png" alt="turtle-8" style="height: 100px; width: 1497px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>turtle-9 (7133 px)</h5> <div class="image-container"> <img src="./Video Selector_files/turtle-9.png" alt="turtle-9" style="height: 100px; width: 7133px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>umbrella-17 (1001 px)</h5> <div class="image-container"> <img src="./Video Selector_files/umbrella-17.png" alt="umbrella-17" style="height: 100px; width: 1001px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>umbrella-19 (2868 px)</h5> <div class="image-container"> <img src="./Video Selector_files/umbrella-19.png" alt="umbrella-19" style="height: 100px; width: 2868px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>umbrella-2 (4794 px)</h5> <div class="image-container"> <img src="./Video Selector_files/umbrella-2.png" alt="umbrella-2" style="height: 100px; width: 4794px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>umbrella-9 (1615 px)</h5> <div class="image-container"> <img src="./Video Selector_files/umbrella-9.png" alt="umbrella-9" style="height: 100px; width: 1615px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>volleyball-1 (1309 px)</h5> <div class="image-container"> <img src="./Video Selector_files/volleyball-1.png" alt="volleyball-1" style="height: 100px; width: 1309px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>volleyball-13 (2042 px)</h5> <div class="image-container"> <img src="./Video Selector_files/volleyball-13.png" alt="volleyball-13" style="height: 100px; width: 2042px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>volleyball-18 (2606 px)</h5> <div class="image-container"> <img src="./Video Selector_files/volleyball-18.png" alt="volleyball-18" style="height: 100px; width: 2606px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>volleyball-19 (1467 px)</h5> <div class="image-container"> <img src="./Video Selector_files/volleyball-19.png" alt="volleyball-19" style="height: 100px; width: 1467px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>yoyo-15 (1000 px)</h5> <div class="image-container"> <img src="./Video Selector_files/yoyo-15.png" alt="yoyo-15" style="height: 100px; width: 1000px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>yoyo-17 (1035 px)</h5> <div class="image-container"> <img src="./Video Selector_files/yoyo-17.png" alt="yoyo-17" style="height: 100px; width: 1035px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>yoyo-19 (3207 px)</h5> <div class="image-container"> <img src="./Video Selector_files/yoyo-19.png" alt="yoyo-19" style="height: 100px; width: 3207px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>yoyo-7 (3806 px)</h5> <div class="image-container"> <img src="./Video Selector_files/yoyo-7.png" alt="yoyo-7" style="height: 100px; width: 3806px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>zebra-10 (2008 px)</h5> <div class="image-container"> <img src="./Video Selector_files/zebra-10.png" alt="zebra-10" style="height: 100px; width: 2008px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>zebra-14 (1673 px)</h5> <div class="image-container"> <img src="./Video Selector_files/zebra-14.png" alt="zebra-14" style="height: 100px; width: 1673px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>zebra-16 (1282 px)</h5> <div class="image-container"> <img src="./Video Selector_files/zebra-16.png" alt="zebra-16" style="height: 100px; width: 1282px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+<tr>
+<td style="text-align: left;overflow: auto"><h5>zebra-17 (2964 px)</h5> <div class="image-container"> <img src="./Video Selector_files/zebra-17.png" alt="zebra-17" style="height: 100px; width: 2964px; display: block; margin-bottom: 10px;" ondragstart="return false;"><div class="selection-overlay"></div></div></td>
+</tr>
+
+</tbody></table>
+
+<script>
+    const videoFrame = document.getElementById('videoFrame');
+    const openInNewTabBtn = document.getElementById('openInNewTabBtn'); // Button for opening content in a new tab
+
+    // Function to open iframe content in a new tab
+    openInNewTabBtn.addEventListener('click', () => {
+        window.open(videoFrame.src);
+    });
+
+    document.querySelectorAll('.image-container img').forEach(img => {
+        img.addEventListener('dragstart', e => e.preventDefault());
+
+        const container = img.parentNode;
+        const overlay = container.querySelector('.selection-overlay');
+        let startX, isSelecting = false;
+
+        img.addEventListener('mousedown', e => {
+            startX = e.offsetX;
+            isSelecting = true;
+            overlay.style.width = '0px';
+            overlay.style.left = `${startX}px`;
+        });
+
+        img.addEventListener('mousemove', e => {
+            if (!isSelecting) return;
+            const currentX = e.offsetX;
+            const selectionWidth = Math.max(0, currentX - startX);
+            overlay.style.width = `${selectionWidth}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isSelecting) return;
+            isSelecting = false;
+            const endX = parseInt(overlay.style.left) + parseInt(overlay.style.width);
+            
+            const startFrame = Math.round((startX / img.width) * img.naturalWidth);
+            const endFrame = Math.round((endX / img.width) * img.naturalWidth);
+            const nameParts = img.alt.split('-');
+            const objectName = nameParts[0];
+            const sequenceNumber = nameParts[1];
+
+            videoFrame.src = `/scripts/videos.html?objectName=${objectName}&sequenceNumber=${sequenceNumber}&maxFrames=${img.naturalWidth}&startFrame=${startFrame}&endFrame=${endFrame}&trackingResultsPath=desk/ARTrack/output/test/tracking_results/artrack_seq/lasot&basePath=data/root/LaSOTBenchmark&groundtruthPath=data/lasot-gt-anno`;
+            videoFrame.style.display = 'block';
+            openInNewTabBtn.style.display = 'block'; // Show the button when iframe is displayed
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") { 
+            videoFrame.style.display = 'none';
+            videoFrame.src = '';
+            openInNewTabBtn.style.display = 'none'; // Hide the button when iframe is hidden
+        }
+    });
+</script>
+
+
+
+</body></html>
