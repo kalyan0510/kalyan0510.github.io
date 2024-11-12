@@ -1,0 +1,197 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- <p>(This post is not fact checked - except the conclusion, and that is the point of it)</p> -->
+
+<p>Well, using all these AI bots for work and everything has fogged my brain badly. I wanted to do something cool but without any advanced tech, no bots, no google, no internet, and not even a calculator.</p>
+
+<p>While I have been thinking about this, I also had a stray thought. What if, some kind of apocalyptic event wiped out all the tech (even books), and sent us back to an era of Caveman, where we only have what our memory holds. Can I re-discover the measuring of time? But, why time, why not other important survival tools? Heck them. I am sure this will be more fun.</p>
+
+<img class="postimg" src="/images/waitsec/watch.jpg" style="width: 70%">
+<p style="padding:0px; text-align:center; font-size: 8pt;"> [medium.com style random pic; P.C: Me]] </p>
+
+<h2>Plan</h2>
+
+<h3>So, what’s the plan?</h3>
+<p>Measure time. Precisely to a second.</p>
+
+<h3>But how?</h3>
+<ul>
+    <li>Let's see all things in nature, that gives out events that repeat at consistent intervals.</li>
+    <li>Then, figure out how to calibrate them to 1 second intervals.</li>
+    <li>Finally, build it.</li>
+</ul>
+
+<h3>For what?</h3>
+<ul>
+    <li>Measuring Time => Kinematics => Mechanical systems => Industrialization</li>
+    <li>Measuring Time => Better time keeping despite seasons => More productivity?</li>
+    <li>Measuring Time => Kinematics => Weapons</li>
+    <li>Measuring Time => Kinematics => Astronomy => Tidal predictions => Safe navigation across oceans => Exploration 
+        (this may not be the order at which things happened)
+    </li>
+</ul>
+
+<h2>Searching for things that repeat</h2>
+
+<p>What kind of discrete recurrent events do we see around ( the cave 😂)?</p>
+<ul>
+<li><b>Sun rise</b>? Too slow, we cant use it to count seconds</li>
+<li><b>Water dripping</b> from the cave roof?
+  seems possible to use it for seconds. Lets keep this one aside, for later speculation.</li>
+<li><b>Pendulum</b>? This is even more promising. We know old clocks work based on them. Lets keep this one aside too.</li>
+<li> ⏳? Thinking of the old techniques of time measurement, <b>hourglass</b> stuck my thought. But I don't think it counts seconds.</li>
+<li> Taking it a little further, we can even use <b> pulsar stars </b>.</li>
+</ul>
+
+<!--  -->
+
+<h3> Picking a timer device</h3>
+
+<p>First of all, what's with pulsar stars? These are dead stars that rotate very fast and emit a lot of light and other stuff along their axis of rotation and that axis when it sweeps our direction, gives us a visible pulse. That pulse is very consistent, and likely wont change in our life time. However, we cannot use them during day time. So this is <b>not an option.</b></p>
+
+<p> Now, we have water dripping and pendulums as viable options for our time measurement. What’s better? </p>
+<p> Can I replicate a water dripping recurrency easily? Like, if I have a faucet that leaks at 1 drop per second, is it easy to make another leaky faucet that also drips 1 drop per second? Maybe it is, but as we keep copying to more faucets the error gets propagated. However, with pendulums, the frequency is dependent on the length of it. Two pendulums with the same length swing at the same frequency. It is easy to copy length. So <b>let's go with Pendulum.</b>
+</p>
+
+
+<p>
+Well, I can make a string out of tree fibers and make an arbitrary frequency pendulum and call it a second. Who is keeping the time any way, post that apocalyptic event. I can define my own second 🤪 </p>
+
+<p> But wait, this is just too simple. What if I wanted to use the same metric system eventually, with length in meters, weight in grams and time in seconds? So, just to future proof, lets <b>try to define 1 second</b> as accurately as possible.  </p>
+<p> Well, another distracting thought: all measuring systems, both the one measuring length in KM and the one with Miles seem to use seconds, the measuring time. How come? I’ll leave this for when I connect myself to the internet later.</p>
+
+<h2>Strategize</h2>
+<p>
+Going forward: We have to make a pendulum that takes one second to swing. Do I remember the <b>time period equation</b> for a pendulum? <br> NOOOOOOO! I dont. I know it has 2𝜋 and L in it. Also it has a square root. But I dont really know the equation. 
+</p>
+
+<p>
+<b>Let’s derive it</b>. I have made many attempts from here on, I will share with you the complete process, starting from the ones where I tried but terribly failed. </p>
+
+<p> Ofcourse start with a neat diagram of the pendulum. <br> And then the Plan is: Get forces on pendulum  => get acceleration => get velocity => and then, time = \( dx / dv \) </p>
+
+<img class="postimg" src="/images/waitsec/p1.jpg" style="width: 60%">
+
+<ul>
+<li>Split the g into parallel and normal component. Only the parallel component helps move pendulum. So that what gives us acceleration. </li>
+<li>I got a C (constant) after integration, I plugged a known value: v=0 at top  and \(\theta= \phi\) to find C </li>
+</ul>
+
+<p>However, the equation did ot give me anything useful.
+<b>Mistake? </b> Turned out, I have integrated a with dtheta, where I should be integrating with dt. Now it makes sense why I got a senseless equation. 
+</p>
+
+<h3>Attempt 2 - Energy Conservation</h3>
+<p>Heck with this? I should just use energy conservation. These were my favorite ones,  back in 11th grade. Because most of the questions in the exam are multiple choice questions with 4 options, energy conservation helps rule out few options. If I am lucky, they rule out all three 🙃. Saves a lot of time. 
+</p>
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+    <div style="flex: 1;">
+        <p>Back to pendulum. <br>
+        Change in Potential Energy with the drop in height of pendulum = Kinetic Energy<br>
+        \(\Delta PE = \frac{1}{2}mv^2\)</p>
+        <p>
+        Initial height: \(L \cos \phi \)<br>
+        Height when angle of pendulum is θ: \(L \cos \theta \)<br>
+        Therefore, change in Potential Energy:<br>
+        \(\Delta PE = mg\Delta h = mgL(\cos \phi - \cos \theta)\)
+        </p>
+    </div>
+    <div style="flex: 0 0 40%;">
+        <img src="/images/waitsec/p2.jpg" alt="Pendulum diagram" style="width: 100%;">
+    </div>
+</div>
+
+<p>Okay! We got this velocity equation, I changed this from \( \theta \) equation to \(x\) equation \( V(x/L) \), where \(x\) is the distance traveled by pendulum  \( x = L * \theta \)</p>
+
+<p>But still. What's with this? Cosine under square root? How do I even proceed with integrating this for \(x\)? I will have to drop this approach as well. 🙁</p>
+
+<h3> Attempt 3 - Integrating double derivative</h3>
+<p> 
+  Back to start. What do we have? <br>
+\(a = mg \sin(\theta) = mg \sin\left(\frac{x}{L}\right)\)
+</p>
+
+<img class="postimg" src="/images/waitsec/p3.jpg" style="width: 30%">
+
+<p>
+So, taking \(\sin \theta = \theta\) approximation (assuming our pendulum only swings a lill bit) has got us this double derivative equation. (-'ve missing in the eqn)
+</p>
+<p>
+I vaguely remember that there is a specific class of equations with a name, if they have double derivative in it. But, for sure, I dont remember anything specific. So, let's go with integration.
+</p>
+<p>
+For a second, though, I thought the answer would be \(x^3\) something, if I integrate \(x\) twice. But, see, not the same mistake again. We need to integrate it with \(dt\) not \(dx\).
+</p>
+
+<p>
+Flipping x and t into opposite sides of equation: \(\frac{1}{x} d^2x = -\frac{g}{L}dt^2\)
+</p>
+
+<p>
+Before I even approach this, what's \(\int \frac{1}{x} dx\). I know that \(\int x^n dx = \frac{x^{n+1}}{n+1} + C\). But if \(n\) is \(-1\), what? 🤯 <br>
+I attempted at finding it with Limits.
+</p>
+
+<img class="postimg" src="/images/waitsec/p4a.jpg" style="width: 50%">
+
+
+<p>And ended up with this series. I forgot how to turn such series into a function. If it had some negative terms I would have tried to cancel them by multiplying some variable, but no. This seems like a <b>skill barrier</b>, which I do not intend to cross 😂😂
+</p>
+
+<h3> Attempt 4 - Guessing a function</h3>
+<p>
+What’s in the double derivative equation? It says double derivative of  \(x\) is some constant multiplied with  \(x\). Wait! I know one method that stays the same despite a derivate or  integral. Its \(e^x\)
+</p>
+
+
+<div style="display: flex; align-items: stretch; gap: 20px; justify-content: space-between;">
+    <div style="flex: 1;">
+        <img src="/images/waitsec/p5.jpg" alt="Image 1" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <div style="flex: 1;">
+        <img src="/images/waitsec/p6a.jpg" alt="Image 2" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <div style="flex: 1;">
+        <img src="/images/waitsec/p6b.jpg" alt="Image 3" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+</div>
+
+
+<p>
+Weeeew! This got me the equation 🥳🥳🥳 <br>
+
+\[
+T = 2 \cdot \pi \cdot \sqrt{\frac{L}{g}}
+\]
+
+\[
+T \approx 2 \cdot 1.001 \cdot \sqrt{L}
+\]
+
+So, if I take a pendulum with \( L \approx 1 \, \text{m} \), I will get a seconds pendulum (each swing is 1 sec, two for a complete cycle).
+</p>
+
+<h2> Measuring 1M</h2>
+
+<p>
+Nice! But how do I measure L = 1m in this post apocalyptic scenario? Do we have a scale? What if I don’t?  
+I know for one thing that I am 5' 8" ish tall. So in cm it is (5*12 + 8) * 2.56 = 174 cm. (I remembered 1 inch as 2.56 not the actual 2.54)
+<br>
+How do I make 100 cm from 174 cm? I cam make a string L and find out L/2 and even L/3 carefully. 
+Now with L(=174), L/2(=87) and L/3(=58) is there any combination of additions and summations that can give me 100? 
+<br>
+Turns out not. <b>Prime factors</b> of 174 is 2*3*29. So no matter how many additions and summations I do, I only get multiple of 2, 3 or 29. Subdividing L into 2 cms or 3 cms may be very error prone. So I may always have 29 in the factor of what I get from combinations of L, L/2, & L/3. Which makes it impossible to make 100. 
+<br>
+ So, I just ended up doing <b>L - L/4 - L/6 = 101.5 cm</b> ( I roughly removed 1.5 cm with hand, nothing better I can do, because at this point I still did not know if my T equation was right, so I was eager to test it out)
+
+</p>
+
+
+<h2> Trial </h2>
+
+<p>Here is my pendulum. What else can a caveman get his hand's on? I had to roughly cut off the fruit's radius from the string, though, to account for the center of mass.  </p> 
+  <video style="margin-left: auto; margin-right: auto; width: 100%; height: 300px; margin: auto;" poster="/images/waitsec/1112.mp4" preload="auto" autoplay="autoplay" loop="loop" muted="muted" ><source src="/images/waitsec/1112.mp4" type="video/mp4"></video>
+
+<p>That is <b> 2% error </b>. Hmmm. </p>
