@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cURL Cookie Swapper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --surface: #141720;
+    --surface2: #1c2030;
+    --border: #252a3a;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --green: #10b981;
+    --yellow: #fbbf24;
+    --red: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── LOGIN ─────────────────────────────────────────────── */
+  #loginScreen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+  }
+
+  .login-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 44px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,229,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .login-logo {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .login-sub {
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+
+  .login-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .login-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .login-input:focus {
+    border-color: rgba(0,229,255,0.5);
+    box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
+  }
+
+  .login-error {
+    font-size: 11px;
+    color: var(--red);
+    margin-bottom: 14px;
+    min-height: 16px;
+    display: none;
+  }
+  .login-error.show { display: block; }
+
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(124,58,237,0.12));
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 8px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+
+  .login-btn:hover {
+    background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(124,58,237,0.2));
+    box-shadow: 0 4px 20px rgba(0,229,255,0.12);
+  }
+
+  .login-hint {
+    margin-top: 16px;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .login-hint span { color: rgba(0,229,255,0.6); }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-logo {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-bracket { color: var(--accent); font-family: var(--mono); font-weight: 300; font-size: 19px; }
+
+  .sync-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--bg);
+    transition: all 0.3s;
+  }
+
+  .sync-badge.synced  { border-color: rgba(16,185,129,0.4);  color: var(--green); background: rgba(16,185,129,0.07); }
+  .sync-badge.syncing { border-color: rgba(0,229,255,0.4);   color: var(--accent); background: rgba(0,229,255,0.07); }
+  .sync-badge.error   { border-color: rgba(239,68,68,0.4);   color: var(--red);   background: rgba(239,68,68,0.07); }
+
+  .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .sync-badge.syncing .sync-dot { animation: pulse-dot 1s infinite; }
+
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .header-actions { display: flex; gap: 6px; align-items: center; }
+
+  .pill {
+    font-size: 11px;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--accent);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--mono);
+    white-space: nowrap;
+  }
+  .pill:hover { background: rgba(0,229,255,0.15); }
+  .pill.danger { background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.25); color: var(--red); }
+  .pill.danger:hover { background: rgba(239,68,68,0.15); }
+
+  .user-info-bar { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+
+  .key-preview {
+    font-family: var(--mono);
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 4px;
+    padding: 2px 8px;
+    color: rgba(0,229,255,0.7);
+    font-size: 10px;
+  }
+
+  .logout-link { color: var(--muted); font-size: 10px; cursor: pointer; text-decoration: underline; transition: color 0.2s; }
+  .logout-link:hover { color: var(--red); }
+
+  /* ── MAIN LAYOUT ─────────────────────────────────────────── */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    min-height: calc(100vh - 57px);
+  }
+
+  .left-panel {
+    padding: 24px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+  }
+
+  .right-panel {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    background: var(--surface);
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── CMD CARDS ───────────────────────────────────────────── */
+  .cmd-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .cmd-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .cmd-card:focus-within { border-color: rgba(0,229,255,0.3); }
+  .cmd-card:focus-within::before { opacity: 1; }
+
+  .cmd-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cmd-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 6px var(--accent); flex-shrink: 0;
+  }
+
+  .cmd-title-input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 700;
+  }
+  .cmd-title-input::placeholder { color: var(--muted); font-weight: 400; }
+
+  .btn-remove-cmd {
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 16px; line-height: 1; padding: 2px 4px; border-radius: 4px;
+    transition: all 0.15s; font-family: var(--mono);
+  }
+  .btn-remove-cmd:hover { color: var(--red); background: rgba(239,68,68,0.1); }
+
+  .cmd-body { padding: 12px 14px; }
+
+  textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    padding: 10px 12px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    min-height: 90px;
+  }
+  textarea:focus { border-color: rgba(0,229,255,0.4); }
+  textarea::placeholder { color: var(--muted); }
+
+  .add-cmd-btn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 12px;
+    border: 1px dashed var(--border); border-radius: 8px;
+    background: transparent; color: var(--muted);
+    font-family: var(--mono); font-size: 12px;
+    cursor: pointer; transition: all 0.2s; width: 100%;
+  }
+  .add-cmd-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
+
+  /* ── COPY SECTION ────────────────────────────────────────── */
+  .copy-section {
+    padding: 12px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .copy-section-label { font-size: 10px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .copy-buttons-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .copy-user-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 11px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 20px; color: var(--text);
+    font-family: var(--mono); font-size: 11px;
+    cursor: pointer; transition: all 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .copy-user-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(124,58,237,0.1));
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .copy-user-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,229,255,0.15); }
+  .copy-user-btn:hover::before { opacity: 1; }
+  .copy-user-btn.copied { border-color: var(--green); color: var(--green); box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
+  .copy-user-btn .btn-icon { font-size: 11px; }
+  .no-users-hint { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  /* ── USER CARDS ──────────────────────────────────────────── */
+  .user-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; margin-bottom: 10px;
+  }
+
+  .user-header {
+    display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+    background: var(--surface2); border-bottom: 1px solid var(--border);
+  }
+
+  .user-avatar {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white;
+    flex-shrink: 0; font-family: var(--sans);
+  }
+
+  .user-name-input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: var(--mono); font-size: 12px; font-weight: 500; min-width: 0;
+  }
+  .user-name-input::placeholder { color: var(--muted); }
+
+  .btn-remove-user {
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 14px; padding: 2px 4px; border-radius: 4px;
+    transition: all 0.15s; font-family: var(--mono); line-height: 1;
+  }
+  .btn-remove-user:hover { color: var(--red); background: rgba(239,68,68,0.1); }
+
+  .user-body { padding: 10px; }
+  .user-body textarea { min-height: 70px; font-size: 11px; resize: none; }
+
+  .add-user-btn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px; padding: 10px;
+    border: 1px dashed var(--border); border-radius: 8px;
+    background: transparent; color: var(--muted);
+    font-family: var(--mono); font-size: 11px;
+    cursor: pointer; transition: all 0.2s; width: 100%;
+  }
+  .add-user-btn:hover { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.04); }
+
+  /* ── CLOUD PANEL ─────────────────────────────────────────── */
+  .cloud-panel {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: auto;
+  }
+
+  .cloud-panel-header {
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cloud-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); display: flex; align-items: center; gap: 7px;
+  }
+
+  .cloud-last-sync { font-size: 10px; color: var(--muted); }
+
+  .cloud-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+  .cloud-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .cloud-btn {
+    padding: 10px 12px;
+    border-radius: 7px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .cloud-btn.load {
+    background: rgba(0,229,255,0.07);
+    border-color: rgba(0,229,255,0.28);
+    color: var(--accent);
+  }
+  .cloud-btn.load:hover { background: rgba(0,229,255,0.14); box-shadow: 0 4px 14px rgba(0,229,255,0.1); }
+
+  .cloud-btn.upload {
+    background: rgba(16,185,129,0.07);
+    border-color: rgba(16,185,129,0.28);
+    color: var(--green);
+  }
+  .cloud-btn.upload:hover { background: rgba(16,185,129,0.14); box-shadow: 0 4px 14px rgba(16,185,129,0.1); }
+
+  .cloud-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+  .cloud-status {
+    font-size: 11px; color: var(--muted); text-align: center;
+    padding: 4px 6px; min-height: 22px; transition: all 0.3s;
+    background: var(--surface2); border-radius: 5px;
+  }
+  .cloud-status.ok  { color: var(--green); background: rgba(16,185,129,0.06); }
+  .cloud-status.err { color: var(--red);   background: rgba(239,68,68,0.06); }
+  .cloud-status.loading { color: var(--accent); background: rgba(0,229,255,0.06); }
+
+  /* ── TOAST ───────────────────────────────────────────────── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px;
+    padding: 10px 18px; border-radius: 6px;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    transform: translateY(60px); opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 9000; pointer-events: none;
+  }
+  .toast.green { background: var(--green); color: #000; }
+  .toast.red   { background: var(--red);   color: #fff; }
+  .toast.blue  { background: var(--accent); color: #000; }
+  .toast.show  { transform: translateY(0); opacity: 1; }
+
+  /* ── MISC ────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  .empty-state { text-align: center; padding: 28px 12px; color: var(--muted); font-size: 12px; }
+  .empty-icon  { font-size: 26px; margin-bottom: 8px; opacity: 0.4; }
+
+  .count-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2);
+    color: var(--accent); border-radius: 20px;
+    font-size: 10px; padding: 1px 7px; margin-left: 6px; font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .main { grid-template-columns: 1fr; }
+    .right-panel { border-top: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ──────────────────────────────────── -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">[ cURL · Cookie · Swapper ]</div>
+    <div class="login-sub">CLOUD SYNC · MULTI-USER · AUTH INJECTOR</div>
+
+    <label class="login-label">API Key</label>
+    <input
+      class="login-input"
+      type="password"
+      id="loginKeyInput"
+      placeholder="user:base64secret"
+      autocomplete="off"
+      spellcheck="false"
+      onkeydown="if(event.key==='Enter')doLogin()"
+    />
+
+    <div class="login-error" id="loginError">Invalid key. Please try again.</div>
+
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+
+    <div class="login-hint">
+      Enter your API key to sync data to the cloud.<br>
+      Format: <span>username:secret</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── APP ───────────────────────────────────────────── -->
+<div id="app" style="display:none">
+  <header class="header">
+    <div class="header-logo">
+      <span class="logo-bracket">[</span>cURL·Cookie·Swapper<span class="logo-bracket">]</span>
+    </div>
+    <div class="sync-badge" id="syncBadge">
+      <div class="sync-dot"></div>
+      <span id="syncLabel">local</span>
+    </div>
+    <div class="header-actions">
+      <div class="user-info-bar">
+        <span class="key-preview" id="keyPreview"></span>
+        <span class="logout-link" onclick="doLogout()">sign out</span>
+      </div>
+      <button class="pill danger" onclick="clearAll()">✕ Clear</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <!-- LEFT: Commands -->
+    <div class="left-panel">
+      <div>
+        <div class="section-label">cURL Commands <span class="count-badge" id="cmdCount">0</span></div>
+        <div id="cmdList"></div>
+        <button class="add-cmd-btn" onclick="addCommand()">
+          <span style="font-size:16px">+</span> Add cURL Command
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: Users + Cloud -->
+    <div class="right-panel">
+      <div>
+        <div class="section-label">Users <span class="count-badge" id="userCount">0</span></div>
+        <div id="userList"></div>
+        <button class="add-user-btn" onclick="addUser()">
+          <span style="font-size:14px">+</span> Add User
+        </button>
+      </div>
+
+      <!-- Cloud Sync -->
+      <div class="cloud-panel">
+        <div class="cloud-panel-header">
+          <div class="cloud-title">☁ Cloud Sync</div>
+          <span class="cloud-last-sync" id="cloudLastSync"></span>
+        </div>
+        <div class="cloud-body">
+          <div class="cloud-row">
+            <button class="cloud-btn load" id="btnLoad" onclick="cloudLoad()">
+              ⬇ Load
+            </button>
+            <button class="cloud-btn upload" id="btnUpload" onclick="cloudUpload()">
+              ⬆ Save
+            </button>
+          </div>
+          <div class="cloud-status" id="cloudStatus">Ready — use Load/Save to sync</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ────────────────────────────────────────────────────────
+// CONFIG
+// ────────────────────────────────────────────────────────
+const API_BASE   = 'https://l1az6ozvxa.execute-api.us-east-1.amazonaws.com/alpha/gkcite/api';
+const PARA_ID    = 'QCstFxgE';
+const FETCH_URL  = `${API_BASE}/paragraph/${PARA_ID}`;
+const PUT_URL    = API_BASE;
+const VALID_KEY  = 'MTIzNDU2:VGVzdCFDdXJpb3Vz';
+const LS_KEY     = 'curl_swapper_v2';
+const LS_APIKEY  = 'curl_swapper_apikey';
+
+// ────────────────────────────────────────────────────────
+// STATE
+// ────────────────────────────────────────────────────────
+let state  = { commands: [], users: [] };
+let apiKey = '';
+
+// ────────────────────────────────────────────────────────
+// LOCAL STORAGE
+// ────────────────────────────────────────────────────────
+function loadLocal() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) state = JSON.parse(raw);
+  } catch(e) {}
+  if (!state.commands) state.commands = [];
+  if (!state.users)    state.users    = [];
+}
+
+function saveLocal() {
+  localStorage.setItem(LS_KEY, JSON.stringify(state));
+}
+
+// ────────────────────────────────────────────────────────
+// AUTH / LOGIN
+// ────────────────────────────────────────────────────────
+function doLogin() {
+  const input = document.getElementById('loginKeyInput').value.trim();
+  const errEl = document.getElementById('loginError');
+  errEl.classList.remove('show');
+
+  if (!input) {
+    errEl.textContent = 'Please enter your API key.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  if (input !== VALID_KEY) {
+    errEl.textContent = 'Invalid key. Please check and try again.';
+    errEl.classList.add('show');
+    const inp = document.getElementById('loginKeyInput');
+    inp.style.borderColor = 'rgba(239,68,68,0.6)';
+    setTimeout(() => inp.style.borderColor = '', 1500);
+    return;
+  }
+
+  apiKey = input;
+  localStorage.setItem(LS_APIKEY, apiKey);
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  // Show only the username part
+  document.getElementById('keyPreview').textContent = apiKey.split(':')[0] + ':···';
+
+  loadLocal();
+  renderAll();
+  setSyncBadge('', 'local');
+}
+
+function doLogout() {
+  apiKey = '';
+  localStorage.removeItem(LS_APIKEY);
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginKeyInput').value = '';
+  document.getElementById('loginError').classList.remove('show');
+}
+
+// Auto-login if valid key in storage
+window.addEventListener('DOMContentLoaded', () => {
+  const stored = localStorage.getItem(LS_APIKEY);
+  if (stored === VALID_KEY) {
+    document.getElementById('loginKeyInput').value = stored;
+    doLogin();
+  }
+});
+
+// ────────────────────────────────────────────────────────
+// CLOUD SYNC
+// ────────────────────────────────────────────────────────
+function commonHeaders() {
+  return {
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'authorization': apiKey,
+    'cache-control': 'no-cache',
+    'content-type': 'application/json',
+    'origin': 'https://kalyan0510.github.io',
+    'pragma': 'no-cache',
+    'referer': 'https://kalyan0510.github.io/'
+  };
+}
+
+function setSyncBadge(cls, label) {
+  const badge = document.getElementById('syncBadge');
+  const lbl   = document.getElementById('syncLabel');
+  badge.className = 'sync-badge' + (cls ? ' ' + cls : '');
+  lbl.textContent = label;
+}
+
+function setCloudStatus(msg, cls) {
+  const el = document.getElementById('cloudStatus');
+  el.textContent = msg;
+  el.className = 'cloud-status' + (cls ? ' ' + cls : '');
+}
+
+function setBtnsDisabled(val) {
+  document.getElementById('btnLoad').disabled   = val;
+  document.getElementById('btnUpload').disabled = val;
+}
+
+async function cloudLoad() {
+  setBtnsDisabled(true);
+  setCloudStatus('Fetching from cloud…', 'loading');
+  setSyncBadge('syncing', 'loading…');
+
+  try {
+    const res = await fetch(FETCH_URL, { headers: commonHeaders() });
+    if (!res.ok) throw new Error(`Server returned HTTP ${res.status}`);
+    const data = await res.json();
+
+    const b64 = (data.Text || '').trim();
+    if (!b64 || b64 === 'empty' || b64 === '') {
+      setCloudStatus('Cloud slot is empty — save first.', '');
+      setSyncBadge('', 'local');
+      showToast('Nothing in cloud yet', 'blue');
+      return;
+    }
+
+    // Decode base64 → JSON
+    let parsed;
+    try {
+      const decoded = decodeURIComponent(escape(atob(b64)));
+      parsed = JSON.parse(decoded);
+    } catch(e) {
+      throw new Error('Cloud data could not be decoded. It may be corrupt.');
+    }
+
+    if (!parsed.commands || !parsed.users) throw new Error('Unexpected backup format.');
+
+    state = parsed;
+    saveLocal();
+    renderAll();
+
+    const ts = new Date().toLocaleTimeString();
+    document.getElementById('cloudLastSync').textContent = ts;
+    setSyncBadge('synced', 'synced');
+    setCloudStatus(`✓ Loaded — ${state.commands.length} cmds, ${state.users.length} users`, 'ok');
+    showToast('Loaded from cloud!', 'green');
+
+  } catch(e) {
+    setCloudStatus(`✕ ${e.message}`, 'err');
+    setSyncBadge('error', 'error');
+    showToast('Load failed', 'red');
+    console.error(e);
+  } finally {
+    setBtnsDisabled(false);
+  }
+}
+
+async function cloudUpload() {
+  setBtnsDisabled(true);
+  setCloudStatus('Uploading to cloud…', 'loading');
+  setSyncBadge('syncing', 'uploading…');
+
+  try {
+    const json = JSON.stringify(state);
+    // Unicode-safe base64
+    const b64  = btoa(unescape(encodeURIComponent(json)));
+
+    const payload = JSON.stringify({
+      paragraph_id: PARA_ID,
+      text: b64,
+      source_link: '',
+      tags: 'curl-swapper-backup',
+      category: 'Dump'
+    });
+
+    const res = await fetch(PUT_URL, {
+      method: 'PUT',
+      headers: commonHeaders(),
+      body: payload
+    });
+
+    if (!res.ok) throw new Error(`Server returned HTTP ${res.status}`);
+
+    const ts = new Date().toLocaleTimeString();
+    document.getElementById('cloudLastSync').textContent = ts;
+    setSyncBadge('synced', 'synced');
+    setCloudStatus(`✓ Saved — ${state.commands.length} cmds, ${state.users.length} users`, 'ok');
+    showToast('Saved to cloud!', 'green');
+
+  } catch(e) {
+    setCloudStatus(`✕ ${e.message}`, 'err');
+    setSyncBadge('error', 'error');
+    showToast('Upload failed', 'red');
+    console.error(e);
+  } finally {
+    setBtnsDisabled(false);
+  }
+}
+
+// ────────────────────────────────────────────────────────
+// COMMANDS
+// ────────────────────────────────────────────────────────
+function uid() { return Math.random().toString(36).slice(2, 9); }
+
+function addCommand() {
+  state.commands.push({ id: uid(), title: '', curl: '' });
+  saveLocal(); renderAll();
+  setTimeout(() => {
+    const ins = document.querySelectorAll('.cmd-title-input');
+    if (ins.length) ins[ins.length - 1].focus();
+  }, 50);
+}
+
+function removeCommand(id) {
+  state.commands = state.commands.filter(c => c.id !== id);
+  saveLocal(); renderAll();
+}
+
+function updateCommand(id, field, val) {
+  const cmd = state.commands.find(c => c.id === id);
+  if (cmd) { cmd[field] = val; saveLocal(); }
+  renderCmdCount();
+}
+
+// ────────────────────────────────────────────────────────
+// USERS
+// ────────────────────────────────────────────────────────
+function addUser() {
+  state.users.push({ id: uid(), name: '', auth: '' });
+  saveLocal(); renderAll();
+  setTimeout(() => {
+    const ins = document.querySelectorAll('.user-name-input');
+    if (ins.length) ins[ins.length - 1].focus();
+  }, 50);
+}
+
+function removeUser(id) {
+  state.users = state.users.filter(u => u.id !== id);
+  saveLocal(); renderAll();
+}
+
+function updateUser(id, field, val) {
+  const user = state.users.find(u => u.id === id);
+  if (user) { user[field] = val; saveLocal(); }
+  renderUserCount();
+}
+
+// ────────────────────────────────────────────────────────
+// AUTH INJECTION
+// ────────────────────────────────────────────────────────
+function injectAuth(curlStr, authStr) {
+  const auth = authStr.trim();
+  if (!auth) return curlStr;
+
+  const isCookie = auth.startsWith("-b ");
+  const isBearer = /^-H\s+['"]Authorization/i.test(auth);
+
+  let result = curlStr;
+
+  if (isCookie) {
+    const m = auth.match(/^-b\s+['"](.+)['"]\s*$/s);
+    const val = m ? m[1] : auth.replace(/^-b\s+/, '');
+    result = result.replace(/-b\s+'[^']*'/gs, '').replace(/-b\s+"[^"]*"/gs, '');
+    result = result.trimEnd().replace(/\\\s*$/, '') + ` \\\n  -b '${val}'`;
+  } else if (isBearer) {
+    const m = auth.match(/^-H\s+['"]Authorization:\s*Bearer\s+(.+)['"]\s*$/s);
+    const token = m ? m[1] : '';
+    result = result.replace(/-H\s+'Authorization:[^']*'/g, '').replace(/-H\s+"Authorization:[^"]*"/g, '');
+    result = result.trimEnd().replace(/\\\s*$/, '') + ` \\\n  -H 'Authorization: Bearer ${token}'`;
+  } else {
+    result = result.trimEnd().replace(/\\\s*$/, '') + ` \\\n  ${auth}`;
+  }
+
+  return result;
+}
+
+// ────────────────────────────────────────────────────────
+// COPY
+// ────────────────────────────────────────────────────────
+function copyForUser(cmdId, userId, btnEl) {
+  const cmd  = state.commands.find(c => c.id === cmdId);
+  const user = state.users.find(u => u.id === userId);
+  if (!cmd || !user) return;
+
+  const result = injectAuth(cmd.curl, user.auth);
+
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = result;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  };
+
+  const done = () => {
+    const orig = btnEl.innerHTML;
+    btnEl.classList.add('copied');
+    btnEl.innerHTML = `<span class="btn-icon">✓</span> copied!`;
+    setTimeout(() => { btnEl.classList.remove('copied'); btnEl.innerHTML = orig; }, 1800);
+    showToast(`Copied for ${user.name || 'user'}`, 'green');
+  };
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(result).then(done).catch(() => { fallback(); done(); });
+  } else {
+    fallback(); done();
+  }
+}
+
+// ────────────────────────────────────────────────────────
+// CLEAR ALL
+// ────────────────────────────────────────────────────────
+function clearAll() {
+  if (!confirm('Clear all local data?\n\nThis does NOT affect cloud. You can Load from cloud to restore.')) return;
+  state = { commands: [], users: [] };
+  saveLocal(); renderAll();
+  setSyncBadge('', 'local');
+  setCloudStatus('Local cleared — Load from cloud to restore.', '');
+  showToast('Local data cleared', 'blue');
+}
+
+// ────────────────────────────────────────────────────────
+// RENDER
+// ────────────────────────────────────────────────────────
+function renderAll() {
+  renderCommands();
+  renderUsers();
+  renderCmdCount();
+  renderUserCount();
+}
+
+function renderCmdCount() {
+  const el = document.getElementById('cmdCount');
+  if (el) el.textContent = state.commands.length;
+}
+
+function renderUserCount() {
+  const el = document.getElementById('userCount');
+  if (el) el.textContent = state.users.length;
+}
+
+function renderCommands() {
+  const list = document.getElementById('cmdList');
+  if (!list) return;
+
+  if (state.commands.length === 0) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">$_</div>No commands yet.</div>`;
+    return;
+  }
+
+  list.innerHTML = state.commands.map(cmd => {
+    const userBtns = state.users.length > 0
+      ? state.users.map(u =>
+          `<button class="copy-user-btn" onclick="copyForUser('${cmd.id}','${u.id}',this)">
+            <span class="btn-icon">⎘</span>${escHtml(u.name || 'unnamed')}
+          </button>`).join('')
+      : `<span class="no-users-hint">Add users → to generate copy buttons</span>`;
+
+    return `
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <div class="cmd-dot"></div>
+        <input class="cmd-title-input" type="text" placeholder="Command title…"
+          value="${escAttr(cmd.title)}"
+          oninput="updateCommand('${cmd.id}','title',this.value)" />
+        <button class="btn-remove-cmd" onclick="removeCommand('${cmd.id}')">×</button>
+      </div>
+      <div class="cmd-body">
+        <textarea placeholder="curl 'https://...' \&#10;  -H 'accept: */*' \&#10;  -b 'session=...'"
+          oninput="updateCommand('${cmd.id}','curl',this.value);renderCopySection('${cmd.id}')"
+        >${escHtml(cmd.curl)}</textarea>
+      </div>
+      <div class="copy-section">
+        <div class="copy-section-label">Copy with user auth →</div>
+        <div class="copy-buttons-row" id="copyBtns_${cmd.id}">${userBtns}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCopySection(cmdId) {
+  const row = document.getElementById(`copyBtns_${cmdId}`);
+  if (!row) return;
+  if (state.users.length === 0) {
+    row.innerHTML = `<span class="no-users-hint">Add users → to generate copy buttons</span>`;
+    return;
+  }
+  row.innerHTML = state.users.map(u =>
+    `<button class="copy-user-btn" onclick="copyForUser('${cmdId}','${u.id}',this)">
+      <span class="btn-icon">⎘</span>${escHtml(u.name || 'unnamed')}
+    </button>`).join('');
+}
+
+function renderUsers() {
+  const list = document.getElementById('userList');
+  if (!list) return;
+
+  if (state.users.length === 0) {
+    list.innerHTML = `<div class="empty-state" style="padding:16px 8px"><div class="empty-icon">👤</div>No users yet.</div>`;
+    return;
+  }
+
+  list.innerHTML = state.users.map((u, i) => {
+    const initials = (u.name || '?').slice(0, 2).toUpperCase();
+    const hue = (i * 73 + 210) % 360;
+    return `
+    <div class="user-card">
+      <div class="user-header">
+        <div class="user-avatar" style="background:hsl(${hue},65%,45%)">${initials}</div>
+        <input class="user-name-input" type="text" placeholder="User name…"
+          value="${escAttr(u.name)}"
+          oninput="updateUser('${u.id}','name',this.value);refreshAllCopySections()" />
+        <button class="btn-remove-user" onclick="removeUser('${u.id}')">×</button>
+      </div>
+      <div class="user-body">
+        <textarea placeholder="-b 'um_session=eyJ…'&#10;or&#10;-H 'Authorization: Bearer eyJ…'"
+          oninput="updateUser('${u.id}','auth',this.value)"
+        >${escHtml(u.auth)}</textarea>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function refreshAllCopySections() {
+  state.commands.forEach(cmd => renderCopySection(cmd.id));
+}
+
+// ────────────────────────────────────────────────────────
+// TOAST
+// ────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, color = 'green') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${color}`;
+  void t.offsetWidth;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ────────────────────────────────────────────────────────
+// HELPERS
+// ────────────────────────────────────────────────────────
+function escHtml(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escAttr(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+</script>
+</body>
+</html>
